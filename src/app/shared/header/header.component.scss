@@ -1,0 +1,23 @@
+.header-clr{
+    background-color: rgb(37, 39, 39);
+    height: 5rem;
+}
+
+@media(min-width:1rem){
+    .brand-name{
+        font-family: 'Times New Roman', Times, serif;
+        text-decoration: none;
+        color: #fff;
+        font-size: 3rem;
+        margin-left: 2rem;
+    }
+}
+
+.sub-header{
+    border: 1px solid black;
+}
+.navbar-nav{
+    li{
+        font-size: 1.2rem;
+    }
+}

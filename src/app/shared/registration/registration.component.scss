@@ -1,0 +1,45 @@
+.login-bg{
+    background-image: url('../../../assets/public/backgroundimage.jpg');
+    height: 40rem;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+}
+h2{
+    color: aliceblue;
+    margin-top: 2rem;
+    padding-right: 2rem;
+    
+}
+.login-main{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+.login-container{
+    border: 3px solid #fff;
+    border-radius: 2rem;
+    position: relative;
+    height: 32rem;
+    margin-top: 3rem;
+}
+.loginform{
+    margin-top: 5rem;
+    input{
+        margin-left: 1rem;
+        border-radius: 2rem;
+        width: 23rem;
+        height: 2.5rem;
+        margin-top: 2rem
+    }
+    label{
+        color: #fff;
+    }
+}
+.login-btn{
+    width: 8rem;
+    border-radius: 2rem;
+    font-size: 1rem;
+    background-color: rgb(22, 154, 22);
+}

@@ -1,0 +1,8 @@
+<app-header [isAdmin]="isAdmin" [isLoggedIn]="isLoggedIn"></app-header>
+
+
+<div class="container">
+    <h3>News Management</h3>
+    <app-data-table [Headers]="headers" [keyNames]="keynames" [addItemUrl]="newItemurl" [tableData]="Data"
+        [isUsers]="user" (sendTrigger)="operationTrigger($event)"></app-data-table>
+</div>

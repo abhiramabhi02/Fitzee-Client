@@ -1,0 +1,21 @@
+<app-header [isAdmin]="admin" [isLoggedIn]="loggedIn"></app-header>
+<!-- <div class="login-bg">
+    
+    <div class="container login-main row">
+        
+    <div class="container login-container col-md-4">
+        <h2>Admin Login</h2>
+       <div class="loginform">
+         <form >
+           
+            <input type="text" class="form-control" placeholder="Enter your email">
+            
+            <input type="password" class="form-control" placeholder="Enter your password">
+            <button type="submit" class="login-btn btn btn-success mt-5">Login</button>
+        </form>
+       </div>
+    </div>
+    </div>
+</div> -->
+
+<app-login [isAdmin]="true" (formData)="getFormData($event)"></app-login>

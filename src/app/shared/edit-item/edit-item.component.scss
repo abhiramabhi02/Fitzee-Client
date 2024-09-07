@@ -1,0 +1,31 @@
+.main-container{
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+.form-container{
+    border: .3rem solid black;
+    margin-top: 6rem;
+    border-radius: 1rem;
+    width: 30rem;
+}
+.add-item-form{
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+   label, input{
+        width: 20rem;
+        margin-left: 5rem;
+    }
+    label{
+        margin-top: 1.5rem;
+    }
+}
+h4{
+    text-align: center;
+    margin-top: 1rem;
+}
+.button-container{
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
