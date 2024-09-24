@@ -1,0 +1,59 @@
+.dialog-title {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    mat-icon {
+      margin-right: 10px;
+      color: #3f51b5; // Customize as per theme
+    }
+  }
+  
+  .dialog-content {
+    padding: 20px 0;
+    max-height: 300px;
+    overflow-y: auto;
+  
+    .user-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+  
+      mat-list {
+        width: 100%;
+      }
+  
+      mat-list-item {
+        display: flex;
+        align-items: center;
+      }
+  
+      mat-radio-button {
+        width: 100%;
+        .user-info {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+        .user-icon {
+          color: #3f51b5; // Customize as needed
+        }
+      }
+    }
+  }
+  
+  .dialog-actions {
+    padding: 15px;
+    display: flex;
+    justify-content: flex-end;
+    
+    button {
+      margin-left: 10px;
+    }
+    
+    .cancel-button {
+      color: #f44336; // Red for cancel button
+    }
+  }
+  

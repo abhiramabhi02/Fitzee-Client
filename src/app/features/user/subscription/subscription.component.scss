@@ -1,0 +1,58 @@
+h2{
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.subscription-card{
+    border: 1px solid black;
+    background-color: rgb(46, 48, 48);
+    border-radius: 1.5rem;
+    height: 30rem;
+    width: 25rem;
+    margin-left: 2rem;
+    h3{
+        text-align: center;
+        margin-top: 1rem;
+        color: #fff;
+    }
+   
+    h5{
+        text-align: center;
+        text-decoration: underline;
+        margin-top: 2rem;
+        color: #fff;
+    }
+
+    h6{
+        text-align: center;
+        margin-top: 2rem;
+        color: #fff;
+    }
+
+}
+.plan-header{
+    margin-top: .3rem;
+    margin-left: .5rem;
+    border: 1px solid #fff;
+    background-color: rgb(24, 25, 32);
+    height: 4rem;
+    width: 24rem;
+    border-radius: 1.5rem;
+}
+.subscription-btn-container{
+    margin-top: 4rem;
+    .subscription-btn{
+        background-color: rgb(31, 194, 158);
+        margin-left: .5rem;
+        margin-right: .5rem;
+        border-radius: 1.5rem;
+        width: 23.5rem;
+        height: 4rem;
+    }
+}
+.subscription-btn:hover  {
+    background-color: rgb(13, 116, 93) !important; 
+}
+.card-container{
+    display: flex;
+}

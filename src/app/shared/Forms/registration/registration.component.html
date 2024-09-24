@@ -1,0 +1,49 @@
+<div class="login-bg">
+    
+    <div class="container login-main row">
+        
+    <div class="container login-container col-md-4">
+        <h2>{{Role}} Registration</h2>
+       <div class="loginform">
+        <form [formGroup]="registerForm" (ngSubmit)="register()">
+
+            <!-- <label for="name">Name</label> -->
+            <input type="text" id="name" class="form-control" placeholder="Enter your Name" formControlName="name">
+            <div *ngIf="registerForm.get('name')?.touched && registerForm.get('name')?.invalid" class="text-danger">
+              <div *ngIf="registerForm.get('name')?.errors?.['required']">Name is required.</div>
+              <div *ngIf="registerForm.get('name')?.errors?.['noSpaces']">Name cannot contain only spaces.</div>
+            </div>
+          
+            <!-- <label for="email">Email</label> -->
+            <input type="text" id="email" class="form-control" placeholder="Enter your email" formControlName="email">
+            <div *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid" class="text-danger">
+              <div *ngIf="registerForm.get('email')?.errors?.['required']">Email is required.</div>
+              <div *ngIf="registerForm.get('email')?.errors?.['email']">Enter a valid email address.</div>
+              <div *ngIf="registerForm.get('email')?.errors?.['noSpaces']">Name cannot contain only spaces.</div>
+            </div>
+          
+            <!-- <label for="password">Password</label> -->
+            <input type="password" id="password" class="form-control" placeholder="Enter your password" formControlName="password">
+            <div *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid" class="text-danger">
+              <div *ngIf="registerForm.get('password')?.errors?.['required']">Password is required.</div>
+              <div *ngIf="registerForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters long.</div>
+              <div *ngIf="registerForm.get('password')?.errors?.['noSpaces']">Name cannot contain only spaces.</div>
+              <div *ngIf="registerForm.get('password')?.errors?.['passwordError']">Please enter a password contains atleast one lowecase, one uppercase, one number and one special character</div>
+            </div>
+          
+            <!-- <label for="cpassword">Confirm Password</label> -->
+            <input type="password" id="cpassword" class="form-control" placeholder="Confirm your password" formControlName="cpassword">
+            <div *ngIf="registerForm.get('cpassword')?.touched && registerForm.get('cpassword')?.invalid" class="text-danger">
+              <div *ngIf="registerForm.get('cpassword')?.errors?.['required']">Confirm password is required.</div>
+              <div *ngIf="registerForm.get('cpassword')?.errors?.['minlength']">Password must be at least 6 characters long.</div>
+              <div *ngIf="registerForm.get('cpassword')?.errors?.['noSpaces']">Name cannot contain only spaces.</div>
+              <div *ngIf="registerForm.get('cpassword')?.errors?.['passwordError']">Please enter a password contains atleast one lowecase, one uppercase, one number and one special character</div>
+            </div>
+            
+            <button type="submit" class="login-btn btn btn-success mt-5">Sign up</button>
+          </form>
+          
+       </div>
+    </div> 
+    </div>
+</div> 

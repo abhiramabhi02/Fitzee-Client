@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../services/admin.service';
 import { Router } from '@angular/router';
 import { throwError } from 'rxjs';
+import { FirebaseService } from 'src/app/shared/services/firebase.service';
 
 @Component({
   selector: 'app-news-management',
@@ -17,11 +18,15 @@ export class NewsManagementComponent implements OnInit {
   Data: any[] = [];
   user: Boolean = false;
   newItemurl:string = '/addnews'
+  editItemUrl:string = '/editnews'
 
-  constructor(private service: AdminService, private router:Router) {}
+  constructor(private service: AdminService, private router:Router, private firebaseService:FirebaseService) {}
 
   ngOnInit(): void {
-    this.service.getAllNews().subscribe((res: any) => {
+    const item = 'news'
+    this.service.getAllItems(item).subscribe((res: any) => {
+      console.log(res.items, 'con');
+      
       const result = this.service.newsSorting(res);
       this.keynames = result.keys;
       this.headers = result.keys;
@@ -40,9 +45,12 @@ export class NewsManagementComponent implements OnInit {
       
     }else if(data.call === 'delete'){
       console.log('delete');
-      this.service.deleteNews(deleteData).subscribe((res)=>{
+      this.service.deleteItems(deleteData).subscribe((res:any)=>{
         console.log(res)
-        this.Data = this.Data.filter(item => item.id !== data.id)
+        if(res.success){
+          this.firebaseService.deleteImage(data.url)
+          this.Data = this.Data.filter(item => item.id !== data.id)
+        }
       })
       
     }else{ 

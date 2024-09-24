@@ -1,0 +1,52 @@
+<div class="main-container">
+    <div class="search">
+      <input type="text" class="form-control" placeholder="search..">
+    </div>
+    <div class="rooms-container">
+      <h3 id="chat-header">Chat</h3>
+  
+      <!-- User Chat Rooms -->
+      <div *ngIf="user === 'user'" class="rooms">
+        <div *ngFor="let room of rooms" class="user-chat-rooms">
+          <div (click)="check(room._id)" class="chat-room mt-3">
+            <div class="profile-pic-container">
+              <img class="profile-pic" [src]="'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrTPjHOG0LBJKLlx35kYcK4hpx5xRdGNQ4tQ&s'" alt="Profile Picture">
+            </div>
+            <div class="room-name">
+              <h5>{{room.trainerDetails?.Name}}</h5>
+              <p>{{getLastMessage(room)}}</p>
+            </div>
+            <div class="timestamp">
+              <p>{{getLastTimestamp(room)}}</p>
+            </div>
+          </div>
+          <div class="vertical-line-div mt-2 mx-3">
+            <div style="width: 26rem; height: 1px; background-color: black;"></div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Trainer Chat Rooms -->
+      <div *ngIf="user !== 'user'" class="rooms">
+        <button type="button" class="btn btn-sm btn-primary" (click)="createRoom()">New Chat</button>
+        <div *ngFor="let room of rooms" class="trainer-chat-rooms">
+          <div (click)="check(room._id)" class="chat-room mt-3">
+            <div class="profile-pic-container">
+              <img class="profile-pic" [src]="'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrTPjHOG0LBJKLlx35kYcK4hpx5xRdGNQ4tQ&s'" alt="Profile Picture">
+            </div>
+            <div class="room-name">
+              <h5>{{room.userDetails?.Name}}</h5>
+              <p>{{getLastMessage(room)}}</p>
+            </div>
+            <div class="timestamp">
+              <p>{{getLastTimestamp(room)}}</p>
+            </div>
+          </div>
+          <div class="vertical-line-div mt-2 mx-3">
+            <div style="width: 26rem; height: 1px; background-color: black;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

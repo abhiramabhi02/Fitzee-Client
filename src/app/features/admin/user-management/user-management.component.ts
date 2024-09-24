@@ -18,7 +18,8 @@ export class UserManagementComponent implements OnInit {
   constructor(private service:AdminService){}
 
   ngOnInit(): void {
-    this.service.getAllUsers().subscribe((res:any)=>{
+    const item:string = 'user'
+    this.service.getAllItems(item).subscribe((res:any)=>{
       const result = this.service.usersSorting(res)
       this.keynames = result.keys
       this.headers = result.keys

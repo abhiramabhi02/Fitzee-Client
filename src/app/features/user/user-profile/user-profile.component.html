@@ -1,0 +1,9 @@
+<app-header [isLoggedIn]="loggedIn" [user]="userLogged"></app-header>
+<div class="row">
+  <div class="col-md-3">
+    <app-profile-sidebar></app-profile-sidebar>
+  </div>
+  <div class="col-md-9">
+    <router-outlet></router-outlet>
+  </div>
+</div>

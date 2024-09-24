@@ -1,0 +1,33 @@
+.header-clr{
+    background-color: rgb(37, 39, 39);
+    height: 5rem;
+}
+
+@media(min-width:1rem){
+    .brand-name{
+        font-family: 'Times New Roman', Times, serif;
+        text-decoration: none;
+        color: #fff;
+        font-size: 3rem;
+        margin-left: 2rem;
+    }
+}
+
+.sub-header{
+    border: 1px solid black;
+}
+.navbar-nav{
+    li{
+        font-size: 1.2rem;
+    }
+}
+.login-btn{
+    background-color: rgb(43, 121, 194);
+    color: #fff;
+    margin-right: 1rem;
+    width: 5rem;
+    height: 2.5rem;
+    border-radius: 1rem;
+    border-color: #fff;
+    // box-shadow: 1px 2px rgb(50, 99, 144);
+}

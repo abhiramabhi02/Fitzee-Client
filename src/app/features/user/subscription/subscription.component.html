@@ -1,0 +1,24 @@
+<app-header [isLoggedIn]="loggedIn" [user]="userLogged"></app-header>
+
+<div class="container main-container">
+    <h2>Subscription plans</h2>
+    <div class="row">
+        <div class="col-md-4 mt-5 mb-4 card-container">
+            <div *ngFor="let subscription of subscriptionData" class="subscription-card">
+                <div class="plan-header">
+                    <h3>{{subscription.Name}}</h3>
+                </div>
+                <div class="plan-features">
+                    <h5>Features included</h5>
+                    <h6 *ngFor="let feature of subscription.Features">{{feature}}</h6>
+                   
+                </div>
+                <div class="subscription-btn-container">
+                    <button type="button" class="btn btn-secondary subscription-btn">₹ {{subscription.Price}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

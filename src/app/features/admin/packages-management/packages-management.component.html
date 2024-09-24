@@ -1,0 +1,8 @@
+<app-header [isAdmin]="isAdmin" [isLoggedIn]="isLoggedIn"></app-header>
+
+
+<div class="container">
+    <h3>Packages Management</h3>
+    <app-data-table [Headers]="headers" [keyNames]="keynames" [addItemUrl]="newItemurl" [editItemUrl]="editItemUrl" [tableData]="Data"
+        [isUsers]="user" (sendTrigger)="operationTrigger($event)"></app-data-table>
+</div>

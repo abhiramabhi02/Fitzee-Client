@@ -22,7 +22,8 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "paths": {"apexcharts": ["node_modules/apexcharts"]}
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

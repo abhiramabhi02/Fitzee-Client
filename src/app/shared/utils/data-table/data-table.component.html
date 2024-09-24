@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="container">
+        <button *ngIf="!isUsers" type="button" (click)="callFunction()" class="btn btn-sm btn-primary">New Item</button>
+        <table class="table my-4">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th *ngFor="let header of Headers">{{header}}</th>
+                    <th *ngIf="imageVisibility">Images</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let row of tableData; let i = index">
+                    <td>{{i | serialNumber}}</td>
+                    <td *ngFor="let key of keyNames">{{row[key] | textTrim}}</td>
+                    <td *ngIf="imageVisibility"><img class="image" src="{{row[Image]}}" alt=""></td>
+                    <td *ngIf="!isUsers"><button type="button" (click)="editClick(row[id])" class="btn btn-small btn-dark">Edit</button>
+                        <button type="button" (click)="deleteClick(row[id])" class="btn btn-small btn-danger">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>    
+        <button *ngFor="let num of paginationNumbers" type="button" (click)="paginationWorks(num)" class="btn btn-sm btn-dark mx-2 mb-4" >{{num}}</button>
+    </div>
+</div>

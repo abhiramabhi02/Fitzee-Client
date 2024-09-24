@@ -1,0 +1,65 @@
+<app-header [isLoggedIn]="loggedIn" [user]="userLogged"></app-header>
+
+<!-- <div class="main-container">
+    <div class="row">
+        <div class="col-md-3">
+            <img src="..." alt="">
+        </div>
+        <div class="col-md-9">
+            <h1>{{packageData.Packagename}}</h1>
+        </div>
+    </div>
+</div> -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 image-container">
+            <img class="packageImage" src="{{this.packageData.Exercises[0].Image}}" alt=""> 
+            <div class="features-subscription">
+                <!-- subscription container starts here -->
+           <div class="subscription-container mt-4 mb-4">
+            <div class="subscription-details-card">
+                <h5>Features</h5>
+                <ul>
+                <li *ngFor="let features of packageData.Subscription.Features">{{features}}</li>
+                </ul>
+            </div>
+           </div>
+           <div class="subscription-prices mt-4">
+            <h5>Subscription plans</h5>
+            <h6>Monthly: ₹{{price}}</h6>
+            
+        </div>
+           <!-- subscription container ends here -->
+            </div>
+        </div>
+        <div class="col-md-6 package-details-container">
+            <!-- package details starts-->
+          <div class="package-details">
+            <h2>{{this.packageData.Packagename}} Package</h2>
+          <h6 class="mt-4">Description: {{this.packageData.Description}}</h6>
+          <h5 class="mt-5">Exercises</h5>
+          </div>
+          <!-- package details ends here-->
+
+          <!-- exercise container starts-->
+          <div class="exercise mt-3">
+            <div class="Exercise-details-card mt-3" *ngFor="let exercise of packageData.Exercises">
+                <div class="exercise-image-container">
+                   <img class="exercise-image" src="{{exercise.Image}}" alt="">
+                </div>
+                <h6>{{exercise.Name}}</h6>
+             </div>
+          </div>
+
+          <div class="subscription-btn">
+            <button type="button" class="btn btn-dark" [routerLink]="'/subscription'">Subscribe</button>
+          </div>
+          <!-- exercise container ends here -->
+
+          
+
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

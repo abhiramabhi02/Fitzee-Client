@@ -1,0 +1,72 @@
+<div class="main-container">
+    <div *ngIf="!dataLoaded" class="noData">
+        <h4 class="text-secondary mt-3 mx-3">Select Room to chat</h4>
+    </div>
+    <div *ngIf="dataLoaded" class="col-md-12 details-container">
+        <div class="profile-pic-container">
+            <img class="profile-pic" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrTPjHOG0LBJKLlx35kYcK4hpx5xRdGNQ4tQ&s" alt="">
+        </div>
+        <div *ngIf="role === 'trainer'" class="room-details-container">
+            <h4>{{roomData.userDetails.Name}}</h4>
+            <p>last online - 2:54 pm</p>
+        </div>
+
+        <div *ngIf="role === 'user'" class="room-details-container">
+            <h4>{{roomData.trainerDetails.Name}}</h4>
+            <p>last online - 2:54 pm</p>
+        </div>
+        <div class="comunication-container">
+            <i class="fa-solid fa-phone"></i>
+            <i class="fa-solid fa-video"></i>
+            <i class="fa-solid fa-ellipsis-vertical"></i>
+        </div>
+        
+    </div>
+    <div class="vertical-line-div mt-2 mx-3">
+        <div style="width: 55rem; height: 1px; background-color: black;"></div>
+    </div>
+
+    <div *ngIf="role === 'user'" class="messages-container container">
+       <div *ngFor="let message of Messages">
+        <div *ngIf="message.SenderId === UserId" class="send-text">
+            <h6>{{message.Message}}</h6>
+             <p>{{message.TimeStamp | timeStamp}}</p>
+           </div>  
+
+           <div *ngIf="message.SenderId === TrainerId" class="reciever-text">
+            <h6>{{message.Message}}</h6>
+            <p>{{message.TimeStamp | timeStamp}}</p>
+           </div>
+       </div>
+    </div>
+
+    <div *ngIf="role === 'trainer'" class="messages-container container">
+        <div *ngFor="let message of Messages">
+         <div *ngIf="message.SenderId === TrainerId" class="send-text">
+             <h6>{{message.Message}}</h6>
+             <p>{{message.TimeStamp | timeStamp}}</p>
+            </div>  
+ 
+            <div *ngIf="message.SenderId === UserId" class="reciever-text">
+             <h6>{{message.Message}}</h6>
+             <p>{{message.TimeStamp | timeStamp}}</p>
+            </div>
+        </div>
+     </div>
+
+    
+    <div class="message-areas">
+        <div class="send-file">
+            <i class="fa-solid fa-paperclip"></i>
+        </div>
+        <div class="text-area-container">
+          <form [formGroup]="messageForm" (ngSubmit)="sendMessage()">
+            <input class="text-area form-control" type="text" placeholder="Type your message here..." formControlName="message">
+          </form> 
+        </div>
+        <div class="chat-icons">
+            <i class="fa-regular fa-face-smile"></i>
+            <i class="fa-solid fa-camera"></i>
+        </div>
+    </div>
+</div>

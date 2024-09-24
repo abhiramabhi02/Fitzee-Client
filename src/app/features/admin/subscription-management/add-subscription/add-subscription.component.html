@@ -1,0 +1,46 @@
+<app-header [isAdmin]="isAdmin" [isLoggedIn]="isLoggedIn"></app-header>
+
+<div class="container main-container">
+    <div class="conatiner form-container">
+        <h4>Add new Subscription plan</h4>
+        <form [formGroup]="subscriptionForm" (ngSubmit)="submit()">
+            <label for="name" class="form-label">Name <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" placeholder="Enter name" formControlName="name">
+            <div *ngIf="subscriptionForm.get('name')?.touched && subscriptionForm.get('name')?.invalid"
+                class="text-danger">
+                <div *ngIf="subscriptionForm.get('name')?.errors?.['required']">This field is required</div>
+                <div *ngIf="subscriptionForm.get('name')?.errors?.['noSpaces']">Field cannot be empty spaces</div>
+            </div>
+
+
+            <label for="features" class="form-label">Features <span class="text-danger">*</span></label>
+            <div class="features-input">
+                <input #featureInput type="text" class="form-control" placeholder="Enter features" formControlName="features">
+                <button type="button" class="btn btn-sm btn-primary featureBtn" (click)="addFeatures(featureInput.value, featureInput)">Add</button>
+            </div>
+           
+            <div *ngIf="subscriptionForm.get('features')?.touched && subscriptionForm.get('features')?.invalid"
+                class="text-danger">
+                <div *ngIf="subscriptionForm.get('features')?.errors?.['required']">This field is required</div>
+            </div>
+
+            <div class="container show-feature-container">
+                <div class="selectedbtns" *ngFor="let feature of Features">
+                    <button type="button" (click)="deselectFeature(feature)" class="btn btn-sm btn-dark">{{feature}} <span><i class="fa-solid fa-x"></i></span></button>
+                </div>
+               </div>
+
+            <label for="price" class="form-label">Price <span class="text-danger">*</span></label>
+            <input type="number" class="form-control" placeholder="Enter price" formControlName="price">
+            <div *ngIf="subscriptionForm.get('price')?.touched && subscriptionForm.get('price')?.invalid"
+                class="text-danger">
+                <div *ngIf="subscriptionForm.get('price')?.errors?.['required']">This field is required</div>
+                <div *ngIf="subscriptionForm.get('price')?.errors?.['noSpaces']">Field cannot be empty spaces</div>
+            </div>
+
+           <div class="submit-btn"> <button type="submit" class="btn btn-success">Submit</button> </div>
+
+        </form>
+    </div>
+
+</div>

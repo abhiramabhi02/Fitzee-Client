@@ -1,0 +1,29 @@
+<app-header [isAdmin]="true" [isLoggedIn]="true"></app-header>
+
+<div class="container main-container">
+    <div class="conatiner form-container">
+      <h4>Add new {{item}}</h4>
+    <form [formGroup]="addItemForm" (ngSubmit)="onAdd()" class="add-item-form" >
+        <label class="form-label" for="name">Name</label>
+        <input type="text" class="form-control" placeholder="Enter title" formControlName="name">
+        <div *ngIf="addItemForm.get('name')?.touched && addItemForm.get('name')?.invalid" class="text-danger">
+          <div *ngIf="addItemForm.get('name')?.errors?.['required']">Name is required.</div>
+          <div *ngIf="addItemForm.get('name')?.errors?.['noSpaces']">Name cannot be just spaces.</div>
+        </div>
+
+        <label class="form-label" for="description">Description</label>
+        <input type="text" class="form-control" placeholder="Enter description" formControlName="description">
+        <div *ngIf="addItemForm.get('description')?.touched && addItemForm.get('description')?.invalid" class="text-danger">
+          <div *ngIf="addItemForm.get('description')?.errors?.['required']">Description is required.</div>
+          <div *ngIf="addItemForm.get('description')?.errors?.['noSpaces']">Description cannot be just spaces.</div>
+        </div>
+
+        <label class="form-label" for="image">Image</label>
+        <input type="file" class="form-control" (change)="onFileSelected($event)">
+
+        <div class="button-container">
+          <button [disabled]="addItemForm.invalid" type="submit" class="btn btn-success">Add</button>
+      </div>
+    </form>
+  </div>
+</div>

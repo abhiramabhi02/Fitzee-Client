@@ -1,0 +1,33 @@
+.data-card-container{
+    display: flex;
+    justify-content: center;
+}
+.data-card{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    // border: 1px solid black;
+    background-color: aliceblue;
+    box-shadow: 0 0 2px 0 black;
+    height: 8rem;
+    width: 16rem;
+    margin-left: 3.5rem;
+    position: relative;
+    text-align: center;
+    h4{
+        margin-top: 1rem
+    }
+    h5{
+        margin-top: 1rem
+    }
+}   
+.main-container{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.piechart{
+    width: 28rem;
+    height: 18rem;
+}
+.areagraph{
+    margin-left: 4rem;
+}

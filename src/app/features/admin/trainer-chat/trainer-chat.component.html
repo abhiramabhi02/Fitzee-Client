@@ -1,0 +1,10 @@
+<app-header [trainer]="trainer"></app-header>
+
+<div class="main-container">
+    <div class="col-md-4">
+        <app-chat-rooms [user]="'trainer'" [rooms]="rooms" (sendRoomData)="receiveRoomData($event)"></app-chat-rooms>
+    </div>
+    <div class="col-md-7">
+      <app-chat-space [roomData]="specifiedRoomData" [role]="'trainer'"></app-chat-space>
+    </div>
+  </div>

@@ -16,12 +16,7 @@ export class AddNewsComponent {
     private firebaseService: FirebaseService,
     private service: AdminService,
     private router:Router
-  ) {
-    // const url = 'https://firebasestorage.googleapis.com/v0/b/fitzee-8fb5a.appspot.com/o/images%2FHD-wallpaper-nature-beautiful.jpg?alt=media&token=c1f46c9c-6638-4b41-bdf4-ce05097c72cc'
-    // firebaseService.deleteImage(url).then(()=>{console.log('success');
-    // }).catch((err)=>{console.log(err, 'failed');
-    // })
-  }
+  ) {}
 
   async recieveData(data: { image: File; name: string; description: string }) {
     console.log(data, 'data in add news');
@@ -37,7 +32,7 @@ export class AddNewsComponent {
         image: this.downloadUrl,
       };
       console.log(newData, 'news');
-      this.service.insertNews(newData).subscribe((res: any) => {
+      this.service.insertItems(newData).subscribe((res: any) => {
         console.log(res);
         if(res.success){
           setTimeout(() => {

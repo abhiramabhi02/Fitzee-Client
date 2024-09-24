@@ -11,6 +11,7 @@ import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { environment } from 'src/environments/environment.dev';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,11 +20,12 @@ import { environment } from 'src/environments/environment.dev';
     AppRoutingModule,
     AdminModule,
     SharedModule,
-    UserModule,
+    UserModule, 
     HttpClientModule,
     RouterModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    BrowserAnimationsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

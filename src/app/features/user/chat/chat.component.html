@@ -1,0 +1,10 @@
+<app-header [isLoggedIn]="loggedIn" [user]="userLogged"></app-header>
+
+<div class="main-container">
+  <div class="col-md-4">
+      <app-chat-rooms [rooms]="rooms" [user]="'user'" (sendRoomData)="fetchRoomData($event)"></app-chat-rooms>
+  </div>
+  <div class="col-md-7">
+    <app-chat-space [roomData]="specificRoomData" [role]="'user'"></app-chat-space>
+  </div>
+</div>

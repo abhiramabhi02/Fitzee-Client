@@ -11,6 +11,7 @@ export class FirebaseService {
 
   constructor(private storage: AngularFireStorage) {}
 
+  // uploading new images to the firebase server
   uploadNewsImages(file: File): Promise<string> {
     const filePath = `images/${file.name}`;
     const fileRef = this.storage.ref(filePath);
@@ -27,6 +28,7 @@ export class FirebaseService {
     })
   }
 
+  // getting the file path of data for edit or delete operations
   getFilePath(url:string){
     let start = url.indexOf('/images')
     let end = url.indexOf('?alt')
@@ -34,6 +36,7 @@ export class FirebaseService {
     return filepath.replace(/%2F/, '/');
   }
 
+  // delete images from the firebase server
   async deleteImage(url:string):Promise<void>{
     const filePath = this.getFilePath(url)
     console.log(filePath, 'file');
@@ -54,4 +57,4 @@ export class FirebaseService {
 
 }
 
-// https://firebasestorage.googleapis.com/v0/b/fitzee-8fb5a.appspot.com/o/images%2FHD-wallpaper-nature-beautiful.jpg?alt=media&token=c1f46c9c-6638-4b41-bdf4-ce05097c72cc
+

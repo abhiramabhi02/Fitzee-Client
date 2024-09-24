@@ -1,0 +1,148 @@
+// .image-container{
+//     margin-top: 5rem;
+//     margin-left: 2rem;
+    
+// }
+// .packageImage{
+//     width: 25rem;
+//     height: 20rem;
+// }
+// .package-details-container{
+//     margin-top: 5rem;
+//     margin-left: 2rem;
+// }
+// .exercise{
+//     display: flex;
+//     margin-bottom: 3rem;
+// }
+// .Exercise-details-card{
+//     margin-left: 1rem;
+//     background-color: rgb(215, 215, 215);
+//     width: 10rem;
+//     height: 10rem;
+//     h6{
+//         text-align: center;
+//         color: #000000;
+//         margin-top: 1rem;
+//     }
+// }
+// .exercise-image{
+//     width: 10rem;
+//     height: 7rem;
+// }
+// .features-subscription{
+//     display: flex;
+// } 
+// .subscription-prices{
+//     margin-left: 4rem;
+// }
+// .subscription-btn{
+//     margin-left: 2rem;  
+//     margin-bottom: 1rem;
+// }
+
+
+
+
+
+/* Base styles for all screen sizes */
+.image-container {
+    margin-top: 5rem;
+    margin-left: 2rem;
+  }
+  
+  .packageImage {
+    width: 25rem;
+    height: 20rem;
+  }
+  
+  .package-details-container {
+    margin-top: 5rem;
+    margin-left: 2rem;
+  }
+  
+  .exercise {
+    display: flex;
+    margin-bottom: 3rem;
+  }
+  
+  .Exercise-details-card {
+    margin-left: 1rem;
+    background-color: rgb(215, 215, 215);
+    width: 10rem;
+    height: 10rem;
+  }
+  
+  .Exercise-details-card h6 {
+    text-align: center;
+    color: #000000;
+    margin-top: 1rem;
+  }
+  
+  .exercise-image {
+    width: 10rem;
+    height: 7rem;
+  }
+  
+  .features-subscription {
+    display: flex;
+  }
+  
+  .subscription-prices {
+    margin-left: 4rem;
+  }
+  
+  .subscription-btn {
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  /* Mobile Layout (screens narrower than 768px) */
+  @media (max-width: 768px) {
+    .image-container {
+      margin-top: 3rem;
+      margin-left: 1rem;
+    }
+  
+    .packageImage {
+      width: 100%;
+      height: auto;
+    }
+  
+    .package-details-container {
+      margin-top: 3rem;
+      margin-left: 1rem;
+    }
+  
+    .exercise {
+      flex-direction: column;
+      margin-bottom: 2rem;
+    }
+  
+    .Exercise-details-card {
+      margin-left: 0;
+      width: 100%;
+      height: auto;
+      margin-bottom: 1rem;
+    }
+  
+    .exercise-image {
+      width: 80%; /* Reduce image width for mobile */
+      height: auto;
+      margin: 0 auto; /* Center the image */
+    }
+  
+    .features-subscription {
+      flex-direction: column;
+    }
+  
+    .subscription-prices {
+      margin-left: 0;
+    }
+  
+    .subscription-btn {
+      margin-left: 0;
+      margin-bottom: 1rem;
+    }
+  }
+  
