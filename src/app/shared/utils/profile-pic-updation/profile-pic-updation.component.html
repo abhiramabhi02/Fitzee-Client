@@ -1,0 +1,24 @@
+<h2 mat-dialog-title class="dialog-title">
+     Update Profile Picture
+  </h2>
+  
+  <mat-dialog-content class="dialog-content">
+    <div class="upload-section">
+      <input type="file" (change)="onFileSelected($event)" accept="image/*" id="fileInput" hidden>
+      <button mat-raised-button color="primary" (click)="triggerFileInput()">
+        Choose Photo
+      </button>
+      <div *ngIf="selectedFile">
+        <h4>Selected File: {{ selectedFile.name }}</h4>
+        <img [src]="previewUrl" alt="Preview" class="image-preview"/>
+      </div>
+    </div>
+  </mat-dialog-content>
+  
+  <mat-dialog-actions align="end" class="dialog-actions">
+    <button mat-button mat-dialog-close class="cancel-button" (click)="cancel()">Cancel</button>
+    <button mat-raised-button color="primary" [disabled]="!selectedFile" (click)="updateProfilePicture()">
+     Update
+    </button>
+  </mat-dialog-actions>
+  

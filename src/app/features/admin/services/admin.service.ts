@@ -4,86 +4,81 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { serverResponse } from 'src/app/shared/interfaces/response.interface';
 import { noSpacesValidator } from 'src/app/shared/validators/custom-validators';
+import { environment } from 'src/environments/environment.dev';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AdminService {
-  constructor(private httpClient: HttpClient, private fb:FormBuilder) {}
+  baseUrl:string = environment.admin.ADMIN_BASE_URL
+  adminUrl = environment.admin
+  constructor(private httpClient: HttpClient, private fb: FormBuilder) {}
 
   // sending post request for admin login
   adminLogin(data: Object): Observable<serverResponse> {
-    const url = 'http://localhost:3000/admin/login';
+    const url = this.baseUrl + this.adminUrl.LOGIN;
 
     return this.httpClient.post<serverResponse>(url, data);
   }
 
-  //trainer login request
-  trainerLogin(data:object):Observable<serverResponse>{
-    const url = 'http://localhost:3000/trainer/login'
+  // get request to fetch all the documents of particular items
+  getAllItems(data: string): Observable<serverResponse> {
+    const url = this.baseUrl + this.adminUrl.GET_ALL_ITEMS + `?item=${data}`;
 
-    return this.httpClient.post<serverResponse>(url, data)
+    return this.httpClient.get<serverResponse>(url); 
   }
 
-// get request to fetch all the documents of particular items
-  getAllItems(data:string): Observable<serverResponse>{
-    const url = `http://localhost:3000/admin/getitems?item=${data}`
-    
-    return this.httpClient.get<serverResponse>(url);
+  getPaymentData():Observable<serverResponse>{
+    const url = this.baseUrl + this.adminUrl.GET_PAYMENTS;
+    return this.httpClient.get<serverResponse>(url)
   }
 
-  // get request to fetch all packages as there are some crucial operaion 
-  // which cannot be fetched with normal services
-  // getAllPackages(data:string){
-  //   const url = `http://localhost:3000/admin/getpackages`
-    
-  //   return this.httpClient.get(url);
-  // }
+  insertItems(data: Object): Observable<serverResponse> {
+    const url = this.baseUrl + this.adminUrl.INSERT_ITEMS;
 
-  insertItems(data:Object): Observable<serverResponse>{
-    const url = 'http://localhost:3000/admin/insertitems'
-
-    return this.httpClient.post<serverResponse>(url, data)
+    return this.httpClient.post<serverResponse>(url, data);
   }
 
-  editItems(data:object | any): Observable<serverResponse>{
-    const url = `http://localhost:3000/admin/updateitems`;
+  editItems(data: object | any): Observable<serverResponse> {
+    const url = this.baseUrl + this.adminUrl.EDIT_ITEMS;
 
-    return this.httpClient.put<serverResponse>(url, data)
+    return this.httpClient.put<serverResponse>(url, data);
   }
 
-  deleteItems(data:object | any){
-    const url = `http://localhost:3000/admin/deleteitems?id=${data.id}&&item=${data.item}`;
+  deleteItems(data: object | any) {
+    const url = this.baseUrl + this.adminUrl.DELETE_ITEMS + `?id=${data.id}&&item=${data.item}`;
 
-    return this.httpClient.delete(url, data)
+    return this.httpClient.delete(url, data);
   }
 
-  
-  createSubscriptionForm(data:string | any){
-    if(data === 'new'){
+
+  createSubscriptionForm(data: string | any) {
+    if (data === 'new') {
       return this.fb.group({
-        name:['', [Validators.required, noSpacesValidator()]],
-        features:[[], [Validators.required]],
-        price:['', [Validators.required]]
-      })
-    }else{
+        name: ['', [Validators.required, noSpacesValidator()]],
+        features: [[], [Validators.required]],
+        price: ['', [Validators.required]],
+      });
+    } else {
       return this.fb.group({
-        name:[data.Name, [Validators.required, noSpacesValidator()]],
-        features:[[], [Validators.required]],
-        price:[data.Price, [Validators.required]]
-      })
+        name: [data.Name, [Validators.required, noSpacesValidator()]],
+        features: [[], [Validators.required]],
+        price: [data.Price, [Validators.required]],
+      });
     }
   }
 
   usersSorting(data: any) {
-    let keys = Object.keys(data.items[0]).slice(1, -4);
+    let keys = Object.keys(data.items[0])
+    keys = keys.filter((key) => !['Password', 'Subscription', '__v', '_id'].includes(key))    
     let userArr: Object[] = [];
     data.items.forEach((items: any) => {
       if (items.Name && items.Email) {
         userArr.push({
-          id:items._id,
+          id: items._id,
           Name: items.Name,
           Email: items.Email,
+          Verification:items.Verification
         });
       }
     });
@@ -91,15 +86,30 @@ export class AdminService {
   }
 
   exerciseSorting(data: any) {
-    let keys = Object.keys(data.items[0]).slice(1, -2);
+    let keys = Object.keys(data.items[0]).slice(0, -1);
+    keys = keys.filter(
+      (key) =>
+        ![
+          '_id',
+          'Image',
+          '__v',
+          'InsertedDate',
+          'LastUpdate',
+          'Sets',
+          'Reps',
+        ].includes(key)
+    );
     let exerciseArr: Object[] = [];
     data.items.forEach((items: any) => {
       if (items.Name && items.Description) {
         exerciseArr.push({
-          id:items._id,
+          id: items._id,
           Name: items.Name,
           Description: items.Description,
-          Image:items.Image
+          Image: items.Image,
+          Status: items.Status,
+          InsertedDate: items.InsertedDate,
+          LastUpdate: items.LastUpdate,
         });
       }
     });
@@ -107,55 +117,101 @@ export class AdminService {
   }
 
   subscriptionSorting(data: any) {
-    let keys = Object.keys(data.items[0]).slice(1, -1);
+    let keys = Object.keys(data.items[0]);
+    keys = keys.filter(
+      (key) => !['__v', '_id', 'InsertedDate', 'LastUpdate'].includes(key)
+    );
     let subscriptionArr: Object[] = [];
     data.items.forEach((items: any) => {
       if (items.Name) {
         subscriptionArr.push({
-          id:items._id,
+          id: items._id,
           Name: items.Name,
           Features: items.Features,
-          Price:items.Price
+          Price: items.Price,
+          Status: items.Status,
+          InsertedDate: items.InsertedDate,
+          LastUpdate: items.LastUpdate,
         });
       }
-    });    
+    });
     return { keys: keys, items: subscriptionArr };
   }
 
   newsSorting(data: any) {
     let keys = Object.keys(data.items[0]).slice(1, -2);
+    keys = keys.filter(
+      (key) =>
+        !['__v', '_id', 'Image', 'InsertedDate', 'LastUpdate'].includes(key)
+    );
     let newsArr: Object[] = [];
     data.items.forEach((items: any) => {
       if (items.Title && items.Description) {
         newsArr.push({
-          id:items._id,
+          id: items._id,
           Title: items.Title,
           Description: items.Description,
-          Image:items.Image
+          Image: items.Image,
+          Status: items.Status,
+          InsertedDate: items.InsertedDate,
+          LastUpdate: items.LastUpdate,
         });
       }
     });
     console.log(newsArr);
-    
-    
+
     return { keys: keys, items: newsArr };
   }
 
   packageSorting(data: any) {
     let keys = Object.keys(data.items[0]).slice(1, -3);
+    keys = keys.filter(
+      (key) =>
+        ![
+          '__v',
+          '_id',
+          'InsertedDate',
+          'LastUpdate',
+          'Subscription',
+          'Exercises',
+        ].includes(key)
+    );
     let newsArr: Object[] = [];
     data.items.forEach((items: any) => {
       if (items.Packagename && items.Description) {
         newsArr.push({
-          id:items._id,
+          id: items._id,
           Packagename: items.Packagename,
           Description: items.Description,
-          Exercises:items.Exercises,
-          Subscription:items.Subscription
+          Exercises: items.Exercises,
+          Subscription: items.Subscription,
+          Status: items.Status,
+          InsertedDate: items.InsertedDate,
+          LastUpdate: items.LastUpdate,
         });
-      }      
+      }
     });
-    
+
     return { keys: keys, items: newsArr };
+  }
+
+  trainerSorting(data: any) {
+    console.log(data, 'data 23');
+    
+    let keys = Object.keys(data[0]);
+    keys = keys.filter((key) => !['_id', 'Password', '__v'].includes(key));
+    console.log(keys, 'key');
+    let trainerArr: Object[] = [];
+    data.forEach((items: any) => {
+      if (items.Name && items.Email) {
+        trainerArr.push({
+          id: items._id,
+          Name: items.Name,
+          Email: items.Email,
+          Verification: items.Verification,
+        });
+      }
+    });
+    return {keys:keys, items:trainerArr}
   }
 }

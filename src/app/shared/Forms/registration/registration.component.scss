@@ -1,45 +1,107 @@
-.login-bg{
+.login-bg {
     background-image: url('../../../../assets/public/backgroundimage.jpg');
-    height: 40rem;
+    height: 100vh;
     background-position: center;
     background-size: cover;
     display: flex;
+    align-items: center;
     justify-content: center;
-}
-h2{
-    color: aliceblue;
-    margin-top: 2rem;
-    padding-right: 2rem;
-    
-}
-.login-main{
-    display: flex;
-    justify-content: center;
-    text-align: center;
-}
-.login-container{
-    border: 3px solid #fff;
-    border-radius: 2rem;
-    position: relative;
-    height: 32rem;
-    margin-top: 3rem;
-}
-.loginform{
-    margin-top: 5rem;
-    input{
-        margin-left: 1rem;
-        border-radius: 2rem;
-        width: 23rem;
-        height: 2.5rem;
-        margin-top: 2rem
-    }
-    label{
-        color: #fff;
-    }
-}
-.login-btn{
-    width: 8rem;
-    border-radius: 2rem;
+  }
+  
+  h2 {
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+  
+  .login-container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  }
+  
+  .loginform input {
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
     font-size: 1rem;
-    background-color: rgb(22, 154, 22);
+    transition: border-color 0.3s;
+  }
+  
+  .loginform input:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  .invalid-feedback {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 0.25rem;
+  }
+  
+  .login-btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .login-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .loginform input {
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+    position: relative;
+}
+
+.loginform input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Tooltip-like error styling */
+.text-danger {
+    font-size: 0.8rem;
+    color: #ff4d4d;
+    margin-top: 0.25rem;
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.8);
+    padding: 0.25rem;
+    border-radius: 3px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+/* Error message animation to pop */
+.text-danger-enter {
+    opacity: 0;
+    transform: scale(0.9);
+}
+
+.text-danger-enter-active {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+/* Error focus border */
+.loginform input.ng-invalid.ng-touched {
+    border-color: #ffffff;
 }

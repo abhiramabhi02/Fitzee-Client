@@ -12,20 +12,32 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { environment } from 'src/environments/environment.dev';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MetaReducer, StoreModule } from '@ngrx/store';
+
+// export function localStorageSyncReducer(reducer: any) {
+//   return localStorageSync({
+//     keys: ['user'],
+//     rehydrate: true,
+//   })(reducer);
+// }
+
+// const metaReducers: MetaReducer<any>[] = [localStorageSyncReducer];
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     AdminModule,
     SharedModule,
-    UserModule, 
+    UserModule,
     HttpClientModule,
     RouterModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    StoreModule.forRoot({}, {}),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

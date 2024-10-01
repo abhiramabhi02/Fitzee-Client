@@ -11,14 +11,18 @@ export class PackageDetailsComponent {
   userLogged: boolean = false;
   loggedIn: Boolean = true;
   packageData: any;
-  price:number = 0
+  price: number = 0;
   constructor(private router: Router) {
     const navigation = this.router.getCurrentNavigation();
     if (navigation?.extras) {
       this.packageData = navigation.extras.state?.['data'];
-      this.price = this.packageData.Subscription.Price
+      this.price = this.packageData.Subscription.Price;
     }
   }
 
-
+  subscribtion() {
+    this.router.navigate(['/subscription'], {
+      queryParams: { id: this.packageData._id },
+    });
+  }
 }

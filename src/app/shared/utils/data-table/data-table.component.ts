@@ -21,6 +21,8 @@ export class DataTableComponent implements OnInit {
   Image: string = 'Image';
   paginationNumbers:number[] = [1,2,3,4]
   uiData:any[] = []
+  inserted:string = 'InsertedDate'
+  lastedited:string = 'LastUpdate'
   constructor(private router: Router, private service:SharedService) {}
 
   ngOnInit(): void {}
@@ -34,6 +36,16 @@ export class DataTableComponent implements OnInit {
     const data = this.tableData.filter((item) => item.id === id)
     // this.sendTrigger.emit(data);
     this.router.navigate([this.editItemUrl], { state: { data } });
+  }
+
+  updateStatus(id:string){
+    const specificData = this.tableData.filter(item => item.id === id)[0]
+    console.log(id, !specificData.Status, 'data');
+    const data = {
+      id:id,
+      Status:!specificData.Status
+    }
+    this.sendTrigger.emit(data)
   }
 
   deleteClick(id: any) {

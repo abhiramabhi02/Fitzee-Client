@@ -1,0 +1,37 @@
+<app-header [isLoggedIn]="loggedIn" [user]="userLogged"></app-header>
+
+<div class="main-container">
+    <div class="image-container col-md-6">
+        <div class="image-covered">
+            <img id="payment-image" src="../../../../../assets/public/payment_page_image.jpg" alt="">
+            <div class="tagline-container">
+                <p class="tagline">"Embrace a new beginning with the power of exercise and yoga. Strengthen your body,
+                    calm your mind, and
+                    ignite your spirit. Every step, stretch, and breath brings you closer to balance, vitality, and a
+                    healthier, happier you. Start your journey today and unlock the best version of yourself!"</p>
+            </div>
+        </div>
+
+    </div>
+    <div class="payment-container col-md-6">
+       
+        <div class="payment-details-container">
+            <div class="payment-heading">
+                <h3>Complete your Payment</h3>
+            </div>
+            <div class="payment-details">
+                <div class="package-name">
+                    <h5>Package Name: <span>{{paymentData.Name}}</span></h5>
+                </div>
+                <div class="package-features">
+                    <h5>Features:</h5>
+                    <h6 *ngFor="let feature of paymentData.Features">{{feature}},</h6>
+                </div>
+                <div class="package-price">
+                    <h5>Price: <span>₹ {{paymentData.Price}} / mo</span></h5>
+                </div>
+            </div>
+            <button type="button" class="btn btn-success payment-btn" (click)="initiatePayment(paymentData.Price)">Pay</button>
+        </div>
+    </div>
+</div>

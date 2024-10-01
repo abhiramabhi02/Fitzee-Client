@@ -3,6 +3,7 @@ import { AdminService } from '../services/admin.service';
 import { Router } from '@angular/router';
 import { throwError } from 'rxjs';
 import { FirebaseService } from 'src/app/shared/services/firebase.service';
+import { serverResponse } from 'src/app/shared/interfaces/response.interface';
 
 @Component({
   selector: 'app-news-management',
@@ -32,6 +33,16 @@ export class NewsManagementComponent implements OnInit {
       this.headers = result.keys;
       this.Data = result.items;
     });
+  }
+
+  statusUpdate(data:any){
+    data.item = 'news'
+    this.service.editItems(data).subscribe({
+      next:(res:serverResponse)=>{
+        console.log(res);
+        
+      }
+    })
   }
 
   operationTrigger(data:object | any){

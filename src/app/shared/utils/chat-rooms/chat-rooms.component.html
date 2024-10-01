@@ -28,6 +28,7 @@
   
       <!-- Trainer Chat Rooms -->
       <div *ngIf="user !== 'user'" class="rooms">
+        <!-- <button type="button" class="btn btn-sm btn-primary" (click)="check2()">check Chat</button> -->
         <button type="button" class="btn btn-sm btn-primary" (click)="createRoom()">New Chat</button>
         <div *ngFor="let room of rooms" class="trainer-chat-rooms">
           <div (click)="check(room._id)" class="chat-room mt-3">
@@ -49,4 +50,3 @@
       </div>
     </div>
   </div>
-  

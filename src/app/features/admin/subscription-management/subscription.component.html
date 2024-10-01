@@ -4,5 +4,5 @@
 <div class="container">
     <h3>Subscription Management</h3>
     <app-data-table [Headers]="headers" [keyNames]="keynames" [addItemUrl]="newItemurl" [editItemUrl]="editItemUrl"
-        [tableData]="Data" [isUsers]="user" (sendTrigger)="operationTrigger($event)"></app-data-table>
+        [tableData]="Data" [isUsers]="user" (sendTrigger)="operationTrigger($event)" (sendTrigger)="statusUpdate($event)"></app-data-table>
 </div>

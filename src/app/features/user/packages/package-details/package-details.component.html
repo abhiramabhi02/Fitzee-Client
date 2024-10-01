@@ -1,16 +1,5 @@
 <app-header [isLoggedIn]="loggedIn" [user]="userLogged"></app-header>
 
-<!-- <div class="main-container">
-    <div class="row">
-        <div class="col-md-3">
-            <img src="..." alt="">
-        </div>
-        <div class="col-md-9">
-            <h1>{{packageData.Packagename}}</h1>
-        </div>
-    </div>
-</div> -->
-
 <div class="container">
     <div class="row">
         <div class="col-md-4 image-container">
@@ -53,12 +42,10 @@
           </div>
 
           <div class="subscription-btn">
-            <button type="button" class="btn btn-dark" [routerLink]="'/subscription'">Subscribe</button>
+            <button type="button" class="btn btn-dark" (click)="subscribtion()">Subscribe</button>
           </div>
           <!-- exercise container ends here -->
-
-          
-
+           
         </div>
     </div>
 </div>

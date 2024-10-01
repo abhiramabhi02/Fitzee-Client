@@ -9,7 +9,7 @@ import { ChatService } from 'src/app/shared/services/chat.service';
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit {
-  userLogged: boolean = false;
+  userLogged: boolean = true;
   loggedIn: Boolean = true;
   roomId: string = 'user1-trainer1'; 
   userId: string = '';

@@ -1,0 +1,75 @@
+<app-header [isAdmin]="true" [isLoggedIn]="false"></app-header>
+<div class="dashboard-container container-fluid">
+    <div class="row">
+        <div class="col-md-3 sidebar">
+            <div class="trainer-info">
+                <img class="trainer-profile-pic"
+                    src="{{trainerData.Image}}"
+                    alt="Trainer Profile Picture">
+                <h3>{{trainerData.Name}}</h3>
+                <p>{{trainerData.Email}}</p>
+            </div>
+            <div class="dashboard-nav">
+                <ul>
+                    <li><a [routerLink]="'#'">Dashboard Overview</a></li>
+                    <li><a [routerLink]="'#'">My Clients</a></li>
+                    <li><a [routerLink]="'#'">My Chat</a></li>
+                    <li><a [routerLink]="'#'" (click)="openProfilePictureDialog()" >profile updation</a></li>
+                    <li><a [routerLink]="'#'" (click)="logout()">Log out</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-9 main-content">
+            <div class="overview-header">
+                <h2>Welcome back, {{trainerData.Name}}!</h2>
+                <p>Here's an overview of your recent activity and clients.</p>
+            </div>
+
+            <div class="stats-container row">
+                <div class="col-md-4 stat-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4>Total Clients</h4>
+                            <h2>{{userData.length}}</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 stat-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4>New Joinees</h4>
+                            <h2>1</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 stat-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4>Messages</h4>
+                            <h2>12</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="client-section mt-5">
+                <h3>Your Clients</h3>
+                <div class="client-grid row">
+                    <div class="col-md-4 client-card" *ngFor="let user of userData">
+                        <div class="card">
+                            <img class="client-pic" src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg"
+                                alt="Client Picture">
+                            <div class="card-body">
+                                <h5>{{user.userDetails.Name}}</h5>
+                                <button type="button" (click)="userDetails(user.UserId)" class="btn btn-primary" >View Profile</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+    </div>
+</div>

@@ -3,6 +3,8 @@ import { AdminService } from '../services/admin.service';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Router } from '@angular/router';
 import { serverResponse } from 'src/app/shared/interfaces/response.interface';
+import { TrainerService } from '../trainer/services/trainer.service';
+import { state } from '@angular/animations';
 
 export interface LoginResponse {
   token: string;
@@ -23,7 +25,7 @@ export class AdminLoginComponent {
   adminData!:Object
   trainerData!:object
 
-  constructor(private service: AdminService, private authService:AuthService, private router:Router) {}
+  constructor(private service: AdminService, private trainerService:TrainerService, private authService:AuthService, private router:Router) {}
 
   getFormData(data: any) {
     this.loginData = data;
@@ -35,7 +37,7 @@ export class AdminLoginComponent {
         this.dashboardLogin()
       });
     }else{
-      this.service.trainerLogin(data).subscribe({
+      this.trainerService.trainerLogin(data).subscribe({
         next:(res:serverResponse)=>{
           console.log(res);
           
@@ -58,7 +60,7 @@ export class AdminLoginComponent {
 
   trainerDashboard(){
     if(this.authService.isTrainer()){
-      this.router.navigate(['/trainerchat'])
+      this.router.navigate(['/trainerdashboard'], { state: { data:this.trainerData } });
     }else{
       this.router.navigate(['/admin'])
     }

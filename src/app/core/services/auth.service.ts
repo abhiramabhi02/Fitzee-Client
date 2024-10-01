@@ -17,10 +17,10 @@ export class AuthService {
     return localStorage.getItem(role);
   }
 
-  getRole() {
-    const key = Object.keys(localStorage);
-    return key[0];
-  }
+  // getRole() {
+  //   const key = Object.keys(localStorage);
+  //   return key[0];
+  // }
 
   isUser():boolean {
     return localStorage.getItem(this.userTokenKey) !== null;

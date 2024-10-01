@@ -1,53 +1,67 @@
 <app-header [isAdmin]="true" [isLoggedIn]="true"></app-header>
 
 <div class="container main-container">
-    <div class="conatiner form-container">
-      <h4>{{formFunction}} Package</h4>
-    <form [formGroup]="packageEditForm" (ngSubmit)="onAdd()" class="add-item-form" >
-       <div>
+  <div class="container form-container">
+    <h4>{{formFunction}} Package</h4>
+    <form [formGroup]="packageEditForm" (ngSubmit)="onAdd()" class="add-item-form">
+      
+      <!-- Name Field -->
+      <div class="form-group">
         <label for="name" class="form-label">Name</label>
-        <input type="text" id="name" class="form-control" formControlName="name">
-        <div *ngIf="packageEditForm.get('name')?.invalid && packageEditForm.get('name')?.touched"></div>
-        <div *ngIf="packageEditForm.get('name')?.errors?.['noSpaces']">Name cannot be just spaces.</div>
-       </div>
+        <input type="text" id="name" class="form-control" formControlName="name" placeholder="Enter package name" required>
+        <div *ngIf="packageEditForm.get('name')?.touched">
+          <div *ngIf="packageEditForm.get('name')?.errors?.['required']" class="text-danger">Name is required.</div>
+          <div *ngIf="packageEditForm.get('name')?.errors?.['noSpaces']" class="text-danger">Name cannot be just spaces.</div>
+        </div>
+      </div>
 
-       <div>
+      <!-- Description Field -->
+      <div class="form-group">
         <label for="description" class="form-label">Description</label>
-        <input type="text" id="description" class="form-control" formControlName="description">
-        <div *ngIf="packageEditForm.get('description')?.invalid && packageEditForm.get('description')?.touched"></div>
-        <div *ngIf="packageEditForm.get('description')?.errors?.['noSpaces']">Name cannot be just spaces.</div>
-       </div>
+        <input type="text" id="description" class="form-control" formControlName="description" placeholder="Enter package description" required>
+        <div *ngIf="packageEditForm.get('description')?.touched">
+          <div *ngIf="packageEditForm.get('description')?.errors?.['required']" class="text-danger">Description is required.</div>
+          <div *ngIf="packageEditForm.get('description')?.errors?.['noSpaces']" class="text-danger">Description cannot be just spaces.</div>
+        </div>
+      </div>
 
-       <div>
+      <!-- Select Exercises -->
+      <div class="form-group">
         <label for="exercise" class="form-label">Select Exercises</label>
-        <select id="exercise" class="form-control" (change)="exerciseSelect($event)"formControlName="exercises">
-            <option *ngFor="let exercise of exerciseOptions" [value]="exercise._id">{{exercise.Name}}</option>
+        <select id="exercise" class="form-control" (change)="exerciseSelect($event)" formControlName="exercises" required>
+          <option value="" disabled>Select an exercise</option>
+          <option *ngFor="let exercise of exerciseOptions" [value]="exercise._id">{{exercise.Name}}</option>
         </select>
-        <div *ngIf="packageEditForm.get('exercises')?.invalid && packageEditForm.get('exercises')?.touched">
-            At least one exercise must be selected
-          </div>
-       </div>
+        <div *ngIf="packageEditForm.get('exercises')?.touched" class="text-danger">
+          At least one exercise must be selected.
+        </div>
+      </div>
 
-       <div class="selected-exercises mt-2">
-       <div class="selectedbtns" *ngFor="let ex of selectedExercise">
-        <button type="button" (click)="deSelectExercise(ex.id)" class="btn btn-secondary">{{ex.name}} <span><i class="fa-solid fa-x"></i></span></button>
-       </div>
-       </div>
+      <!-- Selected Exercises Display -->
+      <div class="selected-exercises mt-2">
+        <div class="selectedbtns" *ngFor="let ex of selectedExercise">
+          <button type="button" (click)="deSelectExercise(ex.id)" class="btn btn-secondary">
+            {{ex.name}} <span><i class="fa-solid fa-x"></i></span>
+          </button>
+        </div>
+      </div>
 
-       <div>
-        <label for="subscription" class="form-label">Select Subscripton</label>
+      <!-- Select Subscription -->
+      <div class="form-group">
+        <label for="subscription" class="form-label">Select Subscription</label>
         <select id="subscription" class="form-control" formControlName="subscription">
-            <option *ngFor="let subscription of subscriptionOptions" [value]="subscription._id">{{subscription.Name}}</option>
+          <option value="" disabled>Select a subscription</option>
+          <option *ngFor="let subscription of subscriptionOptions" [value]="subscription._id">{{subscription.Name}}</option>
         </select>
-        <div *ngIf="packageEditForm.get('subscription')?.invalid && packageEditForm.get('subscription')?.touched">
-            At least one exercise must be selected
-          </div>
-          <div *ngIf="formFunction === 'Edit'"> Leave the field blank to keep the old value</div>
-       </div>
+        <div *ngIf="packageEditForm.get('subscription')?.touched" class="text-danger">
+          At least one subscription must be selected.
+        </div>
+        <div *ngIf="formFunction === 'Edit'" class="text-muted">Leave the field blank to keep the old value.</div>
+      </div>
 
-    
-        <div class="button-container">
-          <button type="submit" class="btn btn-success">Add</button>
+      <!-- Submit Button -->
+      <div class="button-container">
+        <button type="submit" class="btn btn-success" [disabled]="packageEditForm.invalid">Save</button>
       </div>
     </form>
   </div>

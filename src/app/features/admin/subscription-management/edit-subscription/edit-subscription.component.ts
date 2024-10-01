@@ -51,6 +51,7 @@ export class EditSubscriptionComponent implements OnInit {
       Name:data.name,
       Features: this.Features,
       Price:data.price,
+      LastUpdate:Date.now(),
       id:this.subscriptionData.id,
       item:'subscription'
     }

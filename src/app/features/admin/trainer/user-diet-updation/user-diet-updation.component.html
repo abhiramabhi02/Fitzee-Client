@@ -1,0 +1,32 @@
+<h1 mat-dialog-title class="dialog-title">Add Nutrition Info</h1>
+<div mat-dialog-content class="nutrition-dialog-content">
+  <form [formGroup]="nutritionForm">
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Calories</mat-label>
+      <input matInput type="number" formControlName="Calories" placeholder="Enter Calories" />
+      <mat-error *ngIf="nutritionForm.controls['Calories'].hasError('required')">
+        Calories is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Protein (g)</mat-label>
+      <input matInput type="number" formControlName="Protein" placeholder="Enter Protein" />
+      <mat-error *ngIf="nutritionForm.controls['Protein'].hasError('required')">
+        Protein is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Carbohydrate (g)</mat-label>
+      <input matInput type="number" formControlName="Carbohydrate" placeholder="Enter Carbohydrate" />
+      <mat-error *ngIf="nutritionForm.controls['Carbohydrate'].hasError('required')">
+        Carbohydrate is required
+      </mat-error>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions class="dialog-actions">
+  <button mat-button (click)="onCancel()" class="cancel-button">Cancel</button>
+  <button mat-button [disabled]="!nutritionForm.valid" (click)="onSubmit()" class="submit-button">Submit</button>
+</div>

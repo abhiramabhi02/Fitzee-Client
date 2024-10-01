@@ -6,19 +6,16 @@ import { PackageDetailsComponent } from './packages/package-details/package-deta
 import { SubscriptionComponent } from './subscription/subscription.component';
 import { ChatComponent } from './chat/chat.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-import { ProfileInfoComponent } from './user-profile/profile-info/profile-info.component';
-import { ProfileUpdateComponent } from './user-profile/profile-update/profile-update.component';
+import { PaymentComponent } from './subscription/payment/payment.component';
+
 
 const routes: Routes = [
   {path:'packages', component:PackagesComponent},
   {path:'packagedetails', component:PackageDetailsComponent},
   {path:'subscription', component:SubscriptionComponent},
   {path:'chat', component:ChatComponent, canActivate:[userAuthGuard]},
-  {path:'userprofile', component:UserProfileComponent, canActivate:[userAuthGuard], children:[
-    {path:'userprofileinfo', component:ProfileInfoComponent, canActivate:[userAuthGuard]},
-    {path:'userprofileupdate', component:ProfileUpdateComponent, canActivate:[userAuthGuard]},
-    {path:'', redirectTo: 'userprofileinfo', pathMatch:'full'}
-  ]}
+  {path:'userprofile', component:UserProfileComponent, canActivate:[userAuthGuard]},
+  {path:'payment', component:PaymentComponent, canActivate:[userAuthGuard]},
 ];
 
 @NgModule({

@@ -27,7 +27,7 @@ export class EditExerciseComponent {
           id:data.id,
           Name: data.name,
           Description: data.description,
-          Image: this.downloadUrl
+          Image: this.downloadUrl,
         }
         this.service.editItems(updatedData).subscribe((res:any)=>{
           console.log(res);

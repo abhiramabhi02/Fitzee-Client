@@ -38,13 +38,17 @@
                             <p class="ml-3">{{news.Description}}</p>
                         </div>
                     </div>
-                    <!-- <button class="floating-button">
-                        <i class="fas fa-plus"></i>
-                    </button> -->
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Chatbot Button -->
+    <button class="chatbot-button" (click)="openChatbot()">
+        <i class="fas fa-comments"></i>
+    </button>
+
+    <app-chat-bot [isVisible]="showModal"></app-chat-bot>
 </div>
 
 <app-footer></app-footer>

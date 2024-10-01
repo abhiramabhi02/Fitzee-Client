@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../services/admin.service';
 import { Router } from '@angular/router';
 import { FirebaseService } from 'src/app/shared/services/firebase.service';
+import { serverResponse } from 'src/app/shared/interfaces/response.interface';
 
 @Component({
   selector: 'app-packages-management',
@@ -34,6 +35,16 @@ export class PackagesManagementComponent implements OnInit {
       this.headers = result.keys;
       this.Data = result.items;
     });
+  }
+
+  statusUpdate(data:any){
+    data.item = 'package'
+    this.service.editItems(data).subscribe({
+      next:(res:serverResponse)=>{
+        console.log(res);
+        
+      }
+    })
   }
 
   operationTrigger(data: any) {

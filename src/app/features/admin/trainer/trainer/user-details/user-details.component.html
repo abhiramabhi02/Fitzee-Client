@@ -1,0 +1,53 @@
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h4>{{ user.Name }}</h4>
+            <small>{{ user.Email }}</small>
+        </div>
+        <div class="card-body">
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label class="form-label">Gender</label>
+                    <p class="form-control-plaintext">{{ user.PersonalDetails.Gender }}</p>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Age</label>
+                    <p class="form-control-plaintext">{{ user.PersonalDetails.Age }} years</p>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label class="form-label">Height</label>
+                    <p class="form-control-plaintext">{{ user.PersonalDetails.Height }} cm</p>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Weight</label>
+                    <p class="form-control-plaintext">{{ user.PersonalDetails.Weight }} kg</p>
+                </div>
+            </div>
+
+            <!-- Diet Information Section -->
+            <h5>Diet Information</h5>
+            <div *ngIf="user.Diet" class="diet-section mt-4">
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label class="form-label">Calories</label>
+                        <p class="form-control-plaintext">{{ user.Diet.Calories }} kcal</p>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Protein</label>
+                        <p class="form-control-plaintext">{{ user.Diet.Protein }} g</p>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Carbohydrates</label>
+                        <p class="form-control-plaintext">{{ user.Diet.Carbohydrate }} g</p>
+                    </div>
+                </div>
+
+                <!-- Update Diet Button -->
+            </div>
+            <button class="btn btn-success" (click)="openDietDialog()">Update Diet</button>
+        </div>
+    </div>
+</div>

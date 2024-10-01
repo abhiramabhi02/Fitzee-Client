@@ -1,0 +1,50 @@
+<h1 mat-dialog-title>Update User Details</h1>
+<div mat-dialog-content>
+  <form [formGroup]="userForm" enctype="multipart/form-data">
+
+    <!-- File Input for Image Upload (not inside mat-form-field) -->
+    <div>
+      <label>Upload Image</label>
+      <input type="file" (change)="onFileChange($event)" />
+    </div>
+
+    <!-- Date of Birth Field (labelled as "Age") -->
+    <mat-form-field appearance="fill" class="w-100">
+      <mat-label>Age</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="age" placeholder="Choose a date" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="userForm.get('age')?.hasError('required')">Date of birth is required</mat-error>
+    </mat-form-field>
+
+    <!-- Gender Field -->
+    <mat-form-field appearance="fill" class="w-100">
+      <mat-label>Gender</mat-label>
+      <mat-select formControlName="gender">
+        <mat-option value="male">Male</mat-option>
+        <mat-option value="female">Female</mat-option>
+        <mat-option value="other">Other</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Height Field -->
+    <mat-form-field appearance="fill" class="w-100">
+      <mat-label>Height (cm)</mat-label>
+      <input matInput type="number" formControlName="height" placeholder="Enter height" />
+      <mat-error *ngIf="userForm.get('height')?.hasError('required')">Height is required</mat-error>
+    </mat-form-field>
+
+    <!-- Weight Field -->
+    <mat-form-field appearance="fill" class="w-100">
+      <mat-label>Weight (kg)</mat-label>
+      <input matInput type="number" formControlName="weight" placeholder="Enter weight" />
+      <mat-error *ngIf="userForm.get('weight')?.hasError('required')">Weight is required</mat-error>
+    </mat-form-field>
+
+  </form>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button [disabled]="!userForm.valid" (click)="onSave()">Save</button>
+</div>

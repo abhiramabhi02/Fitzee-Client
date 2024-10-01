@@ -1,0 +1,23 @@
+.dialog-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .upload-section {
+    text-align: center;
+  }
+  
+  .image-preview {
+    margin-top: 1rem;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #c28c2a;
+  }
+  
+  .cancel-button {
+    margin-right: 1rem;
+  }
+  

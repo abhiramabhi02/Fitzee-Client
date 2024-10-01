@@ -4,16 +4,28 @@
     </div>
     <div class="sub-headings-container">
         <div class="sub-headings">
-            <h6 [routerLink]="'/userprofileinfo'" class="mx-5 text-light mt-5"><span class="mx-2">>></span>  Personal Info</h6>
+            <h6 class="mx-5 text-light mt-5">
+                <span class="mx-2">>></span>
+                <a [routerLink]="['/userprofile/userprofileinfo']" class="text-light">Personal Info</a>
+              </h6>
         </div>
         <div class="sub-headings">
-            <h6 class="mx-5 text-light mt-5"><span class="mx-2">>></span>  Workout plans</h6>
+            <h6 class="mx-5 text-light mt-5">
+                <span class="mx-2">>></span>
+                <a [routerLink]="['#']" class="text-light">Workout Plans</a>
+              </h6>
         </div>
         <div class="sub-headings">
-            <h6 class="mx-5 text-light mt-5"><span class="mx-2">>></span>  Workout Goals</h6>
+            <h6 class="mx-5 text-light mt-5">
+                <span class="mx-2">>></span>
+                <a [routerLink]="['#']" class="text-light">Subscription Details</a>
+              </h6>
         </div>
         <div class="sub-headings">
-            <h6 class="mx-5 text-light mt-5"><span class="mx-2">>></span>  Profile Updation</h6>
+            <h6 class="mx-5 text-light mt-5">
+                <span class="mx-2">>></span>
+                <a [routerLink]="['/userprofile/userprofileupdate']" class="text-light">Profile Updation</a>
+              </h6>
         </div>
     </div>
 </div>

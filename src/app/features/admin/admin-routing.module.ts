@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {TrainerRegistrationComponent} from './trainer-registration/trainer-registration.component'
+import {TrainerRegistrationComponent} from './trainer/trainer-registration/trainer-registration.component'
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { UserManagementComponent } from './user-management/user-management.component';
 import { ExerciseManagementComponent } from './exercise-management/exercise-management.component';
@@ -16,8 +16,11 @@ import { EditPackageComponent } from './packages-management/edit-package/edit-pa
 import { SubscriptionComponent } from './subscription-management/subscription.component';
 import { AddSubscriptionComponent } from './subscription-management/add-subscription/add-subscription.component';
 import { EditSubscriptionComponent } from './subscription-management/edit-subscription/edit-subscription.component';
-import { TrainerComponent } from './trainer/trainer.component';
-import { TrainerChatComponent } from './trainer-chat/trainer-chat.component';
+import { TrainerComponent } from './trainer/trainer/trainer.component';
+import { TrainerChatComponent } from './trainer/trainer-chat/trainer-chat.component';
+import { TrainerManagementComponent } from './trainer-management/trainer-management.component';
+import { UserDetailsComponent } from './trainer/trainer/user-details/user-details.component';
+import { ReportsComponent } from './reports/reports.component';
 
 
 const routes: Routes = [
@@ -37,7 +40,10 @@ const routes: Routes = [
   {path:'addsubscription', component:AddSubscriptionComponent, canActivate:[adminAuthGuard]},
   {path:'editsubscription', component:EditSubscriptionComponent, canActivate:[adminAuthGuard]},
   {path:'trainerdashboard', component:TrainerComponent, canActivate:[trainerAuthGuard]},
-  {path:'trainerchat', component:TrainerChatComponent, canActivate:[trainerAuthGuard]}
+  {path:'trainerchat', component:TrainerChatComponent, canActivate:[trainerAuthGuard]},
+  {path:'trainermanagement', component:TrainerManagementComponent, canActivate:[adminAuthGuard]},
+  {path:'userdetails', component:UserDetailsComponent},
+  {path:'reports', component:ReportsComponent, canActivate:[adminAuthGuard]}
 ];
 
 @NgModule({

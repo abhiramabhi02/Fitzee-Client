@@ -34,6 +34,16 @@ export class SubscriptionComponent implements OnInit {
       },
     })
   }
+
+  statusUpdate(data:any){
+    data.item = 'subscription'
+    this.service.editItems(data).subscribe({
+      next:(res:serverResponse)=>{
+        console.log(res);
+      }
+    })
+  }
+
   operationTrigger(data:any){
     console.log(data);
     const deleteData = {

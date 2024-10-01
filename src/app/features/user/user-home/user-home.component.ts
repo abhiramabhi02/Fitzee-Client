@@ -12,6 +12,7 @@ export class UserHomeComponent implements OnInit {
   userLogged: boolean = false
   newsData: any[] = []
   featuredNews:any = {}
+  showModal: boolean = false;
   constructor(private service:UserService, private authService:AuthService){}
 
   ngOnInit(): void {
@@ -35,4 +36,13 @@ export class UserHomeComponent implements OnInit {
       this.userLogged = false
     }
   }
+
+
+  openChatbot() {
+      this.showModal = !this.showModal
+      console.log('open');
+      
+  }
+
+
 }  

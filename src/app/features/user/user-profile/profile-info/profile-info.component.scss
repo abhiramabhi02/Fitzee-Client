@@ -1,19 +1,64 @@
-.profile-pic{
+.main-container {
+    max-height: 28rem;
+    overflow-y: auto;
+    padding: 1rem;
+    background-color: #f8f9fa; 
+    border-radius: 1rem; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.profile-pic {
     margin-top: 2rem;
     width: 12rem;
     height: 12rem;
-    border-radius: 6rem;
+    border-radius: 50%; 
+    border: 3px solid rgb(194, 140, 42); 
 }
-.personal-info{
+
+.personal-info {
     margin-top: 3.5rem;
 }
-.personal-info-sub{
+
+.personal-info-sub {
     display: flex;
-   
+    justify-content: space-between; 
+    margin-bottom: 1rem; 
 }
-h4{
+
+h4 {
     color: rgb(194, 140, 42);
+    border-bottom: 2px solid rgb(194, 140, 42); 
+    padding-bottom: 0.5rem; 
 }
-h6{
-    color: rgb(194, 140, 42);
+
+h6 {
+    color: rgb(70, 70, 70); 
+}
+
+.workout-plan-container {
+    margin-top: 2rem; 
+}
+
+.workout-card, .diet-card {
+    background-color: #ffffff; 
+    border: 1px solid rgba(194, 140, 42, 0.3);
+    border-radius: 0.5rem;
+    padding: 1rem; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+.workout-card h5, .diet-card h5 {
+    color: rgb(194, 140, 42); 
+    margin-bottom: 1rem; 
+}
+
+@media (max-width: 768px) {
+    .main-container {
+        padding: 0.5rem;
+    }
+    
+    .profile-pic {
+        width: 10rem; 
+        height: 10rem;
+    }
 }

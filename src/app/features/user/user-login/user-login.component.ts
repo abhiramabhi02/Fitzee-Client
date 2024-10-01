@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { serverResponse } from 'src/app/shared/interfaces/response.interface';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SharedService } from 'src/app/shared/services/shared.service';
+import { Store } from '@ngrx/store';
+import { loginUser } from '../store/user.actions';
 
 @Component({
   selector: 'app-user-login',
@@ -19,15 +21,16 @@ export class UserLoginComponent {
     private service: UserService,
     private authService: AuthService,
     private router: Router,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private store:Store
   ) {}
 
   getFormData(data: object) {
     console.log(data);
     this.service.userLogin(data).subscribe({
       next: (res: serverResponse) => {
-        console.log(res);
         if (res.success) {
+          this.store.dispatch(loginUser({user:res.user}))
           this.userData = res.user;
           const token = res.token;
           this.authService.setToken(token, 'user');

@@ -17,12 +17,10 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(private authService:AuthService, private sharedService:SharedService) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler) {
-    console.log('interceptor works');
-    
 
-    const role = this.authService.getRole()
+    const role = this.getRole(request)
     const token = this.authService.getToken(role)
-
+    
     if(token){
       const modifiedReq = request.clone({
         setHeaders:{
@@ -64,5 +62,19 @@ export class AuthInterceptor implements HttpInterceptor {
     }
   )
     )
+  }
+
+  getRole(request:HttpRequest<any>):string{
+    let role
+    if(request.url.includes('admin')){
+      role = 'admin'
+      return role
+    }else if(request.url.includes('trainer')){
+      role = 'trainer'
+      return role
+    }else{
+      role = 'user'
+      return role
+    }
   }
 }

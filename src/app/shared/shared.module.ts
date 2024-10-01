@@ -23,7 +23,8 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { TimeStampPipe } from './pipes/time-stamp.pipe'
+import { TimeStampPipe } from './pipes/time-stamp.pipe';
+import { ProfilePicUpdationComponent } from './utils/profile-pic-updation/profile-pic-updation.component'
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { TimeStampPipe } from './pipes/time-stamp.pipe'
     ChatSpaceComponent,
     CreateRoomModalComponent,
     TimeStampPipe,
+    ProfilePicUpdationComponent,
   ],
   imports: [
     RouterModule,

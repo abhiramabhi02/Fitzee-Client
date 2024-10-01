@@ -31,6 +31,16 @@ export class ExerciseManagementComponent implements OnInit {
     });
   }
 
+  statusUpdate(data:any){
+    data.item = 'exercise'
+    this.service.editItems(data).subscribe({
+      next:(res:serverResponse)=>{
+        console.log(res);
+        
+      }
+    })
+  }
+
   operationTrigger(data:object | any){
     const deleteData = {
       id:data.id,

@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CreateRoomModalComponent } from '../create-room-modal/create-room-modal.component';
 import { ChatService } from '../../services/chat.service';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { TrainerService } from 'src/app/features/admin/trainer/services/trainer.service';
 
 @Component({
   selector: 'app-chat-rooms',
@@ -19,11 +20,11 @@ export class ChatRoomsComponent implements OnInit {
   allUsers: any[] = []
   trainerId!: string 
 
-  constructor(private adminService:AdminService, private dialog:MatDialog, private chatService:ChatService, private authService:AuthService){}
+  constructor(private service:TrainerService, private dialog:MatDialog, private chatService:ChatService, private authService:AuthService){}
 
   ngOnInit(): void {
     const data = 'user'
-    this.adminService.getAllItems(data).subscribe({
+    this.service.getAllItems(data).subscribe({
       next:(response:serverResponse)=>{
         this.allUsers = response.items
       },
