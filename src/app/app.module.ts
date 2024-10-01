@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
-import { environment } from 'src/environments/environment.dev';
+import { environment } from 'src/environments/environment.prod';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MetaReducer, StoreModule } from '@ngrx/store';
 

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
-import { environment } from 'src/environments/environment.dev';
+import { environment } from 'src/environments/environment.prod';
 import { AuthService } from 'src/app/core/services/auth.service';
 
 declare const Razorpay:any;

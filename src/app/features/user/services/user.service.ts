@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { serverResponse } from 'src/app/shared/interfaces/response.interface';
-import { environment } from 'src/environments/environment.dev';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root',

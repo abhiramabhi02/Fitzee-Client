@@ -4,7 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { serverResponse } from 'src/app/shared/interfaces/response.interface';
 import { noSpacesValidator } from 'src/app/shared/validators/custom-validators';
-import { environment } from 'src/environments/environment.dev';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root',
