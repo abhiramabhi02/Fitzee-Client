@@ -31,4 +31,14 @@ export class TrainerManagementComponent implements OnInit {
       },
     });
   }
+
+  updateVerification(data:any){
+    console.log(data);
+    data.item = 'trainer'
+    this.service.editItems(data).subscribe({
+      next:(res:serverResponse)=>{
+        console.log(res);
+      }
+    })
+  }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { AdminService } from '../services/admin.service';
+import { serverResponse } from 'src/app/shared/interfaces/response.interface';
 
 @Component({
   selector: 'app-user-management',
@@ -24,6 +25,16 @@ export class UserManagementComponent implements OnInit {
       this.keynames = result.keys
       this.headers = result.keys
       this.Data = result.items
+    })
+  }
+
+  updateVerification(data:any){
+    console.log(data);
+    data.item = 'user'
+    this.service.editItems(data).subscribe({
+      next:(res:serverResponse)=>{
+        console.log(res);
+      }
     })
   }
 }

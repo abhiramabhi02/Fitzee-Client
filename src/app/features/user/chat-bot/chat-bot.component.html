@@ -1,14 +1,15 @@
 <div class="chatbot-modal" *ngIf="isVisible">
-    <div class="modal-content">
+    <div class="modal-content" #modalContent>
         <span class="close-button">&times;</span>
         <h4 class="text-light">Chatbot</h4>
         <p class="text-light">How can I assist you today?</p>
-        
+
         <div class="suggestion-buttons">
             <button (click)="suggestionAction('Workout_Tips')">Workout Tips</button>
             <button (click)="suggestionAction('Nutrition_Advice')">Nutrition Advice</button>
             <button (click)="suggestionAction('Fitness_Goals')">Fitness Goals</button>
         </div>
+
         <div class="chat-history">
             <div *ngFor="let message of messages">
                 <div [ngClass]="{'user-message': message.isUser, 'bot-message': !message.isUser}" class="mt-3 text-light">

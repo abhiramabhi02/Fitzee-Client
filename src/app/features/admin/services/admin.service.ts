@@ -51,6 +51,12 @@ export class AdminService {
     return this.httpClient.delete(url, data);
   }
 
+  getDashboardData():Observable<serverResponse>{
+    const url = this.baseUrl + this.adminUrl.GET_DASHBOARD
+    
+    return this.httpClient.get<serverResponse>(url)
+  }
+
 
   createSubscriptionForm(data: string | any) {
     if (data === 'new') {

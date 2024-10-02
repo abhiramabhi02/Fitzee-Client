@@ -14,6 +14,7 @@ export class ReportsComponent implements OnInit {
   keynames: string[] = [];
   Data: any[] = [];
   user: Boolean = false;
+  userReport:any[] = []
   
   constructor(private service:AdminService){}
 
@@ -24,5 +25,28 @@ export class ReportsComponent implements OnInit {
         
       }
     })
+
+    this.service.getAllItems('user').subscribe({
+      next:(res:serverResponse)=>{
+        console.log(res);
+        // const user = 'user'
+        this.userReport = res.items
+      }
+    })
+  }
+
+
+  filter(data:string){
+    if(data === 'maleusers'){
+      const maleUsers = this.userReport.filter(item => item.PersonalDetails && item.PersonalDetails.Gender === 'male')
+      console.log(maleUsers, 'male');
+    }else if(data === 'femaleusers'){
+      const maleUsers = this.userReport.filter(item => item.PersonalDetails && item.PersonalDetails.Gender === 'female')
+      console.log(maleUsers, 'female');
+    }else if(data === 'weightGain'){
+      const weightGain = this.userReport.filter(item => item.Package && item.Package.Packagename === 'Weight Gain')
+      console.log(weightGain);
+      
+    }
   }
 }

@@ -48,6 +48,15 @@ export class DataTableComponent implements OnInit {
     this.sendTrigger.emit(data)
   }
 
+  updateVerification(id:string){
+    const specificData = this.tableData.filter(item => item.id === id)[0]
+    const data = {
+      id:id,
+      Verification:!specificData.Verification
+    }
+    this.sendTrigger.emit(data)
+  }
+
   deleteClick(id: any) {
     if (window.confirm('Are you sure to delete this data')) {
       console.log(id);

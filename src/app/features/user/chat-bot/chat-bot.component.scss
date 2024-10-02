@@ -10,12 +10,13 @@
     width: 20rem; 
     height: 20rem;
     transition: opacity 0.3s ease;
-    overflow-y: auto;
+    overflow: hidden; 
 }
 
 .modal-content {
     padding: 1rem;
-    overflow-y: auto;
+    height: 100%; 
+    overflow-y: auto; 
 }
 
 .close-button {

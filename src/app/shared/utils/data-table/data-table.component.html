@@ -1,4 +1,7 @@
 <div class="container">
+    <div class="search-bar">
+        <input type="text" class="form-control">
+    </div>
     <button *ngIf="!isUsers" type="button" (click)="callFunction()" class="btn btn-primary btn-sm mb-3">New Item</button>
     <table class="table my-4">
         <thead>
@@ -24,6 +27,9 @@
                     <button type="button" (click)="editClick(row[id])" class="btn btn-dark btn-sm me-2">Edit</button>
                     <button type="button" (click)="deleteClick(row[id])" class="btn btn-danger btn-sm me-2">Delete</button>
                     <button type="button" (click)="updateStatus(row[id])" class="btn btn-secondary btn-sm">update status</button>
+                </td>
+                <td *ngIf="isUsers">
+                    <button type="button" (click)="updateVerification(row[id])" class="btn btn-secondary btn-sm">update status</button>
                 </td>
             </tr>
         </tbody>
