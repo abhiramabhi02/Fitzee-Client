@@ -47,7 +47,7 @@ export const environment = {
     GET_DASHBOARD:'getdashboard'
   },
   chat:{
-    CHAT_PORT_URL:`'http://localhost:3001'`,
+    CHAT_PORT_URL:`'https://fitzee.online'`,
     CHAT_BASE_URL:'https://fitzee.online/chat',
     GET_ROOMS: 'getrooms'
 

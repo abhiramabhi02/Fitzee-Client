@@ -12,7 +12,6 @@ export class ChatService {
   private socket: Socket;
   private readonly SERVER_URL = environment.chat.CHAT_PORT_URL; 
 
-
   constructor(private httpClient:HttpClient) {
     this.socket = io(this.SERVER_URL);
   }
@@ -28,7 +27,7 @@ export class ChatService {
     return new Observable((observer) => {
       this.socket.on('connect', () => {
         observer.next({ message: 'Connected to the chat server', socketId: this.socket.id });
-      });
+      });  
     });
   }
 
