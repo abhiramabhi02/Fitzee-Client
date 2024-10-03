@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class ChatService {
   private socket: Socket;
-  private readonly SERVER_URL = environment.chat.CHAT_PORT_URL; 
+  private readonly SERVER_URL = 'https://fitzee.online'; 
 
   constructor(private httpClient:HttpClient) {
     this.socket = io(this.SERVER_URL);
