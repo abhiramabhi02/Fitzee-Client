@@ -48,7 +48,7 @@ export const environment = {
   },
   chat:{
     CHAT_PORT_URL:`'https://fitzee.online'`,
-    CHAT_BASE_URL:'https://fitzee.online/chat',
+    CHAT_BASE_URL:'https://fitzee.online/chat/',
     GET_ROOMS: 'getrooms'
 
   }
