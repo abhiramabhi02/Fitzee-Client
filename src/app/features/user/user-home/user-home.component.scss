@@ -17,9 +17,12 @@
 }
 
 .featured-news-row {
+  display: flex;
   height: 25rem;
 }
-
+.news-card{
+  display: flex;
+}
 .featured-news {
   height: 20rem;
 }

@@ -3,13 +3,15 @@ import { io, Socket } from 'socket.io-client';
 import { Observable } from 'rxjs';
 import { serverResponse } from '../interfaces/response.interface';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ChatService {
   private socket: Socket;
-  private readonly SERVER_URL = 'http://localhost:3001'; 
+  private readonly SERVER_URL = environment.chat.CHAT_PORT_URL; 
+
 
   constructor(private httpClient:HttpClient) {
     this.socket = io(this.SERVER_URL);
@@ -17,7 +19,7 @@ export class ChatService {
 
    // Fetch chat rooms for user or trainer
    getRooms(id: string, role: string): Observable<serverResponse> {
-    const url = `http://localhost:3000/chat/getrooms/${id}/${role}`;
+    const url = environment.chat.CHAT_BASE_URL + environment.chat.GET_ROOMS + `/${id}/${role}`;
     return this.httpClient.get<serverResponse>(url);
   }
 
