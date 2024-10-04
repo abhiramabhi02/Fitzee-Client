@@ -76,7 +76,7 @@ export class AdminService {
 
   usersSorting(data: any) {
     let keys = Object.keys(data.items[0])
-    keys = keys.filter((key) => !['Password', 'Subscription', '__v', '_id'].includes(key))    
+    keys = keys.filter((key) => !['Password', 'Subscription', '__v', '_id', 'PersonalDetails', 'Package'].includes(key))    
     let userArr: Object[] = [];
     data.items.forEach((items: any) => {
       if (items.Name && items.Email) {
@@ -215,6 +215,7 @@ export class AdminService {
           Name: items.Name,
           Email: items.Email,
           Verification: items.Verification,
+          Image:items.Image
         });
       }
     });

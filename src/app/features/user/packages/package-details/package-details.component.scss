@@ -21,6 +21,8 @@
   .exercise {
     display: flex;
     margin-bottom: 3rem;
+    overflow-x: auto;
+    gap: .8rem;
   }
   
   .Exercise-details-card {

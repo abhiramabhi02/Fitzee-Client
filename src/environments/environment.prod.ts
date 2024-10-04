@@ -24,7 +24,9 @@ export const environment = {
     PROFILE_COMPLETION:`profilecompletion`,
     GET_ITEMS_BY_ID:`getitemsbyid`,
     PAYMENT:`payment`,  
-    PAYMENT_VERIFY:`paymentverify`
+    PAYMENT_VERIFY:`paymentverify`,
+    FORGOT_PASSWORD:'forgotpassword',
+    RESET_PASSWORD: 'resetpassword',
   },
   trainer:{
     TRAINER_BASE_URL: `https://fitzee.online/trainer/`,
@@ -49,7 +51,6 @@ export const environment = {
   chat:{
     CHAT_PORT_URL:`'https://fitzee.online'`,
     CHAT_BASE_URL:'https://fitzee.online/chat/',
-    GET_ROOMS: 'getrooms'
-
+    GET_ROOMS: 'getrooms',
   }
 };

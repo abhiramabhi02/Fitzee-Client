@@ -26,9 +26,10 @@
                     <button type="submit" class="login-btn btn btn-success mt-3">Login</button>
                 </form>
             </div>
-            <div class="signup mt-4">
+            <div class="signup-container mt-4">
                 <a class="signup" *ngIf="isAdmin" [routerLink]="'/trainer'">Trainer Registration?</a>
                 <a class="signup" *ngIf="!isAdmin" [routerLink]="'/register'">User Registration?</a>
+                <a class="signup" *ngIf="!isAdmin" [routerLink]="'/forgotpassword'">Forgot password?</a>
             </div>
         </div>
     </div>

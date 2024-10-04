@@ -7,6 +7,8 @@ import { SubscriptionComponent } from './subscription/subscription.component';
 import { ChatComponent } from './chat/chat.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { PaymentComponent } from './subscription/payment/payment.component';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 
 
 const routes: Routes = [
@@ -16,6 +18,8 @@ const routes: Routes = [
   {path:'chat', component:ChatComponent, canActivate:[userAuthGuard]},
   {path:'userprofile', component:UserProfileComponent, canActivate:[userAuthGuard]},
   {path:'payment', component:PaymentComponent, canActivate:[userAuthGuard]},
+  {path:'forgotpassword', component:ForgotpasswordComponent},
+  {path:'resetpassword/:email', component:ResetpasswordComponent}
 ];
 
 @NgModule({

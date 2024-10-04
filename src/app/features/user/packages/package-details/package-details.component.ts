@@ -1,6 +1,7 @@
 import { state } from '@angular/animations';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-package-details',
@@ -12,7 +13,7 @@ export class PackageDetailsComponent {
   loggedIn: Boolean = true;
   packageData: any;
   price: number = 0;
-  constructor(private router: Router) {
+  constructor(private router: Router, private authService:AuthService) {
     const navigation = this.router.getCurrentNavigation();
     if (navigation?.extras) {
       this.packageData = navigation.extras.state?.['data'];
@@ -25,4 +26,13 @@ export class PackageDetailsComponent {
       queryParams: { id: this.packageData._id },
     });
   }
+
+  loginCheck(){
+    if(this.authService.isUser()){
+      this.userLogged = true
+    }else{
+      this.userLogged = false
+    }
+  }
+
 }
