@@ -39,7 +39,10 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "optimization": {
+              "fonts": false
+            }
           },
           "configurations": {
             "production": {
@@ -72,7 +75,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",  
           "configurations": {
             "production": {
-              "browserTarget": "fitbee-Client:build:production"
+              "browserTarget": "fitbee-Client:build:development"
             },
             "development": {
               "browserTarget": "fitbee-Client:build:development"
