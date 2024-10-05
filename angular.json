@@ -75,7 +75,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",  
           "configurations": {
             "production": {
-              "browserTarget": "fitbee-Client:build:development"
+              "browserTarget": "fitbee-Client:build:production"
             },
             "development": {
               "browserTarget": "fitbee-Client:build:development"
