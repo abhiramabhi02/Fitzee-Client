@@ -24,7 +24,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { TimeStampPipe } from './pipes/time-stamp.pipe';
-import { ProfilePicUpdationComponent } from './utils/profile-pic-updation/profile-pic-updation.component'
+import { ProfilePicUpdationComponent } from './utils/profile-pic-updation/profile-pic-updation.component';
+import { AgePipe } from './pipes/age.pipe'
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { ProfilePicUpdationComponent } from './utils/profile-pic-updation/profil
     CreateRoomModalComponent,
     TimeStampPipe,
     ProfilePicUpdationComponent,
+    AgePipe,
   ],
   imports: [
     RouterModule,
@@ -70,7 +72,8 @@ import { ProfilePicUpdationComponent } from './utils/profile-pic-updation/profil
     PackageEditComponent,
     ChatRoomsComponent,
     ChatSpaceComponent,
-    TimeStampPipe
+    TimeStampPipe,
+    AgePipe
   ],
 })
 export class SharedModule {}

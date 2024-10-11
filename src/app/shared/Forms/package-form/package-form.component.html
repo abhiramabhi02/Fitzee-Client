@@ -15,12 +15,12 @@
 
             <div class="form-group">
                 <label for="description" class="form-label">Description</label>
-                <input type="text" id="description" class="form-control" formControlName="description" placeholder="Enter package description">
+                <textarea id="description" class="form-control" formControlName="description" placeholder="Enter package description"></textarea>
                 <div *ngIf="packageForm.get('description')?.invalid && packageForm.get('description')?.touched" class="text-danger">
                     <div *ngIf="packageForm.get('description')?.errors?.['required']">Description is required.</div>
                     <div *ngIf="packageForm.get('description')?.errors?.['noSpaces']">Description cannot be just spaces.</div>
                 </div>
-            </div>
+            </div>            
 
             <div class="form-group">
                 <label for="exercise" class="form-label">Select Exercises</label>

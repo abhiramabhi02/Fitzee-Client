@@ -4,30 +4,30 @@
     h2 {
         margin-top: 1rem;
         text-align: center;
-        font-size: 2.5rem;
+        font-size: 2rem; 
         font-weight: 700;
         color: #2C3E50;
-        margin-bottom: 3rem;
+        margin-bottom: 2rem;
     }
 }
 
 .card-container {
     display: flex;
-    justify-content: space-around; 
-    flex-wrap: wrap; 
-    gap: 2rem;  
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 1.5rem; 
 }
 
 .subscription-card {
     background-color: #f8f9fa;
-    border-radius: 20px;
+    border-radius: 15px;
     overflow: hidden;
-    padding: 2rem;
+    padding: 1rem;
     width: 100%;
-    max-width: 25rem;
+    max-width: 20rem;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     justify-content: space-between;
 
     &:hover {
@@ -37,28 +37,28 @@
 
     .plan-header {
         background-color: #4e555b;
-        padding: 1.5rem;
+        padding: 1rem; 
         text-align: center;
-        border-radius: 15px;
+        border-radius: 10px;
 
         h3 {
             color: #fff;
-            font-size: 1.8rem;
+            font-size: 1.4rem; 
             font-weight: 600;
             margin: 0;
         }
     }
 
     .plan-features {
-        margin-top: 2rem;
+        margin-top: 1.5rem; /* Reduce margin */
         text-align: center;
-        flex-grow: 1; 
+        flex-grow: 1;
 
         h5 {
-            font-size: 1.2rem;
+            font-size: 1rem; /* Reduce font size */
             font-weight: 600;
             color: #34495e;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem; /* Reduce bottom margin */
         }
 
         ul {
@@ -66,9 +66,9 @@
             list-style: none;
 
             li {
-                font-size: 1rem;
+                font-size: 0.9rem; /* Slightly reduce list item font size */
                 color: #7f8c8d;
-                margin-bottom: 0.75rem;
+                margin-bottom: 0.5rem; /* Reduce spacing between list items */
             }
         }
     }
@@ -82,8 +82,8 @@
             border: none;
             border-radius: 10px;
             width: 100%;
-            padding: 1rem;
-            font-size: 1.2rem;
+            padding: 0.8rem; /* Reduce button padding */
+            font-size: 1rem; /* Decrease font size */
             font-weight: 600;
             color: white;
             display: inline-block;
@@ -91,7 +91,7 @@
 
             .price {
                 font-weight: bold;
-                margin-left: 1rem;
+                margin-left: 0.5rem; /* Adjust spacing */
                 color: #fff;
             }
 

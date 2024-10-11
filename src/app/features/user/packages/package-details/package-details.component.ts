@@ -35,4 +35,14 @@ export class PackageDetailsComponent {
     }
   }
 
+  scrollRight() {
+    const container = document.querySelector('.exercise')!;
+    container.scrollBy({ left: 200, behavior: 'smooth' });
+  }
+  
+  scrollLeft() {
+    const container = document.querySelector('.exercise')!;
+    container.scrollBy({ left: -200, behavior: 'smooth' });
+  }
+
 }

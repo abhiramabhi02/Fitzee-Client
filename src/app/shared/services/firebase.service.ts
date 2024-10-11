@@ -13,9 +13,15 @@ export class FirebaseService {
 
   // uploading new images to the firebase server
   uploadNewsImages(file: File): Promise<string> {
-    const filePath = `images/${file.name}`;
+    const newname = this.uniqueNameGenerator()
+
+    const newFile = new File([file], newname, {
+      type:file.type,
+      lastModified:file.lastModified
+    })
+    const filePath = `images/${newFile.name}`;
     const fileRef = this.storage.ref(filePath);
-    const uploadTask = this.storage.upload(filePath, file);
+    const uploadTask = this.storage.upload(filePath, newFile);
 
     return new Promise<string>((resolve, reject)=>{
       uploadTask.snapshotChanges().pipe(
@@ -55,6 +61,16 @@ export class FirebaseService {
     })
   }
 
+  uniqueNameGenerator():string{
+    const now = new Date();
+    const datePart = now.toISOString().split('T')[0].replace(/-/g, ''); 
+    const timePart = now.toTimeString().split(' ')[0].replace(/:/g, '');
+
+    const randomPart = Math.random().toString(36).substring(2, 8);
+    console.log(`${datePart}-${timePart}-${randomPart}`);
+    
+    return `${datePart}-${timePart}-${randomPart}`;
+  }
 }
 
 

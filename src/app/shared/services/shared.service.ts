@@ -106,12 +106,14 @@ export class SharedService {
   // pagination
   pagination(data: any, pagNo: number) {
     const paginationData: any[] = [];
-    let end = pagNo * 2;
-    let start = end - 2;
-    while (start < end) {
-      paginationData.push(data[start]);
-      console.log(paginationData, 'perf');
-
+    console.log(data, pagNo, 'cjk');
+    
+    let end = pagNo * 5;
+    let start = end - 5;
+    while (start < end && start < data.length) {
+      if(data[start] !== undefined){
+        paginationData.push(data[start]);
+      }
       start++;
     }
    

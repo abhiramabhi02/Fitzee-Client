@@ -3,8 +3,11 @@
     <div class="row">
         <div class="col-md-3 sidebar">
             <div class="trainer-info">
-                <img class="trainer-profile-pic"
+                <img *ngIf="trainerData.Image" class="trainer-profile-pic"
                     src="{{trainerData.Image}}"
+                    alt="Trainer Profile Picture">
+                    <img *ngIf="!trainerData.Image" class="trainer-profile-pic"
+                    src="../../../../../assets/public/blank-profile-picture.webp"
                     alt="Trainer Profile Picture">
                 <h3>{{trainerData.Name}}</h3>
                 <p>{{trainerData.Email}}</p>
@@ -57,8 +60,10 @@
                 <div class="client-grid row">
                     <div class="col-md-4 client-card" *ngFor="let user of userData">
                         <div class="card">
-                            <img class="client-pic" src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg"
+                            <img *ngIf="user.userDetails?.PersonalDetails?.Image" class="client-pic" src="{{user.userDetails.PersonalDetails.Image}}"
                                 alt="Client Picture">
+                                <img *ngIf="!user.userDetails?.PersonalDetails?.Image" class="client-pic" src="../../../../../assets/public/blank-profile-picture.webp"
+                                alt="">
                             <div class="card-body">
                                 <h5>{{user.userDetails.Name}}</h5>
                                 <button type="button" (click)="userDetails(user.UserId)" class="btn btn-primary" >View Profile</button>

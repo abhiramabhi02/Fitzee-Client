@@ -15,7 +15,7 @@
 
             <div class="form-group">
                 <label class="form-label" for="description">Description</label>
-                <input type="text" class="form-control" placeholder="Enter description" formControlName="description">
+                <textarea class="form-control" placeholder="Enter description" formControlName="description"></textarea>
                 <div *ngIf="addItemForm.get('description')?.touched && addItemForm.get('description')?.invalid" class="text-danger">
                     <div *ngIf="addItemForm.get('description')?.errors?.['required']">Description is required.</div>
                     <div *ngIf="addItemForm.get('description')?.errors?.['noSpaces']">Description cannot be just spaces.</div>

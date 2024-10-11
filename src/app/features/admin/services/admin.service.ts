@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { toNamespacedPath } from 'path';
 import { Observable } from 'rxjs';
 import { serverResponse } from 'src/app/shared/interfaces/response.interface';
 import { noSpacesValidator } from 'src/app/shared/validators/custom-validators';
@@ -205,7 +206,7 @@ export class AdminService {
     console.log(data, 'data 23');
     
     let keys = Object.keys(data[0]);
-    keys = keys.filter((key) => !['_id', 'Password', '__v'].includes(key));
+    keys = keys.filter((key) => !['_id', 'Password', '__v', 'Image'].includes(key));
     console.log(keys, 'key');
     let trainerArr: Object[] = [];
     data.forEach((items: any) => {
@@ -220,5 +221,29 @@ export class AdminService {
       }
     });
     return {keys:keys, items:trainerArr}
+  }
+
+  reportSorting(data: any){
+    console.log(data, 'repo');
+    
+    let keys:string[] = ["User", "Email", "Package", "Subscription", "Age", "Gender", "Amount"]
+
+    let paymentReport:object[] = []
+    data.forEach((item:any)=>{
+      if(item.Name){
+        paymentReport.push({
+          User: item.Name,
+          Email: item.Email,
+          Package:item.Package?.Packagename,
+          Subscription: item.Subscription.Name,
+          Age:item?.PersonalDetails?.Age || 'nil',
+          Gender:item?.PersonalDetails?.Gender || 'nil',
+          Amount: item.Subscription.Price
+        })
+
+      }
+    })
+    console.log(paymentReport, 're');
+    return {keys:keys, items:paymentReport}
   }
 }

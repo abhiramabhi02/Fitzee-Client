@@ -14,19 +14,20 @@
     <div class="row">
         <h2 class="mt-3">Packages</h2>
         <div class="col-md-12 mb-5 packages-container">
-            <div class="package-cards" *ngFor="let package of packagesData">
-                <div class="image">
-                    <img src="{{package.Exercises['1'].Image}}" alt="">
-                </div>
-                <div class="package-details">
-                    <h5 class="text-dark">{{package.Packagename}}</h5>
-                    <p class="text-dark">{{package.Description | textTrim}}</p>
-                    <div class="view-more-btn mt-4">
-                        <button class="btn btn-sm btn-dark" (click)="viewMore(package._id)">view more</button>
+            <ng-container *ngFor="let package of packagesData">
+            <div class="package-cards" *ngIf="package.Status">
+                    <div class="image">
+                        <img src="{{package.Exercises['1'].Image}}" alt="">
+                    </div>
+                    <div class="package-details">
+                        <h5 class="text-dark">{{package.Packagename}}</h5>
+                        <p class="text-dark">{{package.Description | textTrim}}</p>
+                        <div class="view-more-btn mt-4">
+                            <button class="btn btn-sm btn-dark" (click)="viewMore(package._id)">view more</button>
+                        </div>
                     </div>
                 </div>
-                
-            </div>
+            </ng-container>
         </div>
     </div>
   </div>

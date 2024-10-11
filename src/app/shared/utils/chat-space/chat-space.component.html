@@ -1,19 +1,20 @@
 <div class="main-container">
-    <div *ngIf="!dataLoaded" class="noData">
+    <!-- <div *ngIf="!dataLoaded" class="noData">
         <h4 class="text-secondary mt-3 mx-3">Select Room to chat</h4>
-    </div>
+    </div> -->
     <div *ngIf="dataLoaded" class="col-md-12 details-container">
         <div class="profile-pic-container">
-            <img class="profile-pic" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrTPjHOG0LBJKLlx35kYcK4hpx5xRdGNQ4tQ&s" alt="">
+            <img *ngIf="role === 'user' && roomData.trainerDetails.Image" class="profile-pic" src="{{roomData.trainerDetails.Image}}" alt="">
+            <img *ngIf="role === 'user' && !roomData.trainerDetails.Image" class="profile-pic" src="../../../../assets/public/blank-profile-picture.webp" alt="">
+            <img *ngIf="role === 'trainer' && roomData.userDetails?.PersonalDetails?.Image" class="profile-pic" src="{{roomData.userDetails.PersonalDetails.Image}}" alt="">
+            <img *ngIf="role === 'trainer' && !roomData.userDetails?.PersonalDetails?.Image" class="profile-pic" src="../../../../assets/public/blank-profile-picture.webp" alt="">
         </div>
         <div *ngIf="role === 'trainer'" class="room-details-container">
             <h4>{{roomData.userDetails.Name}}</h4>
-            <p>last online - 2:54 pm</p>
         </div>
 
         <div *ngIf="role === 'user'" class="room-details-container">
             <h4>{{roomData.trainerDetails.Name}}</h4>
-            <p>last online - 2:54 pm</p>
         </div>
         <div class="comunication-container">
             <i class="fa-solid fa-phone"></i>
@@ -23,10 +24,13 @@
         
     </div>
     <div class="vertical-line-div mt-2 mx-3">
-        <div style="width: 55rem; height: 1px; background-color: black;"></div>
+        <div style="width: 49rem; height: 1px; background-color: black;"></div>
     </div>
 
     <div *ngIf="role === 'user'" class="messages-container container">
+        <div *ngIf="!dataLoaded" class="noData">
+            <h4 class="text-secondary mt-3 mx-3">Select Room to chat</h4>
+        </div>
        <div *ngFor="let message of Messages">
         <div *ngIf="message.SenderId === UserId" class="send-text">
             <h6>{{message.Message}}</h6>
@@ -43,12 +47,12 @@
     <div *ngIf="role === 'trainer'" class="messages-container container">
         <div *ngFor="let message of Messages">
          <div *ngIf="message.SenderId === TrainerId" class="send-text">
-             <h6>{{message.Message}}</h6>
+             <p>{{message.Message}}</p>
              <p>{{message.TimeStamp | timeStamp}}</p>
             </div>  
  
             <div *ngIf="message.SenderId === UserId" class="reciever-text">
-             <h6>{{message.Message}}</h6>
+             <p>{{message.Message}}</p>
              <p>{{message.TimeStamp | timeStamp}}</p>
             </div>
         </div>

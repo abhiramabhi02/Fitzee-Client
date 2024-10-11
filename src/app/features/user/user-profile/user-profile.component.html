@@ -1,9 +1,12 @@
 <app-header [isLoggedIn]="loggedIn" [user]="userLogged"></app-header>
-<div class="row">
+<!-- <div class="row">
   <div class="col-md-3">
     <app-profile-sidebar></app-profile-sidebar>
   </div>
   <div class="col-md-9">
     <app-profile-info [userData]="userData"></app-profile-info>
   </div>
+</div> -->
+<div class="col-md-12">
+  <app-profile-info [userData]="userData"></app-profile-info>
 </div>

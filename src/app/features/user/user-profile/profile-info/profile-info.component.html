@@ -1,91 +1,133 @@
-<div class="main-container container">
-    <!-- Personal Info Starts Here -->
-    <div class="personal-info-container">
-        <div class="row">
-            <div class="profile-pic-container col-md-4">
-                <img *ngIf="hasImage" class="profile-pic"
-                    src="{{userData.PersonalDetails.Image}}"
-                    alt="">
-                    <img *ngIf="!hasImage" class="profile-pic"
-                    src="../../../../../assets/public/blank-profile-picture.webp"
-                    alt="">
-                <h5 class="mt-3">Profile Picture</h5>
+<div class="full-container">
+
+    <div class="col-md-3">
+        <div class="main-container">
+            <div class="sidebar-header">
+                <h4 c class="mx-5 pt-4 text-light">Profile Sidebar</h4>
             </div>
-            <div class="col-md-8 personal-info">
-                <h4>Personal Info</h4>
-                <div class="personal-info-sub">
-                    <h6>Name: {{userData.Name}}</h6>
-                    <h6>Email: {{userData.Email}}</h6>
+            <div class="sub-headings-container">
+                <div class="sub-headings">
+                    <h6 class="mx-5 text-light mt-5">
+                        <span class="mx-2">>></span>
+                        <a [routerLink]="['#']" class="text-light">Personal Info</a>
+                      </h6>
                 </div>
-                <div *ngIf="hasPersonalDetails; else updateDetails" class="personal-info-sub">
-                    <h6>Gender: {{userData.PersonalDetails.Gender}}</h6>
-                    <h6>Age: {{userData.PersonalDetails.Age}}</h6>
+                <div class="sub-headings">
+                    <h6 class="mx-5 text-light mt-5">
+                        <span class="mx-2">>></span>
+                        <a [routerLink]="['#']" class="text-light">Workout Plans</a>
+                      </h6>
                 </div>
-                <div *ngIf="hasPersonalDetails" class="personal-info-sub">
-                    <h6>Height: {{userData.PersonalDetails.Height}}</h6>
-                    <h6>Weight: {{userData.PersonalDetails.Weight}}</h6>
+                <div class="sub-headings">
+                    <h6 class="mx-5 text-light mt-5">
+                        <span class="mx-2">>></span>
+                        <a [routerLink]="['#']" class="text-light">Subscription</a>
+                      </h6>
                 </div>
-                <ng-template #updateDetails>
-                    <h5 class="mt-5 text-secondary">complete your profile</h5>
-                </ng-template>
-                <div *ngIf="hasPackage" class="personal-info-sub">
-                    <h6>Package: {{userData.Package.Packagename}} package</h6>
+                <div class="sub-headings">
+                    <h6 class="mx-5 text-light mt-5">
+                        <span class="mx-2">>></span>
+                        <a [routerLink]="['#']" class="text-light">Profile Updation</a>
+                      </h6>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Personal Info Ends Here -->
-
-    <!-- Workout Plans Starts Here -->
-    <div class="workout-plan-container mt-5">
-        <h4>Workout and Diet Plans</h4>
-        <div class="row">
-            <div class="col-md-6 workouts mt-3">
-                <div *ngIf="hasPackage; else getPackage" class="card workout-card">
-                    <h5>Workouts</h5>
-                    <h6 *ngFor="let exercise of userData.Package.Exercises">{{exercise.Name}} - <span>12 x 3</span></h6>
+    
+    <div class="col-md-9">
+        <div class="main-container-profile-info container">
+            <!-- Personal Info Starts Here -->
+            <div class="personal-info-container">
+                <div class="row">
+                    <div class="profile-pic-container col-md-4">
+                        <img *ngIf="hasImage" class="profile-pic"
+                            src="{{userData.PersonalDetails.Image}}"
+                            alt="">
+                            <img *ngIf="!hasImage" class="profile-pic"
+                            src="../../../../../assets/public/blank-profile-picture.webp"
+                            alt="">
+                        <h5 class="mt-3">Profile Picture</h5>
+                    </div>
+                    <div class="col-md-8 personal-info">
+                        <h4>Personal Info</h4>
+                        <div class="personal-info-sub">
+                            <h6>Name: {{userData.Name}}</h6>
+                            <h6>Email: {{userData.Email}}</h6>
+                        </div>
+                        <div *ngIf="hasPersonalDetails; else updateDetails" class="personal-info-sub">
+                            <h6>Gender: {{userData.PersonalDetails.Gender}}</h6>
+                            <h6>Age: {{userData.PersonalDetails.Age | age}}</h6>
+                        </div>
+                        <div *ngIf="hasPersonalDetails" class="personal-info-sub">
+                            <h6>Height: {{userData.PersonalDetails.Height}}</h6>
+                            <h6>Weight: {{userData.PersonalDetails.Weight}}</h6>
+                        </div>
+                        <ng-template #updateDetails>
+                            <h5 class="mt-5 text-secondary">complete your profile</h5>
+                        </ng-template>
+                        <div *ngIf="hasPackage" class="personal-info-sub">
+                            <h6>Package: {{userData.Package.Packagename}} package</h6>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-6 diets mt-3">
-                <div *ngIf="hasDiet" class="card diet-card">
-                    <h5>Diets</h5>
-                    <h6>Calories - <span>{{userData.Diet.Calories}}g / day</span></h6>
-                    <h6>Protein - <span>{{userData.Diet.Protein}}g / day</span></h6>
-                    <h6>Carbohydrate - <span>{{userData.Diet.Carbohydrate}}g / day</span></h6>
+            <!-- Personal Info Ends Here -->
+        
+            <!-- Workout Plans Starts Here -->
+            <div class="workout-plan-container mt-5">
+                <h4>Workout and Diet Plans</h4>
+                <div class="row">
+                    <div class="col-md-6 workouts mt-3">
+                        <div *ngIf="hasPackage; else getPackage" class="card workout-card">
+                            <h5>Workouts</h5>
+                            <h6 *ngFor="let exercise of userData.Package.Exercises">{{exercise.Name}} - <span>12 x 3</span></h6>
+                        </div>
+                    </div>
+                    <div class="col-md-6 diets mt-3">
+                        <div *ngIf="hasDiet" class="card diet-card">
+                            <h5>Diets</h5>
+                            <h6>Calories - <span>{{userData.Diet.Calories}}g / day</span></h6>
+                            <h6>Protein - <span>{{userData.Diet.Protein}}g / day</span></h6>
+                            <h6>Carbohydrate - <span>{{userData.Diet.Carbohydrate}}g / day</span></h6>
+                        </div>
+        
+                        <ng-template #getPackage>
+                            <h5 class="mt-5 text-secondary">purchase a package to get exercises and diet</h5>
+                        </ng-template>
+                    </div>
                 </div>
-
-                <ng-template #getPackage>
+            </div>
+            <!-- Workout Plans Ends Here -->
+        
+            <div class="subscription-details-container mt-5">
+                <h4>Subscription Details</h4>
+                <div *ngIf="hasSubscription; else noSubscription" class="col-md-12 personal-info-sub">
+                    <h6>Subscription: {{userData.Subscription.Name}}</h6>
+                    <h6>Price: {{userData.Subscription.Price}}</h6>
+                    <h6>Features: </h6> <p *ngFor="let feature of userData.Subscription.Features">{{feature}},</p>
+                </div>
+                <div *ngIf="hasPackage" class="col-md-12 personal-info-sub">
+                    <h6>Package: {{userData.Package.Packagename}} package</h6>
+                </div>
+        
+                <ng-template #noSubscription>
                     <h5 class="mt-5 text-secondary">purchase a package to get exercises and diet</h5>
                 </ng-template>
             </div>
+        
+        
+            <!-- Update Profile Starts Here -->
+            <div class="update-profile-container mt-5">
+                <h4>Update Profile</h4>
+                <div class="col-md-4">
+                    <!-- Update profile form will go here -->
+                     <button type="button" class="btn btn-primary" (click)="openUpdateUserDialog()">Update details</button>
+                </div>
+            </div>
+            <!-- Update Profile Ends Here -->
         </div>
-    </div>
-    <!-- Workout Plans Ends Here -->
-
-    <div class="subscription-details-container mt-5">
-        <h4>Subscription Details</h4>
-        <div *ngIf="hasSubscription; else noSubscription" class="col-md-12 personal-info-sub">
-            <h6>Subscription: {{userData.Subscription.Name}}</h6>
-            <h6>Price: {{userData.Subscription.Price}}</h6>
-            <h6>Features: </h6> <p *ngFor="let feature of userData.Subscription.Features">{{feature}},</p>
-        </div>
-        <div *ngIf="hasPackage" class="col-md-12 personal-info-sub">
-            <h6>Package: {{userData.Package.Packagename}} package</h6>
-        </div>
-
-        <ng-template #noSubscription>
-            <h5 class="mt-5 text-secondary">purchase a package to get exercises and diet</h5>
-        </ng-template>
+        
     </div>
 
-
-    <!-- Update Profile Starts Here -->
-    <div class="update-profile-container mt-5">
-        <h4>Update Profile</h4>
-        <div class="col-md-4">
-            <!-- Update profile form will go here -->
-             <button type="button" class="btn btn-primary" (click)="openUpdateUserDialog()">Update details</button>
-        </div>
-    </div>
-    <!-- Update Profile Ends Here -->
 </div>
+

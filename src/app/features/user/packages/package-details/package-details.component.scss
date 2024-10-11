@@ -1,11 +1,8 @@
 
 
-
-
 /* Base styles for all screen sizes */
 .image-container {
-    margin-top: 5rem;
-    margin-left: 2rem;
+    margin-top: 3rem;
   }
   
   .packageImage {
@@ -14,8 +11,15 @@
   }
   
   .package-details-container {
-    margin-top: 5rem;
-    margin-left: 2rem;
+    margin-top: 3rem;
+    margin-left: 5rem;
+
+    h6{
+      margin-left:1rem;
+    }
+    h5{
+      margin-left: 1rem;
+    }
   }
   
   .exercise {
@@ -27,7 +31,7 @@
   
   .Exercise-details-card {
     margin-left: 1rem;
-    background-color: rgb(215, 215, 215);
+    background-color: rgb(255, 255, 255);
     width: 10rem;
     height: 10rem;
   }

@@ -18,12 +18,12 @@
       <!-- Description Field -->
       <div class="form-group">
         <label for="description" class="form-label">Description</label>
-        <input type="text" id="description" class="form-control" formControlName="description" placeholder="Enter package description" required>
+        <textarea id="description" class="form-control" formControlName="description" placeholder="Enter package description" required></textarea>
         <div *ngIf="packageEditForm.get('description')?.touched">
-          <div *ngIf="packageEditForm.get('description')?.errors?.['required']" class="text-danger">Description is required.</div>
-          <div *ngIf="packageEditForm.get('description')?.errors?.['noSpaces']" class="text-danger">Description cannot be just spaces.</div>
+            <div *ngIf="packageEditForm.get('description')?.errors?.['required']" class="text-danger">Description is required.</div>
+            <div *ngIf="packageEditForm.get('description')?.errors?.['noSpaces']" class="text-danger">Description cannot be just spaces.</div>
         </div>
-      </div>
+    </div>    
 
       <!-- Select Exercises -->
       <div class="form-group">
