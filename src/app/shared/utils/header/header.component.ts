@@ -14,9 +14,14 @@ export class HeaderComponent {
 @Input() isLoggedIn:Boolean = true
 @Input() user:boolean = true
 @Input() trainer:boolean = false
+navbarOpen = false;
 
 constructor(private authService:AuthService, private router:Router, private store:Store){}
 
+
+toggleNavbar() {
+  this.navbarOpen = !this.navbarOpen;
+}
 
 logOut(role:string){
 console.log('log out called, ' ,role);
@@ -29,5 +34,6 @@ console.log('log out called, ' ,role);
     this.router.navigate(['/admin'])
   }
 }
+
 
 }

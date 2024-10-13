@@ -4,3 +4,13 @@
   height: 100%;
   background-color: rgb(173, 214, 200);
 }
+@media (max-width: 768px) {
+  .main-container {
+      flex-direction: column; /* Stack elements vertically on mobile */
+  }
+  
+  .col-md-4, .col-md-7 {
+      width: 100%; /* Full width on mobile */
+      margin-bottom: 1rem; /* Space between components */
+  }
+}

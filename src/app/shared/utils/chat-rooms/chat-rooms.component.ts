@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { AdminService } from 'src/app/features/admin/services/admin.service';
 import { serverResponse } from '../../interfaces/response.interface';
 import { MatDialog } from '@angular/material/dialog';
@@ -12,11 +12,12 @@ import { TrainerService } from 'src/app/features/admin/trainer/services/trainer.
   templateUrl: './chat-rooms.component.html',
   styleUrls: ['./chat-rooms.component.scss']
 })
-export class ChatRoomsComponent implements OnInit {
+export class ChatRoomsComponent implements OnInit, OnChanges {
 
   @Input() user: string = 'user';
   @Input() rooms: any[] = [];
   @Output() sendRoomData: EventEmitter<any> = new EventEmitter<any>();
+  roomData: any[] = []
   allUsers: any[] = []
   trainerId!: string 
 
@@ -24,16 +25,22 @@ export class ChatRoomsComponent implements OnInit {
 
   ngOnInit(): void {
     const data = 'user'
-    this.service.getAllItems(data).subscribe({
-      next:(response:serverResponse)=>{
-        this.allUsers = response.items
-      },
-      error:(err:Error)=>{
-        console.log(err);
-      }
-    })
+    // this.service.getAllItems(data).subscribe({
+    //   next:(response:serverResponse)=>{
+    //     this.allUsers = response.items
+    //   },
+    //   error:(err:Error)=>{
+    //     console.log(err);
+    //   }
+    // })
     const id = this.authService.getUserIdFromToken('trainer')
     if(id) this.trainerId = id
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if(this.rooms[0]){
+      this.roomData = this.rooms
+    }
   }
 
   check(roomId: string) {
@@ -80,6 +87,32 @@ export class ChatRoomsComponent implements OnInit {
         })
       }
     })
+  }
+
+  search(value:string){
+    console.log(this.roomData);
+     console.log(value);
+      
+    if(value === ""){
+      this.roomData = this.rooms 
+    }else{
+      let userName:string = ''
+      if(this.user === 'user'){
+        userName = 'trainerDetails'
+      }else{
+        userName = 'userDetails'
+      }
+      // let filteredData = this.rooms.filter((item) => item[userName]?.Name?.toLowerCase().includes(value.toLowerCase()))
+      let filteredData: any[] = []
+      this.rooms.filter((item)=>{
+        console.log('user');
+        if(item[userName].Name.toLowerCase().includes(value.toLowerCase())){
+          filteredData.push(item)
+        }
+      })
+      this.roomData = filteredData
+      console.log(this.roomData);
+    }
   }
 
 }

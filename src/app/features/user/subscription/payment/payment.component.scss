@@ -1,99 +1,141 @@
-
-
-.main-container{
+/* Desktop (unchanged) */
+.main-container {
     display: flex;
     height: 100%;
 }
-.image-container{
+
+.image-container {
     background-color: rgb(195, 204, 204);
     padding-top: 2rem;
     padding-left: 4rem;
-    .image-covered{
-        width: 35rem;
-        height: 25rem;
-
-        #payment-image{
-            width: 35rem;
-            height: 22rem;
-        }
-    }
-    .tagline-container{
-        width: 35rem;
-
-        .tagline{
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        }
-    }
 }
-.payment-container{
+
+.image-covered {
+    width: 35rem;
+    height: 25rem;
+}
+
+#payment-image {
+    width: 35rem;
+    height: 22rem;
+}
+
+.tagline-container {
+    width: 35rem;
+}
+
+.tagline {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.payment-container {
     background-color: rgb(216, 213, 210);
     padding-top: 2rem;
+}
+
+.payment-details-container {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2rem;
+    width: 100%;
+    max-width: 30rem;
+    background-color: #c8d3d4;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.payment-heading h3 {
+    font-size: 1.8rem;
+    color: #3E3F47;
+    text-align: center;
+    font-weight: 600;
+}
+
+.payment-details {
+    margin-top: 2rem;
+}
+
+.package-name h5,
+.package-price h5,
+.package-features h5 {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #4A4A4A;
+}
+
+.package-name span,
+.package-price span {
+    font-weight: 700;
+    color: #2C3E50;
+}
+
+.package-features h6 {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #7A7A7A;
+    margin-bottom: 0.25rem;
+}
+
+.package-price {
+    margin-top: 1.5rem;
+}
+
+.payment-btn {
+    margin-top: 2rem;
+    width: 100%;
+    padding: 0.75rem 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    background-color: #28A745;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.payment-btn:hover {
+    background-color: #218838;
+}
+
+/* Mobile Specific */
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+        height: auto;
+        padding: 1rem;
+    }
+
+    .image-container {
+        padding-top: 1rem;
+        padding-left: 0;
+        text-align: center;
+    }
+
+    .image-covered {
+        width: 100%;
+        height: auto;
+    }
+
+    #payment-image {
+        width: 100%;
+        height: auto;
+    }
+
+    .tagline-container {
+        width: 100%;
+        padding: 0 1rem;
+        text-align: center;
+    }
+
+    .payment-container {
+        padding: 1rem;
+        width: 100%;
+    }
 
     .payment-details-container {
-        margin-left: auto;
-        margin-right: auto;
-        padding: 2rem;
-        width: 100%;
-        max-width: 30rem;
-        background-color: #c8d3d4;
-        border-radius: 12px;
-        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-        position: relative;
-    
-        .payment-heading {
-            h3 {
-                font-size: 1.8rem;
-                color: #3E3F47;
-                text-align: center;
-                font-weight: 600;
-            }
-        }
-    
-        .payment-details {
-            margin-top: 2rem;
-            
-            .package-name h5,
-            .package-price h5,
-            .package-features h5 {
-                font-size: 1.2rem;
-                font-weight: 500;
-                color: #4A4A4A;
-            }
-            
-            .package-name span,
-            .package-price span {
-                font-weight: 700;
-                color: #2C3E50;
-            }
-            
-            .package-features h6 {
-                font-size: 1rem;
-                font-weight: 400;
-                color: #7A7A7A;
-                margin-bottom: 0.25rem;
-            }
-        }
-    
-        .package-price {
-            margin-top: 1.5rem;
-        }
-    
-        .payment-btn {
-            margin-top: 2rem;
-            width: 100%;
-            padding: 0.75rem 0;
-            font-size: 1.2rem;
-            font-weight: 600;
-            background-color: #28A745;
-            border: none;
-            border-radius: 8px;
-            color: white;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-    
-            &:hover {
-                background-color: #218838;
-            }
-        }
+        padding: 1.5rem;
+        max-width: 100%;
     }
-    }
+}

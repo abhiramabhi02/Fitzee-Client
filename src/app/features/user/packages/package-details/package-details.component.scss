@@ -7,7 +7,7 @@
   
   .packageImage {
     width: 25rem;
-    height: 20rem;
+    height: 15rem;
   }
   
   .package-details-container {
@@ -68,7 +68,7 @@
     }
   
     .packageImage {
-      width: 100%;
+      width: 20rem;
       height: auto;
     }
   
@@ -78,8 +78,10 @@
     }
   
     .exercise {
-      flex-direction: column;
-      margin-bottom: 2rem;
+      display: flex;
+      margin-bottom: 3rem;
+      overflow-x: auto;
+      gap: .8rem;
     }
   
     .Exercise-details-card {

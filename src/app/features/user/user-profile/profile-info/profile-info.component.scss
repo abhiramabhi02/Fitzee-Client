@@ -1,22 +1,30 @@
-.full-container{
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.full-container {
     display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .main-container-profile-info {
+    flex: 1;
     max-height: 28rem;
     overflow-y: auto;
     padding: 1rem;
-    background-color: #f8f9fa; 
-    border-radius: 1rem; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    background-color: #f8f9fa;
+    border-radius: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .profile-pic {
     margin-top: 2rem;
     width: 12rem;
     height: 12rem;
-    border-radius: 50%; 
-    border: 3px solid rgb(194, 140, 42); 
+    border-radius: 50%;
+    border: 3px solid rgb(194, 140, 42);
 }
 
 .personal-info {
@@ -25,69 +33,106 @@
 
 .personal-info-sub {
     display: flex;
-    justify-content: space-between; 
-    margin-bottom: 1rem; 
+    justify-content: space-between;
+    margin-bottom: 1rem;
 }
 
 h4 {
     color: rgb(194, 140, 42);
-    border-bottom: 2px solid rgb(194, 140, 42); 
-    padding-bottom: 0.5rem; 
+    border-bottom: 2px solid rgb(194, 140, 42);
+    padding-bottom: 0.5rem;
 }
 
 h6 {
-    color: rgb(70, 70, 70); 
+    color: rgb(70, 70, 70);
 }
 
 .workout-plan-container {
-    margin-top: 2rem; 
+    margin-top: 2rem;
 }
 
-.workout-card, .diet-card {
-    background-color: #ffffff; 
+.workout-card,
+.diet-card {
+    background-color: #ffffff;
     border: 1px solid rgba(194, 140, 42, 0.3);
     border-radius: 0.5rem;
-    padding: 1rem; 
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.workout-card h5, .diet-card h5 {
-    color: rgb(194, 140, 42); 
-    margin-bottom: 1rem; 
+.workout-card h5,
+.diet-card h5 {
+    color: rgb(194, 140, 42);
+    margin-bottom: 1rem;
 }
 
 @media (max-width: 768px) {
     .main-container {
         padding: 0.5rem;
+        height: auto;
     }
     
     .profile-pic {
-        width: 10rem; 
+        width: 10rem;
         height: 10rem;
+    }
+
+    .main-container-profile-info {
+        width: 100%;
+        padding: 0.5rem;
+        height: auto;
+    }
+
+    .col-md-3 {
+        display: none;
+    }
+
+    .col-md-9 {
+        width: 100%;
+    }
+
+    h4 {
+        font-size: 1.2rem;
+    }
+
+    h6 {
+        font-size: 0.9rem;
+    }
+
+    .workout-plan-container,
+    .workout-card,
+    .diet-card {
+        padding: 0.5rem;
+    }
+
+    .btn {
+        font-size: 0.8rem;
+        padding: 0.5rem 1rem;
     }
 }
 
-
-
-// sidebar
-.main-container{
+.main-container {
     background-color: rgb(35, 34, 34);
-    height: 28rem;
-    h4{
-        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    }
-    h6{
-        font-family: Georgia, 'Times New Roman', Times, serif;
-    }
-    .sub-headings{
-        text-align: center;
-        margin-left: 0.5rem;
-        width: 17rem;
-        height: 2rem;
-        background-color: rgb(59, 61, 57);
-       
-    }
-    a{
-        text-decoration: none;
-    }
+    height: 100%;
+    flex: 0 0 auto;
+}
+
+.main-container h4 {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.main-container h6 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.sub-headings {
+    text-align: center;
+    margin-left: 0.5rem;
+    width: 17rem;
+    height: 2rem;
+    background-color: rgb(59, 61, 57);
+}
+
+.main-container a {
+    text-decoration: none;
 }

@@ -1,27 +1,27 @@
-.header-clr{
+.header-clr {
     background-color: rgb(37, 39, 39);
     height: 5rem;
-}
-
-@media(min-width:1rem){
-    .brand-name{
-        font-family: 'Times New Roman', Times, serif;
-        text-decoration: none;
-        color: #fff;
-        font-size: 3rem;
-        margin-left: 2rem;
+  }
+  
+  @media (min-width: 1rem) {
+    .brand-name {
+      font-family: 'Times New Roman', Times, serif;
+      text-decoration: none;
+      color: #fff;
+      font-size: 3rem;
+      margin-left: 2rem;
     }
-}
-
-.sub-header{
+  }
+  
+  .sub-header {
     border: 1px solid black;
-}
-.navbar-nav{
-    li{
-        font-size: 1.2rem;
-    }
-}
-.login-btn{
+  }
+  
+  .navbar-nav li {
+    font-size: 1.2rem;
+  }
+  
+  .login-btn {
     background-color: rgb(43, 121, 194);
     color: #fff;
     margin-right: 1rem;
@@ -29,5 +29,69 @@
     height: 2.5rem;
     border-radius: 1rem;
     border-color: #fff;
-    // box-shadow: 1px 2px rgb(50, 99, 144);
-}
+  }
+  
+  .custom-toggler {
+    display: none;
+    background-color: transparent;
+    border: none;
+  }
+  
+  .custom-toggler-icon {
+    width: 30px;
+    height: 30px;
+    display: block;
+    position: relative;
+  }
+  
+  .custom-toggler-icon::before,
+  .custom-toggler-icon::after,
+  .custom-toggler-icon span {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 4px;
+    background-color: #fff;
+    position: absolute;
+    left: 0;
+    transition: 0.3s;
+  }
+  
+  .custom-toggler-icon::before {
+    top: 0;
+  }
+  
+  .custom-toggler-icon span {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .custom-toggler-icon::after {
+    bottom: 0;
+  }
+  
+  .custom-toggler.is-active .custom-toggler-icon::before {
+    top: 50%;
+    transform: rotate(45deg);
+  }
+  
+  .custom-toggler.is-active .custom-toggler-icon::after {
+    bottom: 50%;
+    transform: rotate(-45deg);
+  }
+  
+  @media (max-width: 767px) {
+    .custom-toggler {
+      display: inline-block;
+      padding: 0.5rem;
+    }
+  
+    .navbar-collapse {
+      display: none;
+    }
+  
+    .navbar-collapse.show {
+      display: block;
+    }
+  }
+  

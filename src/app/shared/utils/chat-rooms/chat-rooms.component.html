@@ -1,13 +1,13 @@
 <div class="main-container">
     <div class="search">
-      <input type="text" class="form-control" placeholder="search..">
+      <input type="text" class="form-control" (input)="search(searchinput.value)" placeholder="search.." #searchinput>
     </div>
     <div class="rooms-container">
       <h3 id="chat-header">Chat</h3>
   
       <!-- User Chat Rooms -->
       <div *ngIf="user === 'user'" class="rooms">
-        <div *ngFor="let room of rooms" class="user-chat-rooms">
+        <div *ngFor="let room of roomData" class="user-chat-rooms">
           <div (click)="check(room._id)" class="chat-room mt-3">
             <div class="profile-pic-container">
               <img *ngIf="room.trainerDetails?.Image" class="profile-pic" src="{{room.trainerDetails.Image}}" alt="Profile Picture">
@@ -30,7 +30,7 @@
       <!-- Trainer Chat Rooms -->
       <div *ngIf="user !== 'user'" class="rooms">
         <button type="button" class="btn btn-sm btn-primary" (click)="createRoom()">New Chat</button>
-        <div *ngFor="let room of rooms" class="trainer-chat-rooms">
+        <div *ngFor="let room of roomData" class="trainer-chat-rooms">
           <div (click)="check(room._id)" class="chat-room mt-3">
             <div class="profile-pic-container">
               <img *ngIf="room.userDetails?.PersonalDetails?.Image" class="profile-pic" src="{{room.userDetails.PersonalDetails.Image}}" alt="">
