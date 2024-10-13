@@ -1,11 +1,11 @@
 <div class="container">
-    <div class="search-bar">
+    <div class="search-bar" *ngIf="itemName !== 'reports'">
         <input type="text" class="form-control" (input)="search(searchinput.value)" placeholder="search..." #searchinput>
         <button class="btn btn-success btn-sm"><i class="fa-brands fa-searchengin"></i></button>
     </div>
 
     <!-- Filter by status -->
-    <div class="filter-sort-container my-3">
+    <div class="filter-sort-container my-3" *ngIf="itemName !== 'reports'">
         <label for="statusFilter">Filter by Status:</label>
         <select id="statusFilter" class="form-control d-inline w-auto" (change)="filterByStatus($event)">
             <option value="">All</option>
