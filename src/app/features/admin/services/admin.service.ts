@@ -88,6 +88,7 @@ export class AdminService {
           '_id',
           'PersonalDetails',
           'Package',
+          'Payment',
           'Diet',
           'JoinedDate',
         ].includes(key)
