@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { noSpacesValidator } from 'src/app/shared/validators/custom-validators';
 import { UserService } from '../services/user.service';
 import { serverResponse } from 'src/app/shared/interfaces/response.interface';
+import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
   selector: 'app-resetpassword',
@@ -19,7 +20,8 @@ export class ResetpasswordComponent {
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private service: UserService,
-    private router: Router
+    private router: Router,
+    private sharedService: SharedService
   ) {
     this.userEmail = this.activatedRoute.snapshot.paramMap.get('email');
     console.log(this.userEmail, 'use');
@@ -44,9 +46,16 @@ export class ResetpasswordComponent {
         next: (res: serverResponse) => {
           console.log(res);
           if (res.success) {
-            this.router.navigate(['/login'])
+            this.sharedService.showAlert(res.message)
+            setTimeout(() => {
+              
+              this.router.navigate(['/login']);
+            }, 2000);
           }
         },
+        error:(error)=>{
+          this.sharedService.showAlert(error.error.message)
+        }
       });
     }
   }

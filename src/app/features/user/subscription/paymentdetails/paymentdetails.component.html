@@ -1,0 +1,15 @@
+<div class="details-container">
+    <div class="details-card">
+      <h1>Subscription Confirmed!</h1>
+      <p>Your Order ID: <strong>{{paymentDetails.orderId}}</strong></p>
+      
+      <div class="subscription-info">
+        <h2>Subscription Details</h2>
+        <p><strong>Subscription:</strong> {{paymentDetails.Name}}</p>
+        <p><strong>Price:</strong> {{paymentDetails.Price}}</p>
+      </div>
+      
+      <button class="continue-button" [routerLink]="'/'">Continue to Fitness</button>
+    </div>
+  </div>
+  

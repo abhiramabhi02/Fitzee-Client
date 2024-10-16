@@ -9,6 +9,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { PaymentComponent } from './subscription/payment/payment.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
+import { PaymentdetailsComponent } from './subscription/paymentdetails/paymentdetails.component';
 
 
 const routes: Routes = [
@@ -19,7 +20,8 @@ const routes: Routes = [
   {path:'userprofile', component:UserProfileComponent, canActivate:[userAuthGuard]},
   {path:'payment', component:PaymentComponent, canActivate:[userAuthGuard]},
   {path:'forgotpassword', component:ForgotpasswordComponent},
-  {path:'resetpassword/:email', component:ResetpasswordComponent}
+  {path:'resetpassword/:email', component:ResetpasswordComponent},
+  {path: 'paymentdetails', component:PaymentdetailsComponent}
 ];
 
 @NgModule({

@@ -11,8 +11,8 @@ import { environment } from 'src/environments/environment.prod';
   providedIn: 'root',
 })
 export class AdminService {
-  baseUrl:string = environment.admin.ADMIN_BASE_URL
-  adminUrl = environment.admin
+  baseUrl: string = environment.admin.ADMIN_BASE_URL;
+  adminUrl = environment.admin;
   constructor(private httpClient: HttpClient, private fb: FormBuilder) {}
 
   // sending post request for admin login
@@ -26,12 +26,12 @@ export class AdminService {
   getAllItems(data: string): Observable<serverResponse> {
     const url = this.baseUrl + this.adminUrl.GET_ALL_ITEMS + `?item=${data}`;
 
-    return this.httpClient.get<serverResponse>(url); 
+    return this.httpClient.get<serverResponse>(url);
   }
 
-  getPaymentData():Observable<serverResponse>{
+  getPaymentData(): Observable<serverResponse> {
     const url = this.baseUrl + this.adminUrl.GET_PAYMENTS;
-    return this.httpClient.get<serverResponse>(url)
+    return this.httpClient.get<serverResponse>(url);
   }
 
   insertItems(data: Object): Observable<serverResponse> {
@@ -47,17 +47,19 @@ export class AdminService {
   }
 
   deleteItems(data: object | any) {
-    const url = this.baseUrl + this.adminUrl.DELETE_ITEMS + `?id=${data.id}&&item=${data.item}`;
+    const url =
+      this.baseUrl +
+      this.adminUrl.DELETE_ITEMS +
+      `?id=${data.id}&&item=${data.item}`;
 
     return this.httpClient.delete(url, data);
   }
 
-  getDashboardData():Observable<serverResponse>{
-    const url = this.baseUrl + this.adminUrl.GET_DASHBOARD
-    
-    return this.httpClient.get<serverResponse>(url)
-  }
+  getDashboardData(): Observable<serverResponse> {
+    const url = this.baseUrl + this.adminUrl.GET_DASHBOARD;
 
+    return this.httpClient.get<serverResponse>(url);
+  }
 
   createSubscriptionForm(data: string | any) {
     if (data === 'new') {
@@ -76,8 +78,19 @@ export class AdminService {
   }
 
   usersSorting(data: any) {
-    let keys = Object.keys(data.items[0])
-    keys = keys.filter((key) => !['Password', 'Subscription', '__v', '_id', 'PersonalDetails', 'Package'].includes(key))    
+    let keys = Object.keys(data.items[0]);
+    keys = keys.filter(
+      (key) =>
+        ![
+          'Password',
+          'Subscription',
+          '__v',
+          '_id',
+          'PersonalDetails',
+          'Package',
+          'JoinedDate',
+        ].includes(key)
+    );
     let userArr: Object[] = [];
     data.items.forEach((items: any) => {
       if (items.Name && items.Email) {
@@ -85,7 +98,9 @@ export class AdminService {
           id: items._id,
           Name: items.Name,
           Email: items.Email,
-          Verification:items.Verification
+          Verification: items.Verification,
+          Payment: items.Payment,
+          JoinedDate: items.JoinedDate,
         });
       }
     });
@@ -204,9 +219,11 @@ export class AdminService {
 
   trainerSorting(data: any) {
     console.log(data, 'data 23');
-    
+
     let keys = Object.keys(data[0]);
-    keys = keys.filter((key) => !['_id', 'Password', '__v', 'Image'].includes(key));
+    keys = keys.filter(
+      (key) => !['_id', 'Password', '__v', 'Image', 'JoinedDate'].includes(key)
+    );
     console.log(keys, 'key');
     let trainerArr: Object[] = [];
     data.forEach((items: any) => {
@@ -216,34 +233,42 @@ export class AdminService {
           Name: items.Name,
           Email: items.Email,
           Verification: items.Verification,
-          Image:items.Image
+          Image: items.Image,
+          JoinedDate: items.JoinedDate,
         });
       }
     });
-    return {keys:keys, items:trainerArr}
+    return { keys: keys, items: trainerArr };
   }
 
-  reportSorting(data: any){
+  reportSorting(data: any) {
     console.log(data, 'repo');
-    
-    let keys:string[] = ["User", "Email", "Package", "Subscription", "Age", "Gender", "Amount"]
 
-    let paymentReport:object[] = []
-    data.forEach((item:any)=>{
-      if(item.Name){
+    let keys: string[] = [
+      'User',
+      'Email',
+      'Package',
+      'Subscription',
+      'Age',
+      'Gender',
+      'Amount',
+    ];
+
+    let paymentReport: object[] = [];
+    data.forEach((item: any) => {
+      if (item.Name) {
         paymentReport.push({
           User: item.Name,
           Email: item.Email,
-          Package:item.Package?.Packagename,
+          Package: item.Package?.Packagename,
           Subscription: item.Subscription.Name,
-          Age:item?.PersonalDetails?.Age || 'nil',
-          Gender:item?.PersonalDetails?.Gender || 'nil',
-          Amount: item.Subscription.Price
-        })
-
+          Age: item?.PersonalDetails?.Age || 'nil',
+          Gender: item?.PersonalDetails?.Gender || 'nil',
+          Amount: item.Subscription.Price,
+        });
       }
-    })
+    });
     console.log(paymentReport, 're');
-    return {keys:keys, items:paymentReport}
+    return { keys: keys, items: paymentReport };
   }
 }

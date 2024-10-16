@@ -4,7 +4,6 @@ import { UserService } from '../../services/user.service';
 import { environment } from 'src/environments/environment.prod';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
-import { share } from 'rxjs';
 
 declare const Razorpay: any;
 
@@ -18,6 +17,7 @@ export class PaymentComponent {
   loggedIn: Boolean = true;
   paymentData: any = {};
   userId: string = '';
+  paymentDetails:any
 
   constructor(
     private router: Router,
@@ -35,7 +35,7 @@ export class PaymentComponent {
 
   initiatePayment(amount: number) {
     this.service.payment(amount).subscribe((order: any) => {
-      console.log(order, 'log');
+      this.paymentData.orderId = order.items.id
 
       const options = {
         key: environment.razorpayConfig.razorpayKey,
@@ -68,10 +68,14 @@ export class PaymentComponent {
     response.userId = this.userId;
     response.subscriptionId = this.paymentData._id;
     response.packageId = this.paymentData.packageId;
+    response.orderId = this.paymentDetails
     this.service.paymentVerification(response).subscribe({
       next: (res: any) => {
         console.log(res);
         this.sharedService.showAlert(res.message)
+        if(res.success){
+          this.router.navigate(['/paymentdetails'], {state:{data:this.paymentData}})
+        }
       },
       error: (error) => {
         console.log(error);

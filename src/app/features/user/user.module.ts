@@ -32,6 +32,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { ChatBotComponent } from './chat-bot/chat-bot.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
+import { PaymentdetailsComponent } from './subscription/paymentdetails/paymentdetails.component';
 
 
 // export function localStorageSyncReducer(reducer: any): any {
@@ -62,6 +63,7 @@ import { ResetpasswordComponent } from './resetpassword/resetpassword.component'
     ChatBotComponent,
     ForgotpasswordComponent,
     ResetpasswordComponent,
+    PaymentdetailsComponent,
   ],
   imports: [
     CommonModule,

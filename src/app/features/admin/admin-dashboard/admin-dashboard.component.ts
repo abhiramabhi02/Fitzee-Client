@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {
   ApexDataLabels,
   ApexNonAxisChartSeries,
+  ApexPlotOptions,
   ApexStroke,
   ApexTooltip,
   ApexXAxis,
@@ -10,7 +11,6 @@ import {
 import { ApexAxisChartSeries, ApexResponsive, ApexChart } from 'ng-apexcharts';
 import { AdminService } from '../services/admin.service';
 import { serverResponse } from 'src/app/shared/interfaces/response.interface';
-import { log } from 'console';
 
 export type chartOptions = {
   series: ApexNonAxisChartSeries;
@@ -42,88 +42,113 @@ export class AdminDashboardComponent implements OnInit {
 
   public chartOptions!: Partial<chartOptions>;
   public areaChartOptions!: Partial<areaChartOptions>;
+  subscriptionData: any[] = []
+  userData: any[] = []
 
   dataCount: any = [];
 
-  constructor(private service: AdminService) {
-    this.chartOptions = {
-      series: [12, 35, 24, 75, 23, 43],
-      chart: {
-        type: 'donut',
-      },
-      labels: [
-        'Package',
-        'User',
-        'Subscribers',
-        'Exercises',
-        'Trainers',
-        'News',
-      ],
-      responsive: [
-        {
-          breakpoint: 480,
-          options: {
-            chart: {
-              width: 200,
-            },
-            legend: {
-              position: 'bottom',
-            },
-          },
-        },
-      ],
-    };
+  public userGrowthSeries: ApexAxisChartSeries = [
+    {
+      name: "Users",
+      data: this.userData
+    }
+  ];
 
-    this.areaChartOptions = {
-      series: [
-        {
-          name: 'series1',
-          data: [31, 40, 28, 51, 42, 109, 100],
-        },
-        {
-          name: 'series2',
-          data: [11, 32, 45, 32, 34, 52, 41],
-        },
-      ],
-      chart: {
-        height: 350,
-        type: 'area',
-      },
-      dataLabels: {
-        enabled: false,
-      },
-      stroke: {
-        curve: 'smooth',
-      },
-      xaxis: {
-        type: 'datetime',
-        categories: [
-          '2018-09-19T00:00:00.000Z',
-          '2018-09-19T01:30:00.000Z',
-          '2018-09-19T02:30:00.000Z',
-          '2018-09-19T03:30:00.000Z',
-          '2018-09-19T04:30:00.000Z',
-          '2018-09-19T05:30:00.000Z',
-          '2018-09-19T06:30:00.000Z',
-        ],
-      },
-      tooltip: {
-        x: {
-          format: 'dd/MM/yy HH:mm',
-        },
-      },
-    };
-  }
+  public userGrowthChartOptions: {
+    chart: ApexChart;
+    xaxis: ApexXAxis;
+    stroke: ApexStroke;
+  } = {
+    chart: {
+      type: 'line',
+      height: 350
+    },
+    xaxis: {
+      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    },
+    stroke: {
+      curve: 'smooth'
+    }
+  };
+
+  // Subscription Trends Chart Data (Bar chart)
+  public subscriptionSeries: ApexAxisChartSeries = [
+    {
+      name: "Subscriptions",
+      data: this.subscriptionData
+    }
+  ];
+
+  public subscriptionChartOptions: {
+    chart: ApexChart;
+    xaxis: ApexXAxis;
+    plotOptions: ApexPlotOptions;
+  } = {
+    chart: {
+      type: 'bar',
+      height: 350
+    },
+    xaxis: {
+      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    },
+    plotOptions: {
+      bar: {
+        horizontal: false
+      }
+    }
+  };
+
+  constructor(private service: AdminService) {}
 
   ngOnInit(): void {
     this.service.getDashboardData().subscribe({
       next: (res: serverResponse) => {
         this.dashboardData = res.items
+        console.log(this.dashboardData, 'dash');
+        
         this.extractData(this.dashboardData)
+        this.getuserChartData()
+        this.getSubscriptionChartData()
       },
     });
+  }
 
+  getuserChartData(){
+    const monthlyUserCount = new Array(12).fill(0)
 
+    this.dashboardData.user.forEach((user:any) =>{
+      const date = new Date(user.JoinedDate)
+      const month = date.getUTCMonth()
+
+      monthlyUserCount[month]++
+    })
+    this.userData = monthlyUserCount
+    this.userGrowthSeries = [
+      {
+        name: 'Users',
+        data: this.userData
+      }
+    ];
+  }
+
+  getSubscriptionChartData(){
+    const monthlyUserCount = new Array(12).fill(0)
+
+    this.dashboardData.subscribers.forEach((user:any) =>{
+      const date = new Date(user?.Payment?.Date)
+      const month = date.getUTCMonth()
+
+      monthlyUserCount[month]++
+    })
+    this.subscriptionData = monthlyUserCount
+    this.subscriptionSeries = [
+      {
+        name: "Subscriptions",
+        data: this.subscriptionData
+      }
+    ]
+    console.log(this.subscriptionData);
+    
   }
 
   extractData(data:any){

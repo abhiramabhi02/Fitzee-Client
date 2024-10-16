@@ -1,38 +1,50 @@
 <div class="container">
     <div class="search-bar" *ngIf="itemName !== 'reports'">
-        <input type="text" class="form-control" (input)="search(searchinput.value)" placeholder="search..." #searchinput>
+        <input type="text" class="form-control" (input)="search(searchinput.value)" placeholder="search..."
+            #searchinput>
         <button class="btn btn-success btn-sm"><i class="fa-brands fa-searchengin"></i></button>
     </div>
 
     <!-- Filter by status -->
     <div class="filter-sort-container my-3" *ngIf="itemName !== 'reports'">
-        <label for="statusFilter">Filter by Status:</label>
-        <select id="statusFilter" class="form-control d-inline w-auto" (change)="filterByStatus($event)">
+        <label for="statusFilter">Filter by Status: </label>
+        <select id="statusFilter" class="form-control d-inline w-auto">
             <option value="">All</option>
             <option value="true">Active</option>
             <option value="false">Inactive</option>
         </select>
 
         <!-- Sort by date -->
-        <label for="sortDate" class="ms-3">Sort by Date:</label>
-        <select id="sortDate" class="form-control d-inline w-auto" (change)="sortByDate($event)">
-            <option value="asc">Oldest First</option>
+        <label for="sortDate" class="ms-3">Sort by Date: </label>
+        <select id="sortDate" class="form-control d-inline w-auto">
             <option value="desc">Newest First</option>
+            <option value="asc">Oldest First</option>
         </select>
 
-        <button type="button" class="btn btn-success btn-sm">apply</button>
+        <!-- Date range filter -->
+        <label for="fromDate" class="ms-3">From: </label>
+        <input type="date" id="fromDate" class="form-control d-inline w-auto" [(ngModel)]="fromDate">
+
+        <label for="toDate" class="ms-3">To: </label>
+        <input type="date" id="toDate" class="form-control d-inline w-auto" [(ngModel)]="toDate">
+
+        <button type="button" class="btn btn-success btn-sm" (click)="applyAllFilters()">apply</button>
+        <button type="button" class="btn btn-success btn-sm" (click)="resetFilters()">reset</button>
+        
     </div>
 
-    <button *ngIf="!isUsers && itemName !== 'reports' " type="button" (click)="callFunction()" class="btn btn-primary btn-sm mb-3">New Item</button>
+    <button *ngIf="!isUsers && itemName !== 'reports' " type="button" (click)="callFunction()"
+        class="btn btn-primary btn-sm mb-3">New Item</button>
     <table class="table my-4">
         <thead>
             <tr>
                 <th>No</th>
                 <th *ngFor="let header of Headers">{{ header }}</th>
-                <th *ngIf="!isUsers && itemName !== 'reports' " >Inserted</th>
+                <th *ngIf="!isUsers && itemName !== 'reports' ">Inserted</th>
                 <th *ngIf="!isUsers && itemName !== 'reports' ">Last Edited</th>
+                <th *ngIf="itemName === 'user' || itemName === 'trainer'">Joined Date</th>
                 <th *ngIf="imageVisibility && itemName !== 'reports' ">Images</th>
-                <th *ngIf="itemName !== 'reports'" >Actions</th>
+                <th *ngIf="itemName !== 'reports'">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -41,24 +53,29 @@
                 <td *ngFor="let key of keyNames">{{ row[key] | textTrim }}</td>
                 <td *ngIf="!isUsers">{{ row[inserted] | date }}</td>
                 <td *ngIf="!isUsers">{{ row[lastedited] | date }}</td>
+                <td *ngIf="itemName === 'user' || itemName === 'trainer'">{{row[joinedDate] | date}}</td>
                 <td *ngIf="imageVisibility">
                     <img class="image" [src]="row[Image]" alt="Image" />
                 </td>
                 <td class="btn-container-admin" *ngIf="!isUsers && itemName !== 'reports'">
                     <button type="button" (click)="editClick(row[id])" class="btn btn-dark btn-sm me-2">Edit</button>
-                    <button type="button" (click)="deleteClick(row[id])" class="btn btn-danger btn-sm me-2">Delete</button>
-                    <button type="button" (click)="updateStatus(row[id])" class="btn btn-secondary btn-sm">update status</button>
+                    <button type="button" (click)="deleteClick(row[id])"
+                        class="btn btn-danger btn-sm me-2">Delete</button>
+                    <button type="button" (click)="updateStatus(row[id])" class="btn btn-secondary btn-sm">update
+                        status</button>
                 </td>
                 <td *ngIf="isUsers">
-                    <button type="button" (click)="updateVerification(row[id])" class="btn btn-secondary btn-sm">update status</button>
+                    <button type="button" (click)="updateVerification(row[id])" class="btn btn-secondary btn-sm">update
+                        status</button>
                 </td>
             </tr>
         </tbody>
     </table>
     <div *ngIf="itemName === 'reports'" class="totalAmount">
-       <h5>Total Amount generated ₹ {{totalAmount}}</h5>
+        <h5>Total Amount generated ₹ {{totalAmount}}</h5>
     </div>
     <div class="pagination-buttons">
-        <button *ngFor="let num of paginationNumbers" type="button" (click)="paginationWorks(num)" class="btn btn-dark btn-sm mx-2">{{ num }}</button>
+        <button *ngFor="let num of paginationNumbers" type="button" (click)="paginationWorks(num)"
+            class="btn btn-dark btn-sm mx-2">{{ num }}</button>
     </div>
 </div>
