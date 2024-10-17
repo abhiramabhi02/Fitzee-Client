@@ -3,22 +3,24 @@
 <div class="container main-container">
     <h2>Subscription Plans</h2>
     <div class="row card-container">
-        <div *ngFor="let subscription of subscriptionData" class="subscription-card shadow-lg d-flex flex-column">
-            <div class="plan-header">
-                <h3>{{subscription.Name}}</h3>
+        <ng-container *ngFor="let subscription of subscriptionData">
+            <div *ngIf="subscription.Status" class="subscription-card shadow-lg d-flex flex-column">
+                <div class="plan-header">
+                    <h3>{{subscription.Name}}</h3>
+                </div>
+                <div class="plan-features flex-grow-1">
+                    <h5>What's Included</h5>
+                    <ul>
+                        <li *ngFor="let feature of subscription.Features">{{feature}}</li>
+                    </ul>
+                </div>
+                <div class="subscription-btn-container">
+                    <button type="button" (click)="payment(subscription._id)" class="btn btn-primary subscription-btn">
+                        Subscribe Now <span class="price">₹ {{subscription.Price}}</span>
+                    </button>
+                </div>
             </div>
-            <div class="plan-features flex-grow-1">
-                <h5>What's Included</h5>
-                <ul>
-                    <li *ngFor="let feature of subscription.Features">{{feature}}</li>
-                </ul>
-            </div>
-            <div class="subscription-btn-container">
-                <button type="button" (click)="payment(subscription._id)" class="btn btn-primary subscription-btn">
-                    Subscribe Now <span class="price">₹ {{subscription.Price}}</span>
-                </button>
-            </div>
-        </div>
+        </ng-container>
     </div>
 </div>
 

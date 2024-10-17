@@ -11,6 +11,8 @@ import {
 import { ApexAxisChartSeries, ApexResponsive, ApexChart } from 'ng-apexcharts';
 import { AdminService } from '../services/admin.service';
 import { serverResponse } from 'src/app/shared/interfaces/response.interface';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { Router } from '@angular/router';
 
 export type chartOptions = {
   series: ApexNonAxisChartSeries;
@@ -46,6 +48,7 @@ export class AdminDashboardComponent implements OnInit {
   userData: any[] = []
 
   dataCount: any = [];
+  totalRevenue:number = 0
 
   public userGrowthSeries: ApexAxisChartSeries = [
     {
@@ -98,7 +101,7 @@ export class AdminDashboardComponent implements OnInit {
     }
   };
 
-  constructor(private service: AdminService) {}
+  constructor(private service: AdminService, private authService:AuthService, private router:Router) {}
 
   ngOnInit(): void {
     this.service.getDashboardData().subscribe({
@@ -109,6 +112,7 @@ export class AdminDashboardComponent implements OnInit {
         this.extractData(this.dashboardData)
         this.getuserChartData()
         this.getSubscriptionChartData()
+        this.getRevenue()
       },
     });
   }
@@ -151,6 +155,18 @@ export class AdminDashboardComponent implements OnInit {
     
   }
 
+  getRevenue(){
+
+    let revenue = 0
+     this.dashboardData.subscribers.map((item:any)=>{
+      revenue += item.Subscription.Price
+      return revenue
+    })
+    this.totalRevenue = revenue
+    console.log(revenue,'revenue');
+    
+  }
+
   extractData(data:any){
     for(let el in data){
       this.dataCount.push({
@@ -159,5 +175,10 @@ export class AdminDashboardComponent implements OnInit {
       })
     }
     console.log(this.dataCount, 'data');
+  }
+
+  logOut(role:string){
+    this.authService.removeToken(role)
+    this.router.navigate(['/admin'])
   }
 }

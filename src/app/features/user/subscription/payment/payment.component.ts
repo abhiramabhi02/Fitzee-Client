@@ -68,7 +68,9 @@ export class PaymentComponent {
     response.userId = this.userId;
     response.subscriptionId = this.paymentData._id;
     response.packageId = this.paymentData.packageId;
-    response.orderId = this.paymentDetails
+    response.orderId = this.paymentData.orderId
+    console.log(response, 'res');
+    
     this.service.paymentVerification(response).subscribe({
       next: (res: any) => {
         console.log(res);

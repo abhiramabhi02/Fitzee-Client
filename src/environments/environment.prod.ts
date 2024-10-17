@@ -42,6 +42,7 @@ export const environment = {
     ADMIN_BASE_URL: `https://fitzee.online/admin/`,
     LOGIN:'login',
     GET_ALL_ITEMS:'getitems',
+    GET_ITEM_BY_ID:'getItembyId',
     GET_PAYMENTS: 'getpayments',
     INSERT_ITEMS:'insertitems',
     EDIT_ITEMS:'updateitems',

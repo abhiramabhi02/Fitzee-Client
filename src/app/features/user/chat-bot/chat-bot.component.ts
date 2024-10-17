@@ -1,4 +1,10 @@
-import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Input,
+  ViewChild,
+} from '@angular/core';
 
 @Component({
   selector: 'app-chat-bot',
@@ -10,16 +16,16 @@ export class ChatBotComponent implements AfterViewInit {
   @ViewChild('modalContent', { static: false }) modalContent!: ElementRef; // Change to modalContent
   messages: { text: string; isUser: boolean }[] = [];
   replies: any = {
-    Workout_Tips: {
-      text: 'Here are some tips for your workout routine:',
+    Packages: {
+      text: 'Here are some best packages availabe Weight Gain package, Weight loss Package, and you can find more on the packages section:',
       suggestions: [
         'Strength Training',
         'Cardio Exercises',
         'Flexibility Routines',
       ],
     },
-    Nutrition_Advice: {
-      text: 'Nutrition is key to your fitness. Consider these options:',
+    Subscription: {
+      text: 'The packages we offer are Basic, Premium and more, you can check it on:',
       suggestions: ['Balanced Diet', 'Meal Prepping', 'Hydration Tips'],
     },
     Fitness_Goals: {
@@ -36,7 +42,10 @@ export class ChatBotComponent implements AfterViewInit {
     if (reply) {
       this.messages.push({ text: reply.text, isUser: false });
     } else {
-      this.messages.push({ text: 'I\'m not sure about that. Can you specify?', isUser: false });
+      this.messages.push({
+        text: "I'm not sure about that. Can you specify?",
+        isUser: false,
+      });
     }
 
     this.scrollToBottom();
@@ -44,8 +53,10 @@ export class ChatBotComponent implements AfterViewInit {
 
   scrollToBottom(): void {
     setTimeout(() => {
-      if (this.modalContent) { // Use modalContent for scrolling
-        this.modalContent.nativeElement.scrollTop = this.modalContent.nativeElement.scrollHeight;
+      if (this.modalContent) {
+        // Use modalContent for scrolling
+        this.modalContent.nativeElement.scrollTop =
+          this.modalContent.nativeElement.scrollHeight;
       }
     }, 0);
   }

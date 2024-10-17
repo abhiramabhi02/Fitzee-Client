@@ -46,6 +46,11 @@ export class AdminService {
     return this.httpClient.put<serverResponse>(url, data);
   }
 
+  getItemById(data:object):Observable<serverResponse>{
+    const url = this.baseUrl + this.adminUrl.GET_ITEM_BY_ID
+    return this.httpClient.post<serverResponse>(url, data)
+  }
+
   deleteItems(data: object | any) {
     const url =
       this.baseUrl +
@@ -249,10 +254,9 @@ export class AdminService {
     let keys: string[] = [
       'User',
       'Email',
+      'OrderId',
       'Package',
       'Subscription',
-      'Age',
-      'Gender',
       'Amount',
     ];
 
@@ -262,15 +266,32 @@ export class AdminService {
         paymentReport.push({
           User: item.Name,
           Email: item.Email,
+          OrderId: item?.Payment?.OrderId,
           Package: item.Package?.Packagename,
           Subscription: item.Subscription.Name,
-          Age: item?.PersonalDetails?.Age || 'nil',
-          Gender: item?.PersonalDetails?.Gender || 'nil',
+          Date: item?.Payment?.Date,
           Amount: item.Subscription.Price,
         });
       }
     });
     console.log(paymentReport, 're');
     return { keys: keys, items: paymentReport };
+  }
+
+  createExerciseMoreInfo(data:any | null){
+    if(data?.AdditionalData){
+      return this.fb.group({
+        Level: [data.AdditionalData.Level || '', Validators.required],
+        Sets: [data.AdditionalData.Sets || null, [Validators.required, Validators.min(1)]],
+        Reps: [data.AdditionalData.Reps || null, [Validators.required, Validators.min(1)]],
+      });
+    }else{
+
+      return this.fb.group({
+        Level: ['', Validators.required],
+        Sets: [null, [Validators.required, Validators.min(1)]],
+        Reps: [null, [Validators.required, Validators.min(1)]],
+      });
+    }
   }
 }

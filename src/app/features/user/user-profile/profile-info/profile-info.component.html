@@ -39,7 +39,8 @@
                 <div class="row">
                     <div class="profile-pic-container col-md-4">
                         <img *ngIf="hasImage" class="profile-pic" src="{{userData.PersonalDetails.Image}}" alt="">
-                        <img *ngIf="!hasImage" class="profile-pic" src="../../../../../assets/public/blank-profile-picture.webp" alt="">
+                        <img *ngIf="!hasImage" class="profile-pic"
+                            src="../../../../../assets/public/blank-profile-picture.webp" alt="">
                         <h5 class="mt-3">Profile Picture</h5>
                     </div>
                     <div class="col-md-8 personal-info">
@@ -72,7 +73,11 @@
                     <div class="col-md-6 workouts mt-3">
                         <div *ngIf="hasPackage; else getPackage" class="card workout-card">
                             <h5>Workouts</h5>
-                            <h6 *ngFor="let exercise of userData.Package.Exercises">{{exercise.Name}} - <span>12 x 3</span></h6>
+                            <h6 *ngFor="let exercise of userData.Package.Exercises">{{exercise.Name}} - <span
+                                    *ngIf="exercise?.AdditionalData">{{exercise?.AdditionalData?.Sets}} x
+                                    {{exercise?.AdditionalData?.Reps}}</span>
+                                    <span
+                                    *ngIf="!exercise?.AdditionalData">10 x 3</span></h6>
                         </div>
                     </div>
                     <div class="col-md-6 diets mt-3">
@@ -108,7 +113,8 @@
             <div class="update-profile-container mt-5">
                 <h4>Update Profile</h4>
                 <div class="col-md-4">
-                    <button type="button" class="btn btn-primary" (click)="openUpdateUserDialog()">Update details</button>
+                    <button type="button" class="btn btn-primary" (click)="openUpdateUserDialog()">Update
+                        details</button>
                 </div>
             </div>
         </div>

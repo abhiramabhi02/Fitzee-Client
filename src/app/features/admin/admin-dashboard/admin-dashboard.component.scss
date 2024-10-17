@@ -93,30 +93,36 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
   
-  .topbar .search-bar input {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    width: 200px;
-  }
-  
   .topbar .user-info {
     display: flex;
     align-items: center;
+    width: 100%;
   }
   
-  .topbar .user-info span {
-    margin-right: 20px;
+  .topbar .user-info h5 {
+    margin-right: auto; /* Pushes the text to the left */
   }
   
   .topbar .notifications {
     position: relative;
+    margin-right: 20px;
   }
   
   .topbar .notifications .icon-bell {
     font-size: 20px;
     cursor: pointer;
   }
+  
+  .logout-btn {
+    background-color: rgb(43, 121, 194);
+    color: #fff;
+    width: 5rem;
+    height: 2.5rem;
+    border-radius: 1rem;
+    border-color: #fff;
+    margin-left: auto; 
+  }
+  
   
   /* Main Content */
   .main-content {
@@ -190,4 +196,3 @@ body {
     color: #888;
     font-size: 16px;
   }
-  

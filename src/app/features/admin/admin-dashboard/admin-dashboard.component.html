@@ -66,6 +66,7 @@
         <div class="notifications">
           <i class="icon-bell"></i>
         </div>
+        <button class="logout-btn" (click)="logOut('admin')" type="button">Log Out</button>
       </div>
     </header>
 
@@ -85,7 +86,7 @@
       </div>
       <div class="analytics-card">
         <h3>Revenue</h3>
-        <p>$12,000</p>
+        <p>₹ {{totalRevenue}}</p>
       </div>
     </section>
 

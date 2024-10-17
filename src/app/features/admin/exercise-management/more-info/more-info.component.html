@@ -1,0 +1,41 @@
+<h2 mat-dialog-title>Add Exercise Details</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="exerciseForm">
+    <!-- Select for Level -->
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Level</mat-label>
+      <mat-select formControlName="Level">
+        <mat-option value="beginner">Beginner</mat-option>
+        <mat-option value="advanced">Advanced</mat-option>
+        <mat-option value="pro">Pro</mat-option>
+      </mat-select>
+      <mat-error *ngIf="exerciseForm.get('Level')?.invalid && exerciseForm.get('Level')?.touched">
+        Level is required
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Input for Sets -->
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Sets</mat-label>
+      <input matInput type="number" formControlName="Sets" placeholder="Enter Sets">
+      <mat-error *ngIf="exerciseForm.get('sets')?.invalid && exerciseForm.get('sets')?.touched">
+        Sets are required and must be at least 1
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Input for Reps -->
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Reps</mat-label>
+      <input matInput type="number" formControlName="Reps" placeholder="Enter Reps">
+      <mat-error *ngIf="exerciseForm.get('Reps')?.invalid && exerciseForm.get('Reps')?.touched">
+        Reps are required and must be at least 1
+      </mat-error>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button color="primary" [disabled]="exerciseForm.invalid" (click)="onSubmit()">Submit</button>
+</mat-dialog-actions>

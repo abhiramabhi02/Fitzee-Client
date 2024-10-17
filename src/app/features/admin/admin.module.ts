@@ -34,6 +34,9 @@ import { MatInputModule } from '@angular/material/input';
 import { UserDetailsComponent } from './trainer/trainer/user-details/user-details.component';
 import { MatButtonModule } from '@angular/material/button';
 import { ReportsComponent } from './reports/reports.component';
+import { MoreInfoComponent } from './exercise-management/more-info/more-info.component';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -60,6 +63,7 @@ import { ReportsComponent } from './reports/reports.component';
     UserDietUpdationComponent,
     UserDetailsComponent,
     ReportsComponent,
+    MoreInfoComponent,
   ],
   imports: [
     CommonModule,
@@ -73,6 +77,8 @@ import { ReportsComponent } from './reports/reports.component';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatSelectModule,
+    MatOptionModule
   ]
 })
 export class AdminModule { }
