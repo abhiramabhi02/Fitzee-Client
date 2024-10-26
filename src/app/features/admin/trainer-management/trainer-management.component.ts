@@ -14,17 +14,19 @@ export class TrainerManagementComponent implements OnInit {
   keynames: string[] = [];
   Data: any[] = [];
   user: Boolean = true;
+  item:string = 'trainer';
+  itemCount: number = 0
 
   constructor(private service: AdminService) {}
 
   ngOnInit(): void {
-    const item = 'trainer';
-    this.service.getAllItems(item).subscribe({
+    this.service.getAllItems(this.item, 1).subscribe({
       next: (res: serverResponse) => {
         const result = this.service.trainerSorting(res.items);
         this.keynames = result.keys;
         this.headers = result.keys;
         this.Data = result.items;
+        this.itemCount = res.itemCount
       },
       error: (error) => {
         console.log(error);
@@ -38,6 +40,19 @@ export class TrainerManagementComponent implements OnInit {
     this.service.editItems(data).subscribe({
       next:(res:serverResponse)=>{
         console.log(res);
+      }
+    })
+  }
+
+  fetchDataPageNo(pageNo:number){
+    console.log(pageNo, 'pgno');
+    this.service.getAllItems(this.item, pageNo).subscribe({
+      next:(res:serverResponse)=>{
+        const result = this.service.trainerSorting(res.items);
+        this.keynames = result.keys;
+        this.headers = result.keys;
+        this.Data = result.items;
+        this.itemCount = res.itemCount
       }
     })
   }

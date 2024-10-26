@@ -2,5 +2,6 @@
 
 <div class="container">
     <h3>Trainer Management</h3>
-    <app-data-table [itemName]="'trainer'" [Headers]="headers" [keyNames]="keynames" [tableData]="Data" [isUsers]="user" (sendTrigger)="updateVerification($event)"></app-data-table>
+    <app-data-table [itemName]="'trainer'" [Headers]="headers" [keyNames]="keynames" [tableData]="Data" [isUsers]="user"
+       [itemCount]="itemCount" (sendTrigger)="updateVerification($event)" (passPage)="fetchDataPageNo($event)"></app-data-table>
 </div>

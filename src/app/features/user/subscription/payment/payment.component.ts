@@ -57,6 +57,13 @@ export class PaymentComponent {
         theme: {
           color: '#3399cc',
         },
+        modal: {
+          ondismiss: () => {
+            console.log('Payment modal closed without completing the transaction.');
+            // Handle payment modal dismissal here (optional)
+            this.router.navigate(['/paymentdetails'])
+          },
+        },
       };
 
       const rzp1 = new Razorpay(options);

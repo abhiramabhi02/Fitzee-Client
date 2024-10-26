@@ -23,7 +23,7 @@ export class AddPackageComponent implements OnInit {
   }
 
   getExercises(){
-    this.service.getAllItems('exercise').subscribe((res:serverResponse)=>{
+    this.service.getAllItems('exercise',1,0).subscribe((res:serverResponse)=>{
       if(res.success){
         this.exercises = res.items
         // console.log(this.exercises);
@@ -33,7 +33,7 @@ export class AddPackageComponent implements OnInit {
   }
 
   getSubscriptions(){  
-    this.service.getAllItems('subscription').subscribe((res:serverResponse)=>{
+    this.service.getAllItems('subscription',1,0).subscribe((res:serverResponse)=>{
       if(res.success){
         this.subscriptions = res.items
         // console.log(this.subscriptions);

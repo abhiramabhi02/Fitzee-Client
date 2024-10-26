@@ -18,16 +18,18 @@ export class ExerciseManagementComponent implements OnInit {
   user: Boolean = false;
   newItemurl:string = '/addexercise'
   editItemUrl:string = '/editexercise'
+  item:string = 'exercise'
+  itemCount: number = 0
 
   constructor(private service: AdminService, private firebaseService:FirebaseService, private sharedService:SharedService) {}
 
   ngOnInit(): void {
-    const item:string = 'exercise'
-    this.service.getAllItems(item).subscribe((res: any) => {
+    this.service.getAllItems(this.item, 1).subscribe((res: any) => {
       const result = this.service.exerciseSorting(res);
       this.keynames = result.keys;
       this.headers = result.keys;
       this.Data = result.items;
+      this.itemCount = res.itemCount
     });
   }
 
@@ -60,5 +62,18 @@ export class ExerciseManagementComponent implements OnInit {
       throw new Error('invalid call')
     }
     
+  }
+
+  fetchDataPageNo(pageNo:number){
+    console.log(pageNo, 'pgno');
+    this.service.getAllItems(this.item, pageNo).subscribe({
+      next:(res:serverResponse)=>{
+      const result = this.service.exerciseSorting(res)
+      this.keynames = result.keys
+      this.headers = result.keys
+      this.Data = result.items
+      this.itemCount = res.itemCount
+      }
+    })
   }
 }

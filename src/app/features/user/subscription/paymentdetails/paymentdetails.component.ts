@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./paymentdetails.component.scss']
 })
 export class PaymentdetailsComponent {
-
+  success:boolean = true
   paymentDetails:any
 
   constructor(private router:Router){
@@ -19,7 +19,7 @@ export class PaymentdetailsComponent {
       
       this.paymentDetails = navigation?.extras?.state['data']
       console.log(this.paymentDetails, 'hello2');
-      
     }
   }
+
 }

@@ -1,76 +1,47 @@
 <div class="main-container">
-    <!-- <div *ngIf="!dataLoaded" class="noData">
-        <h4 class="text-secondary mt-3 mx-3">Select Room to chat</h4>
-    </div> -->
     <div *ngIf="dataLoaded" class="col-md-12 details-container">
         <div class="profile-pic-container">
-            <img *ngIf="role === 'user' && roomData.trainerDetails.Image" class="profile-pic" src="{{roomData.trainerDetails.Image}}" alt="">
-            <img *ngIf="role === 'user' && !roomData.trainerDetails.Image" class="profile-pic" src="../../../../assets/public/blank-profile-picture.webp" alt="">
-            <img *ngIf="role === 'trainer' && roomData.userDetails?.PersonalDetails?.Image" class="profile-pic" src="{{roomData.userDetails.PersonalDetails.Image}}" alt="">
-            <img *ngIf="role === 'trainer' && !roomData.userDetails?.PersonalDetails?.Image" class="profile-pic" src="../../../../assets/public/blank-profile-picture.webp" alt="">
+            <img *ngIf="role === 'user' && roomData.trainerDetails.Image" class="profile-pic" src="{{roomData.trainerDetails.Image}}" alt="Profile Picture">
+            <img *ngIf="role === 'user' && !roomData.trainerDetails.Image" class="profile-pic" src="../../../../assets/public/blank-profile-picture.webp" alt="No Profile Picture">
+            <img *ngIf="role === 'trainer' && roomData.userDetails?.PersonalDetails?.Image" class="profile-pic" src="{{roomData.userDetails.PersonalDetails.Image}}" alt="Profile Picture">
+            <img *ngIf="role === 'trainer' && !roomData.userDetails?.PersonalDetails?.Image" class="profile-pic" src="../../../../assets/public/blank-profile-picture.webp" alt="No Profile Picture">
         </div>
-        <div *ngIf="role === 'trainer'" class="room-details-container">
-            <h4>{{roomData.userDetails.Name}}</h4>
+        <div class="room-details-container">
+            <h4>{{role === 'trainer' ? roomData.userDetails.Name : roomData.trainerDetails.Name}}</h4>
+            <p *ngIf="role === 'trainer' && userTyping || role === 'user' && trainerTyping">Typing...</p>
         </div>
-
-        <div *ngIf="role === 'user'" class="room-details-container">
-            <h4>{{roomData.trainerDetails.Name}}</h4>
-        </div>
-        <div class="comunication-container">
-            <i class="fa-solid fa-phone"></i>
-            <i class="fa-solid fa-video"></i>
-            <i class="fa-solid fa-ellipsis-vertical"></i>
-        </div>
-        
     </div>
+
     <div class="vertical-line-div mt-2 mx-3">
-        <div style="width: 49rem; height: 1px; background-color: black;"></div>
+        <div class="horizontal-line"></div>
     </div>
 
-    <div *ngIf="role === 'user'" class="messages-container container">
-        <div *ngIf="!dataLoaded" class="noData">
-            <h4 class="text-secondary mt-3 mx-3">Select Room to chat</h4>
-        </div>
+    <div class="messages-container">
        <div *ngFor="let message of Messages">
-        <div *ngIf="message.SenderId === UserId" class="send-text">
+        <div *ngIf="message.SenderId === (role === 'user' ? UserId : TrainerId)" class="send-text">
             <h6>{{message.Message}}</h6>
-             <p>{{message.TimeStamp | timeStamp}}</p>
-           </div>  
-
-           <div *ngIf="message.SenderId === TrainerId" class="reciever-text">
+            <div class="message-info">
+                <p class="timestamp">{{message.TimeStamp | timeStamp}}</p>
+                <p class="status">{{message.Read ? '✔✔ Seen' : '✔ Sent'}}</p>
+            </div>
+        </div>
+        <div *ngIf="message.SenderId !== (role === 'user' ? UserId : TrainerId)" class="receiver-text">
             <h6>{{message.Message}}</h6>
-            <p>{{message.TimeStamp | timeStamp}}</p>
-           </div>
+            <div class="message-info">
+                <p class="timestamp">{{message.TimeStamp | timeStamp}}</p>
+            </div>
+        </div>
        </div>
     </div>
 
-    <div *ngIf="role === 'trainer'" class="messages-container container">
-        <div *ngFor="let message of Messages">
-         <div *ngIf="message.SenderId === TrainerId" class="send-text">
-             <p>{{message.Message}}</p>
-             <p>{{message.TimeStamp | timeStamp}}</p>
-            </div>  
- 
-            <div *ngIf="message.SenderId === UserId" class="reciever-text">
-             <p>{{message.Message}}</p>
-             <p>{{message.TimeStamp | timeStamp}}</p>
-            </div>
-        </div>
-     </div>
-
-    
-    <div class="message-areas">
-        <div class="send-file">
-            <i class="fa-solid fa-paperclip"></i>
-        </div>
+    <div class="message-area">
         <div class="text-area-container">
           <form [formGroup]="messageForm" (ngSubmit)="sendMessage()">
-            <input class="text-area form-control" type="text" placeholder="Type your message here..." formControlName="message">
+            <input class="text-area form-control" (input)="typingIndicate(messageForm.value)" type="text" placeholder="Type your message here..." formControlName="message">
           </form> 
         </div>
         <div class="chat-icons">
             <i class="fa-regular fa-face-smile"></i>
-            <i class="fa-solid fa-camera"></i>
         </div>
     </div>
 </div>

@@ -16,17 +16,19 @@ export class SubscriptionComponent implements OnInit {
   user: Boolean = false;
   newItemurl:string = '/addsubscription'
   editItemUrl:string = '/editsubscription'
+  item:string = 'subscription'
+  itemCount: number = 0
 
   constructor(private service:AdminService){}
 
   ngOnInit(): void {
-    const item = 'subscription'
-    this.service.getAllItems(item).subscribe({
+    this.service.getAllItems(this.item, 1).subscribe({
       next:(res:serverResponse)=>{
         const result = this.service.subscriptionSorting(res)
         this.keynames = result.keys;
         this.headers = result.keys;
         this.Data = result.items;
+        this.itemCount = res.itemCount
       },
       error:(err)=> {
         console.log(err);
@@ -60,6 +62,19 @@ export class SubscriptionComponent implements OnInit {
       })
       
     }
+  }
+
+  fetchDataPageNo(pageNo:number){
+    console.log(pageNo, 'pgno');
+    this.service.getAllItems(this.item, pageNo).subscribe({
+      next:(res:serverResponse)=>{
+        const result = this.service.subscriptionSorting(res)
+        this.keynames = result.keys;
+        this.headers = result.keys;
+        this.Data = result.items;
+        this.itemCount = res.itemCount
+      }
+    })
   }
   
 }

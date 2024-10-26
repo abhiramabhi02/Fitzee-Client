@@ -21,7 +21,7 @@ export class EditPackageComponent {
   }
 
   getExercises() {
-    this.service.getAllItems('exercise').subscribe({
+    this.service.getAllItems('exercise', 1, 0).subscribe({
       next:(res:serverResponse)=>{
         if (res.success) {
           this.exercises = res.items;
@@ -31,7 +31,7 @@ export class EditPackageComponent {
   }
 
   getSubscriptions() {
-    this.service.getAllItems('subscription').subscribe((res: serverResponse) => {
+    this.service.getAllItems('subscription', 1, 0).subscribe((res: serverResponse) => {
       if (res.success) {
         this.subscriptions = res.items;
       }

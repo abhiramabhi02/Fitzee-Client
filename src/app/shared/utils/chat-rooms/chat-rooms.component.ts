@@ -43,7 +43,7 @@ export class ChatRoomsComponent implements OnInit, OnChanges {
     }
   }
 
-  check(roomId: string) {
+  passRoomData(roomId: string) {
     const roomData = this.rooms.find(item => item._id === roomId);
     this.sendRoomData.emit(roomData);
   }

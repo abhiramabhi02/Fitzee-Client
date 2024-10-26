@@ -18,6 +18,8 @@ export class PackagesManagementComponent implements OnInit {
   user: Boolean = false;
   newItemurl: string = '/addpackage';
   editItemUrl: string = '/editpackage';
+  item:string = 'package'
+  itemCount: number = 0
 
   constructor(
     private service: AdminService,
@@ -26,14 +28,14 @@ export class PackagesManagementComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const item = 'package';
-    this.service.getAllItems(item).subscribe((res: any) => {
+    this.service.getAllItems(this.item, 1).subscribe((res: any) => {
       console.log(res, 'res');
 
       const result = this.service.packageSorting(res);
       this.keynames = result.keys;
       this.headers = result.keys;
       this.Data = result.items;
+      this.itemCount = res.itemCount
     });
   }
 
@@ -63,5 +65,19 @@ export class PackagesManagementComponent implements OnInit {
         },
       });
     }
+  }
+
+  fetchDataPageNo(pageNo:number){
+    console.log(pageNo, 'pgno');
+    this.service.getAllItems(this.item, pageNo).subscribe({
+      next:(res:serverResponse)=>{
+    
+        const result = this.service.packageSorting(res);
+        this.keynames = result.keys;
+        this.headers = result.keys;
+        this.Data = result.items;
+        this.itemCount = res.itemCount
+      }
+    })
   }
 }

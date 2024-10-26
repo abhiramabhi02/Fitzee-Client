@@ -31,7 +31,9 @@ export class DataTableComponent implements OnInit, OnChanges {
   @Input() editItemUrl!: string;
   @Input() imageVisibility: boolean = false;
   @Input() totalAmount: number = 0;
+  @Input() itemCount:number = 0
   @Output() sendTrigger: EventEmitter<object> = new EventEmitter<object>();
+  @Output() passPage:EventEmitter<number> = new EventEmitter<number>()
   id: string = 'id';
   Image: string = 'Image';
   paginationNumbers: number[] = [];
@@ -54,27 +56,34 @@ export class DataTableComponent implements OnInit, OnChanges {
   ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
+    if(this.tableData[0]){
+      this.uiData = this.tableData
+    }
     //  this.initialPageLoad()
-    if (this.tableData[0]) {
-      let totalpages: number = Math.trunc(this.tableData.length / 5);
-      if (this.tableData.length % 5 !== 0) {
-        console.log(this.tableData.length % 4 === 1);
+    if (this.tableData[0]) { 
+      let totalpages: number = Math.trunc(this.itemCount / 5);
+      console.log(this.itemCount, '1');
+      
+      if (this.itemCount % 5 !== 0) {
+        console.log(this.itemCount % 4 === 1);
         totalpages++;
       }
       console.log(totalpages, 'pages');
+      let pgNoArr = []
       for (let i = 1; i <= totalpages; i++) {
-        this.paginationNumbers.push(i);
+        pgNoArr.push(i);
       }
-      this.paginationWorks(1);
+      this.paginationNumbers = pgNoArr
+      // this.paginationWorks(1);
     }
 
     if (this.itemName === 'reports') {
-      this.adminService.getAllItems('subscription').subscribe({
+      this.adminService.getAllItems('subscription',1,0).subscribe({
         next: (res: serverResponse) => {
           this.subscriptions = res.items;
         },
       });
-      this.adminService.getAllItems('package').subscribe({
+      this.adminService.getAllItems('package',1,0).subscribe({
         next: (res: serverResponse) => {
           this.packages = res.items;
         },
@@ -144,9 +153,10 @@ export class DataTableComponent implements OnInit, OnChanges {
   }
 
   paginationWorks(pgNo: number) {
-    let result = this.service.pagination(this.tableData, pgNo);
-    console.log(result, 'check 436');
-    this.uiData = result;
+    // let result = this.service.pagination(this.tableData, pgNo);
+    // console.log(result, 'check 436');
+    // this.uiData = result;
+    this.passPage.emit(pgNo)
   }
 
   search(value: string) {

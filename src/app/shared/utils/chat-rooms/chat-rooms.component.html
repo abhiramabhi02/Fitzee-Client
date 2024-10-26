@@ -1,53 +1,47 @@
 <div class="main-container">
-    <div class="search">
-      <input type="text" class="form-control" (input)="search(searchinput.value)" placeholder="search.." #searchinput>
-    </div>
-    <div class="rooms-container">
-      <h3 id="chat-header">Chat</h3>
-  
-      <!-- User Chat Rooms -->
-      <div *ngIf="user === 'user'" class="rooms">
-        <div *ngFor="let room of roomData" class="user-chat-rooms">
-          <div (click)="check(room._id)" class="chat-room mt-3">
-            <div class="profile-pic-container">
-              <img *ngIf="room.trainerDetails?.Image" class="profile-pic" src="{{room.trainerDetails.Image}}" alt="Profile Picture">
-              <img *ngIf="!room.trainerDetails?.Image" class="profile-pic" src="../../../../assets/public/blank-profile-picture.webp" alt="Profile Picture">
-            </div>
-            <div class="room-name">
-              <h5>{{room.trainerDetails?.Name}}</h5>
-              <p>{{getLastMessage(room)}}</p>
-            </div>
-            <div class="timestamp">
-              <p>{{getLastTimestamp(room)}}</p>
-            </div>
+  <div class="search">
+    <input type="text" class="form-control" (input)="search(searchinput.value)" placeholder="Search for chats..." #searchinput>
+  </div>
+  <div class="rooms-container">
+    <h3 id="chat-header">Chats</h3>
+
+    <!-- User Chat Rooms -->
+    <div *ngIf="user === 'user'" class="rooms">
+      <div *ngFor="let room of roomData" class="user-chat-rooms">
+        <div (click)="passRoomData(room._id)" class="chat-room mt-3">
+          <div class="profile-pic-container">
+            <img *ngIf="room.trainerDetails?.Image" class="profile-pic" src="{{room.trainerDetails.Image}}" alt="Profile Picture">
+            <img *ngIf="!room.trainerDetails?.Image" class="profile-pic" src="../../../../assets/public/blank-profile-picture.webp" alt="Profile Picture">
           </div>
-          <div class="vertical-line-div mt-2 mx-3">
-            <div style="width: 26rem; height: 1px; background-color: black;"></div>
+          <div class="room-info">
+            <h5>{{room.trainerDetails?.Name}}</h5>
+            <p class="last-message">{{getLastMessage(room)}}</p>
+          </div>
+          <div class="timestamp">
+            <p>{{getLastTimestamp(room)}}</p>
           </div>
         </div>
       </div>
-  
-      <!-- Trainer Chat Rooms -->
-      <div *ngIf="user !== 'user'" class="rooms">
-        <button type="button" class="btn btn-sm btn-primary" (click)="createRoom()">New Chat</button>
-        <div *ngFor="let room of roomData" class="trainer-chat-rooms">
-          <div (click)="check(room._id)" class="chat-room mt-3">
-            <div class="profile-pic-container">
-              <img *ngIf="room.userDetails?.PersonalDetails?.Image" class="profile-pic" src="{{room.userDetails.PersonalDetails.Image}}" alt="">
-              <img *ngIf="!room.userDetails?.PersonalDetails?.Image" class="profile-pic" src="../../../../assets/public/blank-profile-picture.webp" alt="">
-            </div>
-            <div class="room-name">
-              <h5>{{room.userDetails?.Name}}</h5>
-              <p>{{getLastMessage(room)}}</p>
-            </div>
-            <div class="timestamp">
-              <p>{{getLastTimestamp(room)}}</p>
-            </div>
+    </div>
+
+    <!-- Trainer Chat Rooms -->
+    <div *ngIf="user !== 'user'" class="rooms">
+      <button type="button" class="btn btn-new-chat" (click)="createRoom()">New Chat</button>
+      <div *ngFor="let room of roomData" class="trainer-chat-rooms">
+        <div (click)="passRoomData(room._id)" class="chat-room mt-3">
+          <div class="profile-pic-container">
+            <img *ngIf="room.userDetails?.PersonalDetails?.Image" class="profile-pic" src="{{room.userDetails.PersonalDetails.Image}}" alt="Profile Picture">
+            <img *ngIf="!room.userDetails?.PersonalDetails?.Image" class="profile-pic" src="../../../../assets/public/blank-profile-picture.webp" alt="Profile Picture">
           </div>
-          <div class="vertical-line-div mt-2 mx-3">
-            <div style="width: 26rem; height: 1px; background-color: black;"></div>
+          <div class="room-info">
+            <h5>{{room.userDetails?.Name}}</h5>
+            <p class="last-message">{{getLastMessage(room)}}</p>
+          </div>
+          <div class="timestamp">
+            <p>{{getLastTimestamp(room)}}</p>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>

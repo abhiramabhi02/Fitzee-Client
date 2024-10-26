@@ -20,18 +20,20 @@ export class NewsManagementComponent implements OnInit {
   user: Boolean = false;
   newItemurl:string = '/addnews'
   editItemUrl:string = '/editnews'
+  item:string = 'news'
+  itemCount: number = 0
 
   constructor(private service: AdminService, private router:Router, private firebaseService:FirebaseService) {}
 
   ngOnInit(): void {
-    const item = 'news'
-    this.service.getAllItems(item).subscribe((res: any) => {
+    this.service.getAllItems(this.item, 1).subscribe((res: any) => {
       console.log(res.items, 'con');
       
       const result = this.service.newsSorting(res);
       this.keynames = result.keys;
       this.headers = result.keys;
       this.Data = result.items;
+      this.itemCount = res.itemCount
     });
   }
 
@@ -70,4 +72,17 @@ export class NewsManagementComponent implements OnInit {
     
   }
 
+
+  fetchDataPageNo(pageNo:number){
+    console.log(pageNo, 'pgno');
+    this.service.getAllItems(this.item, pageNo).subscribe({
+      next:(res:serverResponse)=>{
+        const result = this.service.newsSorting(res);
+        this.keynames = result.keys;
+        this.headers = result.keys;
+        this.Data = result.items;
+        this.itemCount = res.itemCount
+      }
+    })
+  }
 }

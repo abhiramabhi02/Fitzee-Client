@@ -23,8 +23,8 @@ export class AdminService {
   }
 
   // get request to fetch all the documents of particular items
-  getAllItems(data: string): Observable<serverResponse> {
-    const url = this.baseUrl + this.adminUrl.GET_ALL_ITEMS + `?item=${data}`;
+  getAllItems(data: string, pgNo:number, limit:number = 5): Observable<serverResponse> {
+    const url = this.baseUrl + this.adminUrl.GET_ALL_ITEMS + `?item=${data}&&page=${pgNo}&&limit=${limit}`;
 
     return this.httpClient.get<serverResponse>(url);
   }

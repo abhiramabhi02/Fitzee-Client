@@ -3,6 +3,8 @@
 
 <div class="container">
     <h3>Exercise Management</h3>
-    <app-data-table [Headers]="headers" [keyNames]="keynames" [addItemUrl]="newItemurl" [editItemUrl]="editItemUrl" [tableData]="Data"
-        [isUsers]="user" [itemName]="'exercise'" [imageVisibility]="true" (sendTrigger)="operationTrigger($event)" (sendTrigger)="statusUpdate($event)"></app-data-table>
+    <app-data-table [Headers]="headers" [keyNames]="keynames" [addItemUrl]="newItemurl" [editItemUrl]="editItemUrl"
+        [tableData]="Data" [isUsers]="user" [itemName]="'exercise'" [imageVisibility]="true" [itemCount]="itemCount"
+        (passPage)="fetchDataPageNo($event)" (sendTrigger)="operationTrigger($event)"
+        (sendTrigger)="statusUpdate($event)"></app-data-table>
 </div>

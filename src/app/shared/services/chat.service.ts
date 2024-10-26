@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class ChatService {
   private socket: Socket;
-  private readonly SERVER_URL = 'https://fitzee.online'; 
+  private readonly SERVER_URL = 'http://localhost:3000'; 
 
   constructor(private httpClient:HttpClient) {
     this.socket = io(this.SERVER_URL);
@@ -47,9 +47,9 @@ export class ChatService {
   }
 
   // Join an existing room
-  joinRoom(userId: string, trainerId: string): Observable<any> {
+  joinRoom(userId: string, trainerId: string, role:string): Observable<any> {
     return new Observable((observer) => {
-      this.socket.emit('joinRoom', { userId, trainerId });
+      this.socket.emit('joinRoom', { userId, trainerId, role });
 
       this.socket.on('previousMessages', (messages) => {
         observer.next(messages); 
@@ -61,9 +61,14 @@ export class ChatService {
     });
   }
 
+  //leave a room
+  leaveRoom(roomId:string, role:string){
+    this.socket.emit("leaveRoom", {roomId, role})
+  }
+
   // Send a message to a private chat room
-  sendMessage(roomId: string, message: string, senderId: string): void {
-    this.socket.emit('privateMessage', { roomId, message, senderId });
+  sendMessage(roomId: string, message: string, senderId: string, readStatus:boolean): void {
+    this.socket.emit('privateMessage', { roomId, message, senderId, readStatus });
   }
 
   // Listen for new messages from the server
@@ -74,6 +79,50 @@ export class ChatService {
       });
     });
   }
+
+  chatActiveUpdation(roomId:string, role:string){
+    this.socket.emit("userOnline", {roomId, role})
+  }
+
+  chatActiveStatus(): Observable<any>{
+    return new Observable((observer)=>{
+      this.socket.on("receiveChatActive", (data)=>{
+        console.log(data, 'data in cjds');
+        
+        observer.next(data)
+      })
+    })
+  }
+
+  updateStatus(roomId:string, senderId:string){
+    this.socket.emit("updateRead", {roomId, senderId})
+  }
+
+  receiveUpdates():Observable<any>{
+    return new Observable((observer)=>{
+      this.socket.on("receiveUpdates", (data)=>{
+        observer.next(data)
+      })
+    })
+  }
+
+  onTyping(roomId:string, senderRole:string){
+      this.socket.emit('typing', {roomId, senderRole})
+  }
+
+  receiveTyping():Observable<any>{
+    return new Observable((observer)=>{
+      this.socket.on("userTyping", (data)=>{
+        observer.next(data)
+      })
+    })
+  }
+
+  stopTyping(roomId:string, senderRole:string){
+    this.socket.emit("stopTyping", {roomId, senderRole})
+  }
+
+  
 
   // Handle disconnection
   handleDisconnect(): void {
