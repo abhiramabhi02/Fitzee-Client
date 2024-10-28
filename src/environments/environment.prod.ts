@@ -16,7 +16,7 @@ export const environment = {
 
   user:{
     // USER_BASE_URL:'https://fitzee.online/',
-    USER_BASE_URL:'http://localhost:3000/',
+    USER_BASE_URL:'https://fitzee.online/',
     USER_LOGIN:'login',
     GET_USER_BY_ID: `getuserbyid`,
     GET_ITEMS: `getitems`,
@@ -29,7 +29,7 @@ export const environment = {
     RESET_PASSWORD: 'resetpassword',
   },
   trainer:{
-    TRAINER_BASE_URL: `http://localhost:3000/trainer/`,
+    TRAINER_BASE_URL: `https://fitzee.online/trainer/`,
     LOGIN:'login',
     REGISTRATION:'registration',
     GET_ALL_ITEMS:'getitems',
@@ -39,7 +39,7 @@ export const environment = {
     UPDATE_DIET: 'updatediet',
   },
   admin:{
-    ADMIN_BASE_URL: `http://localhost:3000/admin/`,
+    ADMIN_BASE_URL: `https://fitzee.online/admin/`,
     LOGIN:'login',
     GET_ALL_ITEMS:'getitems',
     GET_ITEM_BY_ID:'getItembyId',
@@ -50,8 +50,8 @@ export const environment = {
     GET_DASHBOARD:'getdashboard'
   },
   chat:{
-    CHAT_PORT_URL:`'http://localhost:3000'`,
-    CHAT_BASE_URL:'http://localhost:3000/chat/',
+    CHAT_PORT_URL:`'https://fitzee.online'`,
+    CHAT_BASE_URL:'https://fitzee.online/chat/',
     GET_ROOMS: 'getrooms',
   }
 };
