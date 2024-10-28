@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { io, Socket } from 'socket.io-client';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { serverResponse } from '../interfaces/response.interface';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.prod';
@@ -10,10 +10,13 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class ChatService {
   private socket: Socket;
-  private readonly SERVER_URL = 'https://fitzee.online'; 
+  private readonly SERVER_URL = 'http://localhost:3000'; 
+  private chatActiveStatusSubject = new Subject<any>(); 
+  public chatActiveStatus$ = this.chatActiveStatusSubject.asObservable();  
 
   constructor(private httpClient:HttpClient) {
     this.socket = io(this.SERVER_URL);
+    this.listenForChatActiveStatus()
   }
 
    // Fetch chat rooms for user or trainer
@@ -84,16 +87,26 @@ export class ChatService {
     this.socket.emit("userOnline", {roomId, role})
   }
 
-  chatActiveStatus(): Observable<any>{
-    return new Observable((observer)=>{
-      this.socket.on("receiveChatActive", (data)=>{
-        console.log(data, 'data in cjds');
-        
-        observer.next(data)
-      })
-    })
+  // chatActiveStatus(){
+  //   this.socket.on("receiveChatActive", (data) => {
+  //     console.log(data, 'data received in chat service');
+  //     this.chatActiveStatusSubject.next(data);  // Emit the data through the Subject
+  //   });
+  // }
+
+  private listenForChatActiveStatus() {
+    // Listen for chat activity from the server and emit it to subscribers
+    this.socket.on("receiveChatActive", (data) => {
+      console.log(data, 'data received in chat service');
+      this.chatActiveStatusSubject.next(data);  // Emit the data through the Subject
+    });
   }
 
+  chatActiveStatus() {
+    return this.chatActiveStatus$;
+  }
+
+  
   updateStatus(roomId:string, senderId:string){
     this.socket.emit("updateRead", {roomId, senderId})
   }

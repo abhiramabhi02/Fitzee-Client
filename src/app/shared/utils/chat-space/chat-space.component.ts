@@ -38,7 +38,7 @@ export class ChatSpaceComponent implements OnInit, OnChanges, OnDestroy {
   constructor(
     private chatService: ChatService,
     private fb: FormBuilder,
-    private sharedService: SharedService
+    private sharedService: SharedService,
   ) {
     this.messageForm = this.fb.group({
       message: ['', Validators.required],
@@ -46,7 +46,6 @@ export class ChatSpaceComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnInit(): void {
-    // Listen for incoming messages
     this.chatService.receiveMessages().subscribe((data) => {
       if (data) {
         this.Messages.push(data);
@@ -55,24 +54,30 @@ export class ChatSpaceComponent implements OnInit, OnChanges, OnDestroy {
       }
     });
 
+    // this.chatService.chatActiveStatus().subscribe((data) => {
+    //   console.log(this.userChatActive, 'user active');
+    //   console.log(this.trainerChatActive, 'trainer active');
+    //   console.log(data);
+    //     this.userChatActive = data.userOnline;
+    //     this.trainerChatActive = data.trainerOnline;
+    //     console.log(
+    //       this.trainerChatActive,
+    //       'trainer',
+    //       this.userChatActive,
+    //       'user active'
+    //     );
+    // });
+
     this.chatService.chatActiveStatus().subscribe((data) => {
-      console.log(this.userChatActive, 'user active');
-      console.log(this.trainerChatActive, 'trainer active');
-      console.log(data);
-        this.userChatActive = data.userOnline;
-        this.trainerChatActive = data.trainerOnline;
-        console.log(
-          this.trainerChatActive,
-          'trainer',
-          this.userChatActive,
-          'user active'
-        );
+      console.log(data, 'active status data');
+      this.userChatActive = data.userOnline;
+      this.trainerChatActive = data.trainerOnline;
+      console.log(this.trainerChatActive, 'trainer', this.userChatActive, 'user');
     });
 
     this.chatService.receiveUpdates().subscribe((data) => {
       if (data) {
         this.Messages = data;
-        console.log(data, 'working shot');
 
         this.scrollToBottom();
       }

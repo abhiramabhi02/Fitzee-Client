@@ -205,18 +205,25 @@ export class DataTableComponent implements OnInit, OnChanges {
     if (this.itemName === 'reports') {
       return this.reportsFilter();
     }
+  
     const selectedSortValue = (
       document.getElementById('sortDate') as HTMLSelectElement
     ).value;
     const status = (
       document.getElementById('statusFilter') as HTMLSelectElement
     ).value;
+    
     const fromDate = this.fromDate ? new Date(this.fromDate) : null;
     const toDate = this.toDate ? new Date(this.toDate) : null;
-
+  
+    // Adjust toDate to include the full day if it exists
+    if (toDate) {
+      toDate.setHours(23, 59, 59, 999);
+    }
+  
     let filterName: string = '';
     let statusField: string = '';
-
+  
     if (this.itemName === 'user' || this.itemName === 'trainer') {
       filterName = 'JoinedDate';
       statusField = 'Verification';
@@ -224,21 +231,21 @@ export class DataTableComponent implements OnInit, OnChanges {
       filterName = 'InsertedDate';
       statusField = 'Status';
     }
-
+  
     // Status Filtering
     let filteredData = this.tableData;
-
+  
     if (status !== '') {
       const statusValue = status === 'true';
       filteredData = filteredData.filter(
         (item) => item[statusField] == statusValue
       );
     }
-
+  
     // Date Range Filtering
     filteredData = filteredData.filter((item) => {
       const itemDate = new Date(item[filterName]);
-
+  
       if (fromDate && toDate) {
         return itemDate >= fromDate && itemDate <= toDate;
       } else if (fromDate) {
@@ -249,7 +256,7 @@ export class DataTableComponent implements OnInit, OnChanges {
         return true;
       }
     });
-
+  
     // Sorting by Date (asc or desc)
     if (selectedSortValue === 'desc') {
       filteredData.sort(
@@ -262,11 +269,12 @@ export class DataTableComponent implements OnInit, OnChanges {
           new Date(a[filterName]).getTime() - new Date(b[filterName]).getTime()
       );
     }
-
+  
     // Set the final filtered and sorted data
     this.uiData = filteredData;
     console.log(this.uiData, 'Filtered and sorted data');
   }
+  
 
   reportsFilter() {
     const selectedSortValue = (
@@ -280,22 +288,30 @@ export class DataTableComponent implements OnInit, OnChanges {
     ).value;
     const fromDate = this.fromDate ? new Date(this.fromDate) : null;
     const toDate = this.toDate ? new Date(this.toDate) : null;
-
+  
+    // Adjust toDate to include the full day if it exists
+    if (toDate) {
+      toDate.setHours(23, 59, 59, 999);
+    }
+  
     let filteredData = this.tableData;
-
+  
+    // Package Filtering
     if (packages !== '') {
       filteredData = filteredData.filter((item) => item.Package === packages);
     }
-
+  
+    // Subscription Filtering
     if (subscription !== '') {
       filteredData = filteredData.filter(
         (item) => item.Subscription === subscription
       );
     }
-
+  
+    // Date Range Filtering
     filteredData = filteredData.filter((item) => {
       const itemDate = new Date(item.Date);
-
+  
       if (fromDate && toDate) {
         return itemDate >= fromDate && itemDate <= toDate;
       } else if (fromDate) {
@@ -306,7 +322,8 @@ export class DataTableComponent implements OnInit, OnChanges {
         return true;
       }
     });
-
+  
+    // Sorting by Date (asc or desc)
     if (selectedSortValue === 'desc') {
       filteredData.sort(
         (a, b) => new Date(b.Date).getTime() - new Date(a.Date).getTime()
@@ -316,10 +333,12 @@ export class DataTableComponent implements OnInit, OnChanges {
         (a, b) => new Date(a.Date).getTime() - new Date(b.Date).getTime()
       );
     }
-
+  
+    // Set the final filtered and sorted data
     this.uiData = filteredData;
     console.log(this.uiData, 'Filtered and sorted data');
   }
+  
 
   resetFilters() {
     this.uiData = this.tableData;
