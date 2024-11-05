@@ -30,7 +30,6 @@ export class AuthInterceptor implements HttpInterceptor {
       return next.handle(modifiedReq).pipe(
         tap((event:HttpEvent<any>)=>{
           if(event instanceof HttpResponse){
-            console.log(event, 'event in token');
             if(event.status !== 200){
               this.sharedService.showAlert(event.body.message)
             }
@@ -38,9 +37,7 @@ export class AuthInterceptor implements HttpInterceptor {
         },
       (error:any)=>{
         if(error instanceof HttpErrorResponse){
-          console.log(error.error.message, 'err in token');
           this.sharedService.showAlert(error.error.message)
-          
         }
       }
         )
@@ -51,12 +48,10 @@ export class AuthInterceptor implements HttpInterceptor {
       tap((event:HttpEvent<any>)=>{
         if(event instanceof HttpResponse){
           console.log(event, 'event in no token');
-          
         }
       },
     (error:any)=>{
       if(error instanceof HttpErrorResponse){
-        console.log(error, 'err in no token');
         this.sharedService.showAlert(error.error.message)
       }
     }

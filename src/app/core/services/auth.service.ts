@@ -49,7 +49,6 @@ export class AuthService {
       const decodedJson = JSON.parse(decodedPayload);
       return decodedJson.userId;
     } catch (error) {
-      console.log(error);
       return null;
     }
   }

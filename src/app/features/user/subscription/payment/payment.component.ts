@@ -28,7 +28,6 @@ export class PaymentComponent {
     const naviagation = this.router.getCurrentNavigation();
     if (naviagation?.extras) {
       this.paymentData = naviagation.extras.state?.['data'];
-      console.log(this.paymentData, 'pey in');
     }
     this.userId = authService.getUserIdFromToken('user')!;
   }
@@ -60,8 +59,6 @@ export class PaymentComponent {
         modal: {
           ondismiss: () => {
             console.log('Payment modal closed without completing the transaction.');
-            // Handle payment modal dismissal here (optional)
-            this.router.navigate(['/paymentdetails'])
           },
         },
       };

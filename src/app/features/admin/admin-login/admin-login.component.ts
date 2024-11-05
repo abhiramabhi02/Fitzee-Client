@@ -39,8 +39,6 @@ export class AdminLoginComponent {
     }else{
       this.trainerService.trainerLogin(data).subscribe({
         next:(res:serverResponse)=>{
-          console.log(res);
-          
           this.trainerData = res.user
           const token = res.token
           this.authService.setToken(token, 'trainer')
